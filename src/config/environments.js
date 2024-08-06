@@ -3,18 +3,27 @@ dotenv.config()
 
 const {
     BOT_TOKEN,
-    DB_URI,
+    DB_HOST,
+    DB_USER,
+    DB_PASSWORD,
+    DB_NAME,
+    DB_PORT,
     ERROR_CHANNEL,
     SERVER_URL,
     PORT
+
 } = process.env
 
 const environments = {
     BOT_TOKEN,
-    DB_URI,
+    PORT: PORT || 5000,
+    DB_HOST,
+    DB_USER,
+    DB_PASSWORD,
+    DB_NAME,
+    DB_PORT,
     ERROR_CHANNEL,
     SERVER_URL,
-    PORT: PORT || 5000
 }
 
 export default environments
