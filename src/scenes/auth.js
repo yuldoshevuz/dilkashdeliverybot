@@ -66,13 +66,12 @@ const authScene = new WizardScene(
 
                 const chatId = ctx.from.id;
 
-                await userRepo.update({ chatId }, {
+                await userRepo.addLocation(chatId, addressLocation);
+                const newUser = await userRepo.update({ chatId }, {
                     language: ctx.session.lang,
                     phoneNumber: ctx.session.phoneNumber,
                     active: true
                 });
-
-                const newUser = await userRepo.addLocation(chatId, addressLocation);
 
                 delete ctx.session.lang;
                 delete ctx.session.phoneNumber;
