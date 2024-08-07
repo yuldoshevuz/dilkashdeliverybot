@@ -2,20 +2,20 @@ import { Markup } from 'telegraf';
 
 // Tugmalarni yaratish
 const buttons = {
-    resume_sending: {
-        uz: "↗️ Botga o'tish.",
-        en: "↗️ Switch to bot.",
-        ru: "↗️ Перейти на бот."
+    switch_to_bot: {
+        uz: "🔗 Botga o'tish",
+        en: "🔗 Switch to bot",
+        ru: "🔗 Перейти на бот" 
     },
     send_contact: {
-        uz: "📞 Kontakt yuborish",
-        en: "📞 Send contact",
-        ru: "📞 Отправить контакт"
+        uz: "📱 Kontakt yuborish",
+        en: "📱 Send contact",
+        ru: "📱 Отправить контакт"
     },
     back_to_main_menu: {
-        uz: "🔙 Bosh menuga qaytish",
-        en: "🔙 Back to Main Menu",
-        ru: "🔙 Вернуться в главное меню"
+        uz: "🏠 Bosh menuga qaytish",
+        en: "🏠 Back to main menu",
+        ru: "🏠 Вернуться в главное меню"
     },
     send_location: {
         uz: "📍 Joylashuvimni yuborish",
@@ -23,162 +23,152 @@ const buttons = {
         ru: "📍 Отправить мое местоположение"
     },
     my_locations: {
-        uz: "📍Mening geolokatsiyalarim",
-        en: "My Locations",
-        ru: "Мои геолокации"
+        uz: "🗺️ Mening joylashuvlarim",
+        en: "🗺️ My locations",
+        ru: "🗺️ Мои геолокации"
     },
-    menu_text: {
-        uz: "🍴Menyu",
-        en: "🍴Menu",
-        ru: "🍴Меню"
+    menu: {
+        uz: "📜 Menyu",
+        en: "📜 Menu",
+        ru: "📜 Меню"
     },
     book_table: {
-        uz: "🪑Joy band qilish",
-        en: "🪑Book Table",
-        ru: "🪑Забронировать стол"
+        uz: "📅 Joy band qilish",
+        en: "📅 Book table",
+        ru: "📅 Забронировать стол"
     },
-    settings_text: {
-        uz: "⚙ Sozlamalar",
-        en: "⚙ Settings",
-        ru: "⚙ Настройки"
+    settings: {
+        uz: "⚙️ Sozlamalar",
+        en: "⚙️ Settings",
+        ru: "⚙️ Настройки"
     },
-    rate_me: {
-        uz: "🌟Bizga baho bering",
-        en: "🌟 Rate me",
-        ru: "🌟 Оценить меня"
+    rate_us: {
+        uz: "⭐ Bizga baho bering",
+        en: "⭐ Rate us",
+        ru: "⭐ Оценить нас"
     },
     location_contact: {
-        uz: "📍Lokatsiya/👤Kontaktlar",
-        en: "📍Locations /👤Contacts",
-        ru: "📍Локации/👤Контакты"
+        uz: "📍 Joylashuv/📞 Kontaktlar",
+        en: "📍 Locations /📞 Contacts",
+        ru: "📍 Локации/📞 Контакты"
     },
     social_media: {
-        uz: "📲Ijtimoiy tarmoqlar",
-        en: "📲Our Social Media",
-        ru: "📲Социальные сети"
+        uz: "🌐 Ijtimoiy tarmoqlar",
+        en: "🌐 Our social media",
+        ru: "🌐 Социальные сети"
     },
-    back_button: {
-        uz: "🔙Orqaga",
-        en: "🔙Back",
-        ru: "🔙Назад"
+    back: {
+        uz: "⬅️ Orqaga",
+        en: "⬅️ Back",
+        ru: "⬅️ Назад"
     },
     manual: {
-        uz: "🗂Qo'llanma",
-        en: "🗂Manual",
-        ru: "🗂Руководство"
+        uz: "📖 Qo'llanma",
+        en: "📖 Manual",
+        ru: "📖 Руководство"
     },
-    resume: {
-        uz: "📑Resume yuborish",
-        en: "📑Send resume",
-        ru: "📑Отправить резюме"
+    send_resume: {
+        uz: "📄 Resume yuborish",
+        en: "📄 Send resume",
+        ru: "📄 Отправить резюме"
     },
-    go_delivery: {
-        uz: "Tog'ora - Buyurtma uchun",
-        en: "Togora for order",
-        ru: "Togora for order"
+    order_togora: {
+        uz: "🍲 Tog'ora - Buyurtma uchun",
+        en: "🍲 Togora for order",
+        ru: "🍲 Togora for order"
     },
-    phone_delivery: {
-        uz: "📞Buyurtma qilish",
-        en: "📞Order",
-        ru: "📞Доставка"
+    order_phone: {
+        uz: "📞 Buyurtma qilish",
+        en: "📞 Order",
+        ru: "📞 Заказать"
     },
-    back_button_name: {
-        uz: "🔙Orqaga",
-        en: "🔙Back",
-        ru: "🔙Назад"
+    change_language: {
+        uz: "🌐 Tilni o'zgartirish",
+        en: "🌐 Change language",
+        ru: "🌐 Изменить язык"
     },
-    change_language_text: {
-        uz: "Tilni o'zgartirish",
-        en: "Change Language",
-        ru: "Изменить язык"
+    yes: {
+        uz: "✅ Ha",
+        en: "✅ Yes",
+        ru: "✅ Да"
     },
-    yes_word: {
-        uz: "✅Ha",
-        en: "✅Yes",
-        ru: "✅Да"
+    no: {
+        uz: "❌ Yo'q",
+        en: "❌ No",
+        ru: "❌ Нет"
     },
-    no_word: {
-        uz: "❌Yo'q",
-        en: "❌No",
-        ru: "❌Нет"
+    add_to_basket: {
+        uz: "🛒 Savatga qo'shish",
+        en: "🛒 Add to basket",
+        ru: "🛒 Добавить в корзину"
     },
-    save_to_basket: {
-        uz: "📥Savatga qo'shish",
-        en: "📥Add to Basket",
-        ru: "📥Добавить в корзину"
+    basket: {
+        uz: "🛒 Savat",
+        en: "🛒 Basket",
+        ru: "🛒 Корзина"
     },
-    basket_button: {
-        uz: "📥Savat",
-        en: "📥Basket",
-        ru: "📥Корзина"
-    },
-    booking_meal: {
-        uz: "🚖Buyurtma berish",
-        en: "🚖Order Meal",
-        ru: "🚖Заказать еду"
+    order_meal: {
+        uz: "🍽️ Buyurtma berish",
+        en: "🍽️ Order meal",
+        ru: "🍽️ Заказать еду"
     },
     clear_basket: {
-        uz: "🗑Savatni tozalash",
-        en: "🗑Clear Basket",
-        ru: "🗑Очистить корзину"
+        uz: "🗑️ Savatni tozalash",
+        en: "🗑️ Clear basket",
+        ru: "🗑️ Очистить корзину"
     },
-    time_delivery: {
-        uz: "🕒Yetkazib berish vaqti",
-        en: "🕒Delivery Time",
-        ru: "🕒Время доставки"
+    delivery_time: {
+        uz: "⏰ Yetkazib berish vaqti",
+        en: "⏰ Delivery time",
+        ru: "⏰ Время доставки"
     },
     cash_payment: {
-        uz: "💵Naqd pul",
-        en: "💵Cash Payment",
-        ru: "💵Наличные"
+        uz: "💵 Naqd pul",
+        en: "💵 Cash payment",
+        ru: "💵 Наличные"
     },
-    conformation: {
-        uz: "✅Tasdiqlash",
-        en: "✅Confirm",
-        ru: "✅Подтвердить"
+    confirm: {
+        uz: "✔️ Tasdiqlash",
+        en: "✔️ Confirm",
+        ru: "✔️ Подтвердить"
     },
     cancel: {
-        uz: "❌Bekor qilish",
-        en: "❌Cancel",
-        ru: "❌Отменить"
+        uz: "❌ Bekor qilish",
+        en: "❌ Cancel",
+        ru: "❌ Отменить"
     }
 };
 
 // Asosiy menyu tugmalari
 export const startKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.text(buttons.menu_text[lang]), Markup.button.text(buttons.book_table[lang])],
-    [Markup.button.text(buttons.rate_me[lang]), Markup.button.text(buttons.settings_text[lang])],
+    [Markup.button.text(buttons.menu[lang]), Markup.button.text(buttons.book_table[lang])],
+    [Markup.button.text(buttons.rate_us[lang]), Markup.button.text(buttons.settings[lang])],
     [Markup.button.text(buttons.location_contact[lang]), Markup.button.text(buttons.social_media[lang])],
-    [Markup.button.text(buttons.manual[lang]), Markup.button.text(buttons.resume[lang])]
+    [Markup.button.text(buttons.manual[lang]), Markup.button.text(buttons.send_resume[lang])]
 ]).resize();
 
 // Boshqa tugmalar uchun misollar
 export const contactKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.contactRequest(buttons.send_contact[lang]) ]
-]).resize()
-
-export const locationKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.locationRequest(buttons.send_location[lang]) ]
+    [Markup.button.contactRequest(buttons.send_contact[lang])]
 ]).resize();
 
-// export const contactKeyboard = (lang) => Markup.keyboard([
-//     [Markup.button.text(buttons.send_contact[lang]), Markup.button.text(buttons.send_location[lang])],
-//     [Markup.button.text(buttons.my_locations[lang]), Markup.button.text(buttons.back_to_main_menu[lang])]
-// ]);
+export const locationKeyboard = (lang) => Markup.keyboard([
+    [Markup.button.locationRequest(buttons.send_location[lang])]
+]).resize();
 
 export const basketKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.text(buttons.save_to_basket[lang]), Markup.button.text(buttons.clear_basket[lang])],
-    [Markup.button.text(buttons.basket_button[lang]), Markup.button.text(buttons.back_button[lang])]
+    [Markup.button.text(buttons.add_to_basket[lang]), Markup.button.text(buttons.clear_basket[lang])],
+    [Markup.button.text(buttons.basket[lang]), Markup.button.text(buttons.back[lang])]
 ]).resize();
 
 export const bookingKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.text(buttons.booking_meal[lang]), Markup.button.text(buttons.time_delivery[lang])],
-    [Markup.button.text(buttons.cash_payment[lang]), Markup.button.text(buttons.conformation[lang])],
-    [Markup.button.text(buttons.cancel[lang]), Markup.button.text(buttons.back_button[lang])]
+    [Markup.button.text(buttons.order_meal[lang]), Markup.button.text(buttons.delivery_time[lang])],
+    [Markup.button.text(buttons.cash_payment[lang]), Markup.button.text(buttons.confirm[lang])],
+    [Markup.button.text(buttons.cancel[lang]), Markup.button.text(buttons.back[lang])]
 ]).resize();
 
 export const changeLangKeyboard = () => Markup.inlineKeyboard([
-    [ Markup.button.callback("🇺🇿 O'zbekcha", "language:uz") ],
-    [ Markup.button.callback("🇬🇧 English", "language:en") ],
-    [ Markup.button.callback("🇷🇺 Русский", "language:ru") ]
-])
+    [Markup.button.callback("🇺🇿 O'zbekcha", "language:uz")],
+    [Markup.button.callback("🇬🇧 English", "language:en")],
+    [Markup.button.callback("🇷🇺 Русский", "language:ru")]
+]);

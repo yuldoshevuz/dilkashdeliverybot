@@ -10,7 +10,8 @@ const {
     DB_PORT,
     ERROR_CHANNEL,
     SERVER_URL,
-    PORT
+    PORT,
+    ADMINS
 
 } = process.env
 
@@ -24,6 +25,7 @@ const environments = {
     DB_PORT,
     ERROR_CHANNEL,
     SERVER_URL,
+    ADMINS: ADMINS ? ADMINS.split(",") : []
 }
 
 export default environments

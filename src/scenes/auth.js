@@ -19,9 +19,9 @@ const authScene = new WizardScene(
                     
                     await ctx.deleteMessage();
                     await ctx.replyWithPhoto("https://t.me/botcontents/165", {
-                        caption: i18n.t("welcome_text")
+                        caption: i18n.t("welcomeText")
                     });
-                    await ctx.replyWithHTML(i18n.t("send_me_contact_bot"),
+                    await ctx.replyWithHTML(i18n.t("sendMeContactBot"),
                         contactKeyboard(data)
                     );
                     
@@ -41,11 +41,11 @@ const authScene = new WizardScene(
 
             if (contact && contact.user_id === chatId) {
                 ctx.session.phoneNumber = contact.phone_number;
-                await ctx.reply(i18n.t("send_location"), locationKeyboard(ctx.session.lang));
+                await ctx.reply(i18n.t("sendLocation"), locationKeyboard(ctx.session.lang));
                 return ctx.wizard.next();
             }
 
-            await ctx.replyWithHTML(i18n.t("send_me_contact_bot"), contactKeyboard(ctx.session.lang));
+            await ctx.replyWithHTML(i18n.t("sendMeContactBot"), contactKeyboard(ctx.session.lang));
         } catch (error) {
             console.error(error);
         }
@@ -58,7 +58,7 @@ const authScene = new WizardScene(
                 const addressLocation = await fetchLocationAddress(location.latitude, location.longitude);
 
                 if (!addressLocation) {
-                    await ctx.replyWithHTML(`<b>${i18n.t("error_locating")}</b>`,
+                    await ctx.replyWithHTML(`<b>${i18n.t("errorLocating")}</b>`,
                         locationKeyboard(ctx.session.lang)
                     );
                     return;
@@ -91,7 +91,7 @@ authScene.start(isAuth, ctx => ctx.scene.enter('start'));
 
 authScene.enter(async (ctx) => {
     try {
-        await ctx.replyWithHTML(`<b>${i18n.t("change_language")}</b>`,
+        await ctx.replyWithHTML(`<b>${i18n.t("changeLanguage")}</b>`,
             changeLangKeyboard()
         );
     } catch (error) {

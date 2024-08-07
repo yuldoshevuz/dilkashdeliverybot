@@ -12,10 +12,8 @@ bot.use(isAuth);
 bot.use(i18nInitilization);
 
 bot.start(async (ctx) => {
-    const welcomeText = i18n.t("welcome_text", { lng: ctx.lang })
-
     await ctx.replyWithPhoto("https://t.me/botcontents/165", {
-        caption: welcomeText
+        caption: i18n.t("welcomeText")
     });
 
     ctx.scene.enter("start");
