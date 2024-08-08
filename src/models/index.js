@@ -1,3 +1,4 @@
+import Booking from "./booking.model.js";
 import Category from "./category.model.js";
 import MenuItem from "./menu.item.model.js";
 import OrderItem from "./order.item.model.js";
@@ -15,6 +16,9 @@ MenuItem.belongsTo(Restaurant, { foreignKey: "restaurantId" });
 User.hasMany(Order, { foreignKey: "userId" });
 Order.belongsTo(User, { foreignKey: "userId" });
 
+User.hasMany(Booking, { foreignKey: "customerId" });
+Booking.belongsTo(User, { foreignKey: "customerId" });
+
 Restaurant.hasMany(Order, { foreignKey: "restaurantId" });
 Order.belongsTo(Restaurant, { foreignKey: "restaurantId" });
 
@@ -30,7 +34,8 @@ const models = {
     MenuItem,
     Restaurant,
     Order,
-    OrderItem
+    OrderItem,
+    Booking
 }
 
 export default models

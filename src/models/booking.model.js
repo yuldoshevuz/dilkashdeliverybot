@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.config.js";
+import User from "./user.model.js";
 
 const Booking = sequelize.define("Booking", {
     id: {
@@ -11,16 +12,16 @@ const Booking = sequelize.define("Booking", {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: "User",
+            model: User,
             key: "id",
         },
     },
-    bookingDate: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
+    startTime: {
+        type: DataTypes.DATE,
+        allowNull: false
     },
-    timeRange: {
-        type: DataTypes.STRING,
+    endTime: {
+        type: DataTypes.DATE,
         allowNull: false
     },
     numberOfPeople: {

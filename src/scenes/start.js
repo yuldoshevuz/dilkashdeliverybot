@@ -4,7 +4,11 @@ import i18n from "../config/i18n.config.js";
 const startScene = new BaseScene("start")
 
 startScene.enter(async (ctx) => {
-    await ctx.reply(i18n.t("selectOptions"), startKeyboard(ctx.lang))
-})
+    await ctx.reply(i18n.t("selectOptions"),
+        startKeyboard(ctx.session.lang)
+    );
+});
 
-export default startScene
+startScene.hears(/^📅 (Joy band qilish|Book table|Забронировать стол)$/, async (ctx) => ctx.scene.enter("booking"));
+
+export default startScene;

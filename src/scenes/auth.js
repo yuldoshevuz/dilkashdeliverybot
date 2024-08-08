@@ -77,7 +77,7 @@ const authScene = new WizardScene(
                 delete ctx.session.phoneNumber;
 
                 ctx.session.user = newUser;
-                ctx.lang = newUser.language;
+                ctx.session.lang = newUser.language;
 
                 ctx.scene.enter("start");
             }
