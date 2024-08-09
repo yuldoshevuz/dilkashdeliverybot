@@ -79,7 +79,7 @@ const authScene = new WizardScene(
                 ctx.session.user = newUser;
                 ctx.session.lang = newUser.language;
 
-                ctx.scene.enter("start");
+                ctx.scene.enter("start", { home: true });
             }
         } catch (error) {
             console.error(error);

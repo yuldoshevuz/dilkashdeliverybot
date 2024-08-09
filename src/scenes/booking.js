@@ -209,7 +209,7 @@ const bookingScene = new WizardScene(
 
                         await ctx.editMessageText(i18n.t("doneBooking"));
                         await ctx.scene.leave();
-                        await ctx.scene.enter("start");
+                        await ctx.scene.enter("start", { home: true });
                     }
                 }
             }
@@ -244,7 +244,7 @@ bookingScene.hears(async (button, ctx) => {
         
         if (button === buttons.cancel[lang] || button === "/start") {
             delete ctx.session?.bookingDetails;
-            return await ctx.scene.enter("start");
+            return await ctx.scene.enter("start", { home: true });
         }
     } catch (error) {
         console.log(error)

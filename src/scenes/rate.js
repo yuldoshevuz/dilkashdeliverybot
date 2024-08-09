@@ -87,7 +87,7 @@ const rateScene = new WizardScene(
 
                 await ctx.reply(i18n.t("rateAccepted"));
                 await ctx.scene.leave();
-                await ctx.scene.enter("start");
+                await ctx.scene.enter("start", { home: true });
             }
 
             if (ctx.message && !ctx.message.text) {
@@ -118,7 +118,7 @@ rateScene.hears(async (button, ctx) => {
         
         if (button === buttons.cancel[lang] || button === "/start") {
             delete ctx.session?.rating;
-            return await ctx.scene.enter("start");
+            return await ctx.scene.enter("start", { home: true });
         }
     } catch (error) {
         console.log(error)

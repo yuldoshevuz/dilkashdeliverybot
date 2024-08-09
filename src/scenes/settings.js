@@ -27,7 +27,7 @@ settingsScene.hears(async (button, ctx) => {
                 changeLangKeyboard()
             );
         } else if (button === buttons.back[lang] || button === "/start") {
-            return await ctx.scene.enter("start");
+            return await ctx.scene.enter("start", { home: true });
         } else if (button === buttons.cancel[lang]) {
             return await ctx.scene.reenter();
         }
@@ -49,7 +49,7 @@ settingsScene.action(async (callbackData, ctx) => {
             await ctx.deleteMessage();
 
             ctx.session.lang = data;
-            await ctx.scene.enter("start");
+            await ctx.scene.enter("start", { home: true });
         }
     } catch (error) {
         console.log(error)

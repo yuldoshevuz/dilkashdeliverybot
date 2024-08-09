@@ -6,7 +6,8 @@
     "commentsUsers": "Obunachilarning fikr-mulohazalari",
     "bookingList": "Buyurtmalar ro'yxati",
     "bookingOrder": "Buyurtma qilingan stollar ro'yxati",
-    "selectOptions": "Quyidagilardan birini tanlang",
+    "selectOptions": "<b>Quyidagilardan birini tanlang:</b> 🌟",
+    "homeMessage": "🏠 Bosh sahifa",
     "youAreNotAdmin": "Siz admin emassiz",
     "welcomeToAdmin": "Admin panelga xush kelibsiz",
     "errorText": "Xatolik yuz berdi, iltimos, keyinroq qayta urinib ko'ring",
@@ -14,11 +15,11 @@
     "errorExcelSubcatalogRowText": "Excel faylingizda SubKatalog sheetida {errorData} qatorlarida xatoliklar bor",
     "errorExcelProductRowText": "Excel faylingizda Product sheetida {errorData} qatorlarida xatoliklar bor",
     "errorExcelWarningText": "Excel faylingizda sheet va ustun nomlari o'zgartirilgan. Iltimos, nomlarni o'zgartirmang va faqat ma'lumot qo'shing",
-    "welcomeText": "Hurmatli va qadrli mehmonlarimiz!\nSizni milliy va turk taomlari tayyorlanadigan «Dilkash Shirin Taom» oilaviy restoranimizda qarshi olishdan mamnunmiz!\n«Dilkash Shirin Taom» oilaviy restorani bu - turk va yevropa oshxonasi uyg'unlashuvidir.\n🌙 Aziz yurtdoshlar va mehmonlar, sizni afsonaviy «Dilkash» oilaviy restoraniga taklif qilamiz, sizga iliqlik va mazali taomlarni taqdim etishga tayyormiz.\n🍽 Restoranimiz menyusida 120 dan ziyod turli millatlarga mansub taomlar, 25 dan ziyod suyuq taomlar va 30 dan ortiq salatlar mavjud.\n✅ Milliy restoran tarmog'imizda taom yetkazib berish xizmati ham mavjud.\n📲 Buyurtma qabul qilish vaqti: 9:00 - 22:00\n☎️ Telefon: 97 616 08 88",
+    "welcomeText": "Hurmatli mehmonlarimiz! 🌟\n\nSizni <b>“Dilkash Shirin Taom”</b> oilaviy restoranimizda kutib olishdan mamnunmiz! 🍽️\n\nRestoranimiz — bu <b>turk va yevropa oshxonalari</b> uyg'unligi. Biz sizni samimiy mehmondo'stlik va ajoyib taomlar bilan kutib olishga tayyormiz. 🌙\n\n<b>Menyu</b>mizda:\n• 120 dan ortiq <b>milliy taomlar</b> 🍲\n• 25 dan ziyod <b>suyuqliklar</b> 🍵\n• 30 dan ortiq <b>salatlar</b> 🥗\n\nShuningdek, <b>taom yetkazib berish xizmati</b> ham mavjud. 🚚\n\n📞 <b>Telefon:</b> 97 616 08 88\n🕘 <b>Buyurtma qabul qilish vaqti:</b> 09:00 - 22:00",
     "sendMeContactBot": "Botdan foydalanish uchun kontaktingizni yuboring",
     "incorrectFormat": "Noto'g'ri format",
     "sendContactMandatory": "Botdan foydalanish uchun kontaktingizni yuboring",
-    "locationContactText": "<b>Dilkash Restaurant:</b>\n\n📱 <b>Buyurtma uchun telefon:</b> +998976160888\n📥 <b>Onlayn buyurtma:</b> @dilkash_olmaliq\n🚦 <b>Ish vaqtimiz:</b> 09:00-22:00\n📍 <b>Manzilimiz:</b> Olmaliq shahar, Prospekt Primkulova (Mo'ljal: Olmaliq Mudofa Ishlari Binosi)",
+    "aboutUsText": "<b>Dilkash Restaurant:</b>\n\n📱 <b>Buyurtma uchun telefon:</b> +998976160888\n📥 <b>Onlayn buyurtma:</b> @dilkash_olmaliq\n🚦 <b>Ish vaqtimiz:</b> 09:00-22:00\n\n📍 <b>Manzilimiz:</b> Olmaliq shahar, Prospekt Primkulova (Mo'ljal: Olmaliq Mudofa Ishlari Binosi)",
     "rateService": "Iltimos, xizmat sifatini 1 dan 5 gacha baholang",
     "rateFoods": "Juda soz, endi esa ta'omlar sifani baholang",
     "rateComment": "Fikr-mulohazangizni xabar sifatida qoldiring:",
@@ -44,5 +45,6 @@
     "enterDeliveryTime": "Yetkazib berish vaqtini kiriting",
     "acceptedText": "Buyurtma vaqtingiz qabul qilindi",
     "selectPaymentType": "To'lov turini tanlang",
-    "socialMediaText": "Siz bizni quyidagi ijtimoiy tarmoqlar orqali ham kuzatishingiz mumkin:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>"
+    "socialMediaText": "Siz bizni quyidagi ijtimoiy tarmoqlar orqali ham kuzatishingiz mumkin:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
+    "startJobMessage": "👋 Siz ham bizning professional jamoamizning bir qismi bo'lishni xohlaysizmi? 🏢\n\nIshga kirish uchun, iltimos, rezyumeyingizni quyidagi botga yuboring va biz siz bilan bog'lanamiz:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nBiz sizni kutyapmiz! ✨"
 }

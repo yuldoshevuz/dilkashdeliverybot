@@ -69,9 +69,19 @@ export const buttons = {
         ru: "Яндекс Карта"
     },
     connect: {
-        uz: "🌐 Ijtimoiy tarmoqlarimiz",
-        en: "🌐 Connect with Us",
-        ru: "🌐 Связаться с нами"
+        uz: "🌐 Ijtimoiy tarmoqlar",
+        en: "🌐 Social networks",
+        ru: "🌐 Соцсети"
+    },
+    abousUs: {
+        uz: "📋 Biz haqimizda",
+        en: "📋 About us",
+        ru: "📋 О нас"
+    },
+    startJob: {
+        uz: "🔍 Ishga ariza yuborish",
+        en: "🔍 Apply for a Job",
+        ru: "🔍 Подать заявку на работу"
     },
     back: {
         uz: "⬅️ Ortga",
@@ -159,9 +169,10 @@ export const buttons = {
 export const startKeyboard = (lang) => Markup.keyboard([
     [Markup.button.text(buttons.menu[lang]), Markup.button.text(buttons.reservation[lang])],
     [Markup.button.text(buttons.rate_us[lang]), Markup.button.text(buttons.settings[lang])],
-    [Markup.button.text(buttons.location_contact[lang])],
-    [Markup.button.text(buttons.connect[lang]), Markup.button.text(buttons.manual[lang])],
-    [Markup.button.text(buttons.send_resume[lang])]
+    [Markup.button.text(buttons.abousUs[lang])]
+    // [Markup.button.text(buttons.location_contact[lang])],
+    // [Markup.button.text(buttons.connect[lang]), Markup.button.text(buttons.manual[lang])],
+    // [Markup.button.text(buttons.send_resume[lang])]
 ]).resize();
 
 // Boshqa tugmalar uchun misollar
@@ -184,6 +195,10 @@ export const backKeyboard = (lang) =>
 
 export const backInlineKeyboard = (lang, cursor) =>
     Markup.inlineKeyboard([ Markup.button.callback(buttons.back[lang], `${cursor}:back`) ])
+
+export const backMainKeyboard = (lang) =>
+    Markup.keyboard([Markup.button.text(buttons.back_to_main_menu[lang])
+]).resize();
 
 export const cancelKeyboard = (lang) =>
     Markup.keyboard([Markup.button.text(buttons.cancel[lang])
@@ -278,10 +293,10 @@ export const rateInlineKeyboard = (cursor) => Markup.inlineKeyboard([
     [ Markup.button.callback("⭐️⭐️⭐️⭐️⭐️", `${cursor}:⭐️⭐️⭐️⭐️⭐️`) ]
 ]);
 
-export const locationSocialMediaKeyboard = (lang) => Markup.inlineKeyboard([
-    [ Markup.button.callback(buttons.location[lang], `ourLocation:40.8604382:69.5878348`) ],
-    [ Markup.button.callback(buttons.connect[lang], "socialMedia") ]
-])
+export const aboutUsKeyboard = (lang) => Markup.inlineKeyboard([
+    [ Markup.button.callback(buttons.location[lang], "ourLocation:40.8604382-69.5878348"), Markup.button.callback(buttons.connect[lang], "socialMedia") ],
+    [ Markup.button.callback(buttons.startJob[lang], "startJob") ]
+]);
 
 export const ourLocationsKeyboard = (lang) => Markup.inlineKeyboard([
     [

@@ -6,7 +6,8 @@
     "commentsUsers": "Subscriber Comments",
     "bookingList": "Order List",
     "bookingOrder": "Reserved Tables List",
-    "selectOptions": "Select one of the following",
+    "selectOptions": "Select one of the following 🌟",
+    "homeMessage": "🏠 Main page",
     "youAreNotAdmin": "You are not an admin",
     "welcomeToAdmin": "Welcome to the admin panel",
     "errorText": "An error occurred, please try again later",
@@ -14,11 +15,11 @@
     "errorExcelSubcatalogRowText": "There are errors in rows {errorData} on the SubCatalog sheet in your excel file",
     "errorExcelProductRowText": "There are errors in rows {errorData} on the Product sheet in your excel file",
     "errorExcelWarningText": "Sheet and column names have been changed in your excel file. Please do not change the names and only add data",
-    "welcomeText": "Dear and esteemed guests!\nWe are delighted to welcome you to our family restaurant 'Dilkash Shirin Taom,' where national and Turkish dishes are prepared!\nThe family restaurant 'Dilkash Shirin Taom' is a fusion of Turkish and European cuisines.\n🌙 Dear compatriots and guests, we invite you to the legendary family restaurant 'Dilkash,' ready to offer you warmth and delicious dishes.\n🍽 Our restaurant menu includes over 120 dishes from various nations, over 25 liquid dishes, and more than 30 salads.\n✅ We also offer delivery service in our national restaurant network.\n📲 Order acceptance time: 9:00 AM - 10:00 PM\n☎️ Phone: 97 616 08 88",
+    "welcomeText": "Dear Guests! 🌟\n\nWe are delighted to welcome you to our family restaurant, <b>“Dilkash Shirin Taom”</b>! 🍽️\n\nOur restaurant is a blend of <b>Turkish and European cuisine</b>. We are ready to offer you warm hospitality and delicious dishes. 🌙\n\nIn our <b>menu</b>:\n• Over 120 <b>national dishes</b> 🍲\n• More than 25 <b>soup options</b> 🍵\n• Over 30 <b>salads</b> 🥗\n\nWe also offer <b>food delivery service</b>. 🚚\n\n📞 <b>Phone:</b> 97 616 08 88\n🕘 <b>Order Time:</b> 09:00 AM - 10:00 PM",
     "sendMeContactBot": "Send your contact to use the bot",
     "incorrectFormat": "Incorrect format",
     "sendContactMandatory": "Send your contact to use the bot",
-    "locationContactText": "<b>Dilkash Restaurant:</b>\n\n📱 <b>Order by phone:</b> +998976160888\n📥 <b>Online order:</b> @dilkash_olmaliq\n🚦 <b>Working hours:</b> 09:00-22:00\n📍 <b>Address:</b> Olmaliq city, Primkulova Prospect (Landmark: Olmaliq Ministry of Defense Building)",
+    "aboutUsText": "<b>Dilkash Restaurant:</b>\n\n📱 <b>Order by phone:</b> +998976160888\n📥 <b>Online order:</b> @dilkash_olmaliq\n🚦 <b>Working hours:</b> 09:00-22:00\n\n📍 <b>Address:</b> Olmaliq city, Primkulova Prospect (Landmark: Olmaliq Ministry of Defense Building)",
     "rateService": "Please rate the service quality from 1 to 5",
     "rateFoods": "Very good, now rate the quality of food",
     "rateComment": "Leave your comment as a message:",
@@ -44,5 +45,6 @@
     "enterDeliveryTime": "Enter delivery time",
     "acceptedText": "Your time is accepted",
     "selectPaymentType": "Select payment type",
-    "socialMediaText": "You can also follow us on social media:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>"
+    "socialMediaText": "You can also follow us on social media:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
+    "startJobMessage": "👋 Would you like to become part of our professional team? 🏢\n\nTo start the job, please send your resume to the bot below, and we will reach out to you:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nWe're looking forward to hearing from you! ✨"
 }

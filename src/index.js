@@ -11,12 +11,6 @@ bot.use(stage.middleware());
 bot.use(isAuth);
 bot.use(i18nInitilization);
 
-bot.start(async (ctx) => {
-    await ctx.replyWithPhoto("https://t.me/botcontents/165", {
-        caption: i18n.t("welcomeText")
-    });
-
-    ctx.scene.enter("start");
-});
+bot.start(async (ctx) => ctx.scene.enter("start", { home: false }));
 
 connectDB()
