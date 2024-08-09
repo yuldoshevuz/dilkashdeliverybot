@@ -6,14 +6,18 @@ const startScene = new BaseScene("start")
 startScene.enter(async (ctx) => {
     const { home } = ctx.scene.state
 
-    if (home) {
-        return await ctx.reply(i18n.t("homeMessage"), startKeyboard(ctx.session.lang));
+    if (!home) {
+        await ctx.replyWithPhoto("https://t.me/botcontents/165", {
+            caption: i18n.t("welcomeText"),
+            parse_mode: "HTML"
+        });
+        return await ctx.replyWithHTML(
+            i18n.t("selectOptions"),
+            startKeyboard(ctx.session.lang)
+        );
     }
-    await ctx.replyWithPhoto("https://t.me/botcontents/165", {
-        caption: i18n.t("welcomeText"),
-        parse_mode: "HTML"
-    });
-    await ctx.replyWithHTML(i18n.t("selectOptions"), startKeyboard(ctx.session.lang));
+    
+    return await ctx.reply(i18n.t("homeMessage"), startKeyboard(ctx.session.lang));
 });
 
 startScene.hears(async (button, ctx) => {
