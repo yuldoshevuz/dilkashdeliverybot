@@ -13,7 +13,7 @@ export const sequelize = new Sequelize({
 
 export const initializeDatabase = async () => {
     try {
-        await sequelize.sync({ force: true, alter: true });
+        await sequelize.sync({ alter: true });
         console.log("Database synchronized");
     } catch (error) {
         console.error("Error synchronizing the database:", error);

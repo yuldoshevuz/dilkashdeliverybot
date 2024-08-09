@@ -249,6 +249,14 @@ export const confirmOrBackKeyboard = (lang) => Markup.inlineKeyboard([
     [ Markup.button.callback(buttons.back[lang], "confirmBooking:back") ]
 ])
 
+export const rateInlineKeyboard = (cursor) => Markup.inlineKeyboard([
+    [ Markup.button.callback("⭐️", `${cursor}:⭐️`) ],
+    [ Markup.button.callback("⭐️⭐️", `${cursor}:⭐️⭐️`) ],
+    [ Markup.button.callback("⭐️⭐️⭐️", `${cursor}:⭐️⭐️⭐️`) ],
+    [ Markup.button.callback("⭐️⭐️⭐️⭐️", `${cursor}:⭐️⭐️⭐️⭐️`) ],
+    [ Markup.button.callback("⭐️⭐️⭐️⭐️⭐️", `${cursor}:⭐️⭐️⭐️⭐️⭐️`) ]
+]);
+
 export const basketKeyboard = (lang) => Markup.keyboard([
     [Markup.button.text(buttons.add_to_basket[lang]), Markup.button.text(buttons.clear_basket[lang])],
     [Markup.button.text(buttons.basket[lang]), Markup.button.text(buttons.back[lang])]

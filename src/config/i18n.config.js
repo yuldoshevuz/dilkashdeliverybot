@@ -4,7 +4,7 @@ import path from "path";
 
 i18n.use(Backend).init({
     lng: "uz", // Default til
-    fallbackLng: "uz", // Agar tanlangan til topilmasa
+    fallbackLng: [ "uz", "en", "ru" ],
     backend: {
         loadPath: path.join(process.cwd(), "src", "locales", "{{lng}}.json")
     },
