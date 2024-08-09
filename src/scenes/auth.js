@@ -1,6 +1,6 @@
 import { WizardScene } from "telegraf/scenes";
 import i18n from "../config/i18n.config.js";
-import { changeLangKeyboard, contactKeyboard, locationKeyboard } from "../utils/keyboards.js";
+import { changeLangKeyboard, contactKeyboard, sendLocationKeyboard } from "../utils/keyboards.js";
 import isAuth from "../middlewares/auth.middleware.js";
 import fetchLocationAddress from "../helpers/fetch.address.js";
 import userRepo from "../reposotory/user.repo.js";
@@ -41,7 +41,7 @@ const authScene = new WizardScene(
 
             if (contact && contact.user_id === chatId) {
                 ctx.session.phoneNumber = contact.phone_number;
-                await ctx.reply(i18n.t("sendLocation"), locationKeyboard(ctx.session.lang));
+                await ctx.reply(i18n.t("sendLocation"), sendLocationKeyboard(ctx.session.lang));
                 return ctx.wizard.next();
             }
 
@@ -59,7 +59,7 @@ const authScene = new WizardScene(
 
                 if (!addressLocation) {
                     await ctx.replyWithHTML(`<b>${i18n.t("errorLocating")}</b>`,
-                        locationKeyboard(ctx.session.lang)
+                        sendLocationKeyboard(ctx.session.lang)
                     );
                     return;
                 }

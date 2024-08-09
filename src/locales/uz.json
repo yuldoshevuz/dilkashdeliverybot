@@ -18,7 +18,7 @@
     "sendMeContactBot": "Botdan foydalanish uchun kontaktingizni yuboring",
     "incorrectFormat": "Noto'g'ri format",
     "sendContactMandatory": "Botdan foydalanish uchun kontaktingizni yuboring",
-    "locationContactText": "Dilkash Restaurant:\n\n📱 Buyurtma uchun telefon: +998976160888\n📥 Onlayn buyurtma: @dilkash_olmaliq\n🚦 Ish vaqtimiz: 09:00-22:00\n📍 Manzilimiz: Olmaliq shahar, Prospekt Primkulova (Mo'ljal: Olmaliq Mudofa Ishlari Binosi)",
+    "locationContactText": "<b>Dilkash Restaurant:</b>\n\n📱 <b>Buyurtma uchun telefon:</b> +998976160888\n📥 <b>Onlayn buyurtma:</b> @dilkash_olmaliq\n🚦 <b>Ish vaqtimiz:</b> 09:00-22:00\n📍 <b>Manzilimiz:</b> Olmaliq shahar, Prospekt Primkulova (Mo'ljal: Olmaliq Mudofa Ishlari Binosi)",
     "rateService": "Iltimos, xizmat sifatini 1 dan 5 gacha baholang",
     "rateFoods": "Juda soz, endi esa ta'omlar sifani baholang",
     "rateComment": "Fikr-mulohazangizni xabar sifatida qoldiring:",
@@ -43,5 +43,6 @@
     "clearBasketText": "Savat tozalandi",
     "enterDeliveryTime": "Yetkazib berish vaqtini kiriting",
     "acceptedText": "Buyurtma vaqtingiz qabul qilindi",
-    "selectPaymentType": "To'lov turini tanlang"
+    "selectPaymentType": "To'lov turini tanlang",
+    "socialMediaText": "Siz bizni quyidagi ijtimoiy tarmoqlar orqali ham kuzatishingiz mumkin:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>"
 }

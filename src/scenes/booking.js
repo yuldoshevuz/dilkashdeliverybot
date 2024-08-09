@@ -1,6 +1,6 @@
 import { WizardScene } from "telegraf/scenes";
 import i18n from "../config/i18n.config.js";
-import { backInlineKeyboard, cancelKeyboard, confirmOrBackKeyboard, selectBookingDateKeyboard, selectBookingTimeKeyboard, selectPeopleCount } from "../utils/keyboards.js";
+import { backInlineKeyboard, buttons, cancelKeyboard, confirmOrBackKeyboard, selectBookingDateKeyboard, selectBookingTimeKeyboard, selectPeopleCount } from "../utils/keyboards.js";
 import { phoneValidation } from "../helpers/validations.js";
 import { formatBookingDetails } from "../helpers/date.js";
 import bookingRepo from "../reposotory/booking.repo.js";
@@ -238,9 +238,17 @@ bookingScene.enter(async (ctx) => {
     }
 });
 
-bookingScene.hears(/^\/start|🚫 (Bekor qilish|Cancel|Отменить)$/, async (ctx) => {
-    delete ctx.session?.bookingDetails;
-    ctx.scene.enter("start");
-});
+bookingScene.hears(async (button, ctx) => {
+    try {
+        const { lang } = ctx.session;
+        
+        if (button === buttons.cancel[lang] || button === "/start") {
+            delete ctx.session?.bookingDetails;
+            return await ctx.scene.enter("start");
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 export default bookingScene;

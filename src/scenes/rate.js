@@ -1,5 +1,5 @@
 import { WizardScene } from "telegraf/scenes";
-import { cancelKeyboard, rateInlineKeyboard } from "../utils/keyboards.js";
+import { buttons, cancelKeyboard, rateInlineKeyboard } from "../utils/keyboards.js";
 import i18n from "../config/i18n.config.js";
 import { phoneValidation } from "../helpers/validations.js";
 import sendMessageToAdmin from "../helpers/sendMsg.admin.js";
@@ -101,7 +101,7 @@ const rateScene = new WizardScene(
 
 rateScene.enter(async (ctx) => {
     try {
-        await ctx.reply(ctx.message.text,
+        await ctx.reply(buttons.rate_us[ctx.session.lang],
             cancelKeyboard(ctx.session.lang)
         );
         await ctx.reply(i18n.t("rateService"), 
@@ -112,9 +112,16 @@ rateScene.enter(async (ctx) => {
     }
 });
 
-rateScene.hears(/^\/start|🚫 (Bekor qilish|Cancel|Отменить)$/, async (ctx) => {
-    delete ctx.session?.rating;
-    ctx.scene.enter("start");
-});
-
+rateScene.hears(async (button, ctx) => {
+    try {
+        const { lang } = ctx.session;
+        
+        if (button === buttons.cancel[lang] || button === "/start") {
+            delete ctx.session?.rating;
+            return await ctx.scene.enter("start");
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
 export default rateScene;

@@ -26,8 +26,19 @@ class BaseRepo {
         return await this.findOne(where) || null;
     }
 
+    async updateById(id, values) {
+        const [updatedCount] = await this.model.update(values, { where: { id } });
+        if (updatedCount === 0) return null;
+        return await this.findById(id) || null;
+    }
+
     async delete(where) {
         const deletedCount = await this.model.destroy({ where });
+        return deletedCount > 0;
+    }
+
+    async deleteById(id) {
+        const deletedCount = await this.model.destroy({ where: { id } });
         return deletedCount > 0;
     }
 }

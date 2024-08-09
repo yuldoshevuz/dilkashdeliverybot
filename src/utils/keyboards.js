@@ -2,7 +2,7 @@ import { Markup } from 'telegraf';
 import { formatTime, getDate, isToday, timeSlots } from '../helpers/date.js';
 
 // Tugmalarni yaratish
-const buttons = {
+export const buttons = {
     switch_to_bot: {
         uz: "🔗 Botga o'tish",
         en: "🔗 Switch to bot",
@@ -29,13 +29,13 @@ const buttons = {
         ru: "🗺️ Мои геолокации"
     },
     menu: {
-        uz: "📜 Menyu",
-        en: "📜 Menu",
-        ru: "📜 Меню"
+        uz: "🍽 Taomlar Menyusi",
+        en: "🍽 Order Menu",
+        ru: "🍽 Меню Заказов"
     },
-    book_table: {
+    reservation: {
         uz: "📅 Joy band qilish",
-        en: "📅 Book table",
+        en: "📅 Book a Table",
         ru: "📅 Забронировать стол"
     },
     settings: {
@@ -44,34 +44,49 @@ const buttons = {
         ru: "⚙️ Настройки"
     },
     rate_us: {
-        uz: "⭐ Bizga baho bering",
-        en: "⭐ Rate us",
-        ru: "⭐ Оценить нас"
+        uz: "🌟 Baholash",
+        en: "🌟 Rate Us",
+        ru: "🌟 Оценить"
     },
     location_contact: {
-        uz: "📍 Joylashuv/📞 Kontaktlar",
-        en: "📍 Locations /📞 Contacts",
-        ru: "📍 Локации/📞 Контакты"
+        uz: "📍 Bizning joylashuv / 📞 Kontaktlar",
+        en: "📍 Our Location / 📞 Contacts",
+        ru: "📍 Наше местоположение / 📞 Контакты"
     },
-    social_media: {
-        uz: "🌐 Ijtimoiy tarmoqlar",
-        en: "🌐 Our social media",
-        ru: "🌐 Социальные сети"
+    location: {
+        uz: "📍 Joylashuv",
+        en: "📍 Location",
+        ru: "📍 Локация"
+    },
+    googleMaps: {
+        uz: "Google Xarita",
+        en: "Google Maps",
+        ru: "Google Карта"
+    },
+    yandexMaps: {
+        uz: "Yandex Joylashuv",
+        en: "Yandex Location",
+        ru: "Яндекс Карта"
+    },
+    connect: {
+        uz: "🌐 Ijtimoiy tarmoqlarimiz",
+        en: "🌐 Connect with Us",
+        ru: "🌐 Связаться с нами"
     },
     back: {
-        uz: "⬅️ Orqaga",
+        uz: "⬅️ Ortga",
         en: "⬅️ Back",
         ru: "⬅️ Назад"
     },
     manual: {
-        uz: "📖 Qo'llanma",
-        en: "📖 Manual",
-        ru: "📖 Руководство"
+        uz: "📚 Qo'llanma",
+        en: "📚 User Guide",
+        ru: "📚 Руководство пользователя"
     },
     send_resume: {
-        uz: "📄 Resume yuborish",
-        en: "📄 Send resume",
-        ru: "📄 Отправить резюме"
+        uz: "💼 Resume yuborish",
+        en: "💼 Submit Resume",
+        ru: "💼 Отправить резюме"
     },
     order_togora: {
         uz: "🍲 Tog'ora - Buyurtma uchun",
@@ -142,10 +157,11 @@ const buttons = {
 
 // Asosiy menyu tugmalari
 export const startKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.text(buttons.menu[lang]), Markup.button.text(buttons.book_table[lang])],
+    [Markup.button.text(buttons.menu[lang]), Markup.button.text(buttons.reservation[lang])],
     [Markup.button.text(buttons.rate_us[lang]), Markup.button.text(buttons.settings[lang])],
-    [Markup.button.text(buttons.location_contact[lang]), Markup.button.text(buttons.social_media[lang])],
-    [Markup.button.text(buttons.manual[lang]), Markup.button.text(buttons.send_resume[lang])]
+    [Markup.button.text(buttons.location_contact[lang])],
+    [Markup.button.text(buttons.connect[lang]), Markup.button.text(buttons.manual[lang])],
+    [Markup.button.text(buttons.send_resume[lang])]
 ]).resize();
 
 // Boshqa tugmalar uchun misollar
@@ -153,8 +169,13 @@ export const contactKeyboard = (lang) => Markup.keyboard([
     [Markup.button.contactRequest(buttons.send_contact[lang])]
 ]).resize();
 
-export const locationKeyboard = (lang) => Markup.keyboard([
+export const sendLocationKeyboard = (lang) => Markup.keyboard([
     [Markup.button.locationRequest(buttons.send_location[lang])]
+]).resize();
+
+export const settingsKeyboard = (lang) => Markup.keyboard([
+    [ Markup.button.text(buttons.change_language[lang]) ],
+    [ Markup.button.text(buttons.back[lang]) ]
 ]).resize();
 
 export const backKeyboard = (lang) =>
@@ -256,6 +277,18 @@ export const rateInlineKeyboard = (cursor) => Markup.inlineKeyboard([
     [ Markup.button.callback("⭐️⭐️⭐️⭐️", `${cursor}:⭐️⭐️⭐️⭐️`) ],
     [ Markup.button.callback("⭐️⭐️⭐️⭐️⭐️", `${cursor}:⭐️⭐️⭐️⭐️⭐️`) ]
 ]);
+
+export const locationSocialMediaKeyboard = (lang) => Markup.inlineKeyboard([
+    [ Markup.button.callback(buttons.location[lang], `ourLocation:40.8604382:69.5878348`) ],
+    [ Markup.button.callback(buttons.connect[lang], "socialMedia") ]
+])
+
+export const ourLocationsKeyboard = (lang) => Markup.inlineKeyboard([
+    [
+        Markup.button.url(buttons.googleMaps[lang],"https://maps.app.goo.gl/16PpHxidcEWf5uzj9"),
+        Markup.button.url(buttons.yandexMaps[lang], "https://yandex.ru/maps/-/CDcwb2o9")
+    ]
+])
 
 export const basketKeyboard = (lang) => Markup.keyboard([
     [Markup.button.text(buttons.add_to_basket[lang]), Markup.button.text(buttons.clear_basket[lang])],

@@ -18,7 +18,7 @@
     "sendMeContactBot": "Send your contact to use the bot",
     "incorrectFormat": "Incorrect format",
     "sendContactMandatory": "Send your contact to use the bot",
-    "locationContactText": "Dilkash Restaurant:\n\n📱 Phone for orders: +998976160888\n📥 Online order: @dilkash_olmaliq\n🚦 Working hours: 09:00-22:00\n📍 Our address: Olmaliq city, Primkulova Avenue (landmark: Olmaliq Military Office Building)",
+    "locationContactText": "<b>Dilkash Restaurant:</b>\n\n📱 <b>Order by phone:</b> +998976160888\n📥 <b>Online order:</b> @dilkash_olmaliq\n🚦 <b>Working hours:</b> 09:00-22:00\n📍 <b>Address:</b> Olmaliq city, Primkulova Prospect (Landmark: Olmaliq Ministry of Defense Building)",
     "rateService": "Please rate the service quality from 1 to 5",
     "rateFoods": "Very good, now rate the quality of food",
     "rateComment": "Leave your comment as a message:",
@@ -43,5 +43,6 @@
     "clearBasketText": "Basket cleared",
     "enterDeliveryTime": "Enter delivery time",
     "acceptedText": "Your time is accepted",
-    "selectPaymentType": "Select payment type"
+    "selectPaymentType": "Select payment type",
+    "socialMediaText": "You can also follow us on social media:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>"
 }
