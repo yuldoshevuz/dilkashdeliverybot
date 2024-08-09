@@ -17,7 +17,9 @@ startScene.enter(async (ctx) => {
         );
     }
     
-    return await ctx.reply(i18n.t("homeMessage"), startKeyboard(ctx.session.lang));
+    await ctx.reply(i18n.t("homeMessage"),
+        startKeyboard(ctx.session.lang)
+    );
 });
 
 startScene.hears(async (button, ctx) => {
