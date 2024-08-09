@@ -12,4 +12,4 @@ bot.use(i18nInitilization);
 
 bot.start(async (ctx) => ctx.scene.enter("start", { home: false }));
 
-connectDB()
+connectDB();
