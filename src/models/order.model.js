@@ -1,7 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.config.js";
 import User from "./user.model.js";
-import Restaurant from "./restaurant.model.js";
 
 const Order = sequelize.define("order", {
     id: {
@@ -17,20 +16,12 @@ const Order = sequelize.define("order", {
         },
         allowNull: false,
     },
-    restaurantId: {
-        type: DataTypes.UUID,
-        references: {
-            model: Restaurant,
-            key: "id",
-        },
-        allowNull: false,
-    },
     totalAmount: {
         type: DataTypes.FLOAT,
         allowNull: false,
     },
     status: {
-        type: DataTypes.ENUM("pending", "completed", "canceled"),
+        type: DataTypes.ENUM("pending", "process", "canceled", "completed"),
         allowNull: false,
         defaultValue: "pending",
     }

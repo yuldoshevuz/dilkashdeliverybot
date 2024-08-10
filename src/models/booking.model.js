@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.config.js";
 import User from "./user.model.js";
 
-const Booking = sequelize.define("Booking", {
+const Booking = sequelize.define("booking", {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,

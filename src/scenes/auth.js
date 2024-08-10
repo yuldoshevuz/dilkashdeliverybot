@@ -19,7 +19,8 @@ const authScene = new WizardScene(
                     
                     await ctx.deleteMessage();
                     await ctx.replyWithPhoto("https://t.me/botcontents/165", {
-                        caption: i18n.t("welcomeText")
+                        caption: i18n.t("welcomeText"),
+                        parse_mode: "HTML"
                     });
                     await ctx.replyWithHTML(i18n.t("sendMeContactBot"),
                         contactKeyboard(data)

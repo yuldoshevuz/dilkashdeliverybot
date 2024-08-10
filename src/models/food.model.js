@@ -1,25 +1,29 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.config.js";
 import Category from "./category.model.js";
-import Restaurant from "./restaurant.model.js";
 
-const MenuItem = sequelize.define("menuItem", {
+const Food = sequelize.define("food", {
 	id: {
 		type: DataTypes.UUID,
 		defaultValue: DataTypes.UUIDV4,
 		primaryKey: true,
 	},
-	name: {
+	title: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
+	composition: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 	price: {
 		type: DataTypes.FLOAT,
 		allowNull: false,
 	},
-	description: {
-		type: DataTypes.STRING,
-	},
+	language: {
+        type: DataTypes.ENUM("en", "uz", "ru"),
+        allowNull: true
+    },
 	categoryId: {
 		type: DataTypes.UUID,
 		references: {
@@ -27,18 +31,7 @@ const MenuItem = sequelize.define("menuItem", {
 			key: "id",
 		},
 		allowNull: false,
-	},
-	restaurantId: {
-		type: DataTypes.UUID,
-		references: {
-			model: Restaurant,
-			key: "id",
-		},
-		allowNull: false,
-	},
+	}
 });
 
-Restaurant.hasMany(MenuItem, { foreignKey: "restaurantId" });
-MenuItem.belongsTo(Restaurant, { foreignKey: "restaurantId" });
-
-export default MenuItem;
+export default Food;

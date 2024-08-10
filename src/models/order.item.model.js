@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.config.js";
 import Order from "./order.model.js";
-import MenuItem from "./menu.item.model.js";
+import Food from "./food.model.js";
 
 const OrderItem = sequelize.define("orderItem", {
     id: {
@@ -17,10 +17,10 @@ const OrderItem = sequelize.define("orderItem", {
         },
         allowNull: false,
     },
-    menuItemId: {
+    foodId: {
         type: DataTypes.UUID,
         references: {
-            model: MenuItem,
+            model: Food,
             key: "id",
         },
         allowNull: false,

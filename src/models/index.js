@@ -1,17 +1,14 @@
 import Booking from "./booking.model.js";
 import Category from "./category.model.js";
-import MenuItem from "./menu.item.model.js";
+import Food from "./food.model.js";
+import Image from "./image.model.js";
 import OrderItem from "./order.item.model.js";
 import Order from "./order.model.js";
-import Restaurant from "./restaurant.model.js";
 import User from "./user.model.js";
 
 // Relationships
-Category.hasMany(MenuItem, { foreignKey: "categoryId" });
-MenuItem.belongsTo(Category, { foreignKey: "categoryId" });
-
-Restaurant.hasMany(MenuItem, { foreignKey: "restaurantId" });
-MenuItem.belongsTo(Restaurant, { foreignKey: "restaurantId" });
+Category.hasMany(Food, { foreignKey: "categoryId" });
+Food.belongsTo(Category, { foreignKey: "categoryId" });
 
 User.hasMany(Order, { foreignKey: "userId" });
 Order.belongsTo(User, { foreignKey: "userId" });
@@ -19,20 +16,22 @@ Order.belongsTo(User, { foreignKey: "userId" });
 User.hasMany(Booking, { foreignKey: "customerId" });
 Booking.belongsTo(User, { foreignKey: "customerId" });
 
-Restaurant.hasMany(Order, { foreignKey: "restaurantId" });
-Order.belongsTo(Restaurant, { foreignKey: "restaurantId" });
-
 Order.hasMany(OrderItem, { foreignKey: "orderId" });
 OrderItem.belongsTo(Order, { foreignKey: "orderId" });
 
-MenuItem.hasMany(OrderItem, { foreignKey: "menuItemId" });
-OrderItem.belongsTo(MenuItem, { foreignKey: "menuItemId" });
+Food.hasMany(OrderItem, { foreignKey: "foodId" });
+OrderItem.belongsTo(Food, { foreignKey: "foodId" });
+
+Food.hasMany(Image, { foreignKey: "foodId" });
+Image.belongsTo(Food, { foreignKey: "foodId" });
+
+Category.hasMany(Image, { foreignKey: "categoryId" });
+Image.belongsTo(Category, { foreignKey: "categoryId" });
 
 const models = {
     User,
     Category,
-    MenuItem,
-    Restaurant,
+    Food,
     Order,
     OrderItem,
     Booking

@@ -4,7 +4,7 @@ import i18n from "../config/i18n.config.js";
 const startScene = new BaseScene("start")
 
 startScene.enter(async (ctx) => {
-    const { home } = ctx.scene.state
+    const { home } = ctx.scene.state;
 
     if (!home) {
         await ctx.replyWithPhoto("https://t.me/botcontents/165", {
