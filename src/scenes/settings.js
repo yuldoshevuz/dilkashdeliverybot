@@ -1,7 +1,7 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../config/i18n.config.js";
 import { buttons, cancelKeyboard, changeLangKeyboard, settingsKeyboard } from "../utils/keyboards.js";
-import userRepo from "../reposotory/user.repo.js";
+import reposotory from "../reposotory/reposotory.js";
 
 const settingsScene = new BaseScene("settings");
 
@@ -44,7 +44,7 @@ settingsScene.action(async (callbackData, ctx) => {
         if (cursor === "language") {
             const userId = ctx.session.user.id;
 
-            await userRepo.updateById(userId, { language: data });
+            await reposotory.user.updateById(userId, { language: data });
             await i18n.changeLanguage(data);
             await ctx.deleteMessage();
 

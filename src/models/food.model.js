@@ -8,14 +8,6 @@ const Food = sequelize.define("food", {
 		defaultValue: DataTypes.UUIDV4,
 		primaryKey: true,
 	},
-	title: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	composition: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
 	price: {
 		type: DataTypes.FLOAT,
 		allowNull: false,
@@ -31,6 +23,7 @@ const Food = sequelize.define("food", {
 			key: "id",
 		},
 		allowNull: false,
+        onDelete: "CASCADE"
 	}
 });
 

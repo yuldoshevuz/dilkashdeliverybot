@@ -1,4 +1,8 @@
 {
+    "uz": "Uzbek",
+    "en": "English",
+    "ru": "Russian",
+
     "changeLanguage": "🇺🇿 Iltimos tilni tanlang:\n🇬🇧 Please select a language:\n🇷🇺 Пожалуйста, выберите язык:",
     "sendLocation": "Send us your address so we can ship your orders quickly. You can also set the location manually",
     "errorLocating": "There was an error locating your location, please try again",
@@ -46,5 +50,12 @@
     "acceptedText": "Your time is accepted",
     "selectPaymentType": "Select payment type",
     "socialMediaText": "You can also follow us on social media:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
-    "startJobMessage": "👋 Would you like to become part of our professional team? 🏢\n\nTo start the job, please send your resume to the bot below, and we will reach out to you:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nWe're looking forward to hearing from you! ✨"
+    "startJobMessage": "👋 Would you like to become part of our professional team? 🏢\n\nTo start the job, please send your resume to the bot below, and we will reach out to you:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nWe're looking forward to hearing from you! ✨",
+
+    "welcomeAdmin": "Welcome to admin panel 👋",
+    "noCategories": "No categories available",
+    "enterCategoryName": "Enter the name of the category in {{language}}:",
+    "sendCategoryImage": "Very good! Submit your category picture now:",
+    "categoryDetails": "📂 <b>Category Name:</b> {{title}}\n🍽 <b>Number of Meals:</b> {{foodCount}}\n🖼 <b>Number of Images:</b> {{imagesCount}}\n\n🔧 <b>What would you like to do?</b>"
+
 }

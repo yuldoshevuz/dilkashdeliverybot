@@ -29,9 +29,9 @@ export const buttons = {
         ru: "🗺️ Мои геолокации"
     },
     menu: {
-        uz: "🍽 Taomlar Menyusi",
-        en: "🍽 Order Menu",
-        ru: "🍽 Меню Заказов"
+        uz: "🥘 Ta'omlar menyusi",
+        en: "🥘 Food menu",
+        ru: "🥘 Меню еды"
     },
     reservation: {
         uz: "📅 Joy band qilish",

@@ -15,6 +15,7 @@ const Order = sequelize.define("order", {
             key: "id",
         },
         allowNull: false,
+        onDelete: "CASCADE"
     },
     totalAmount: {
         type: DataTypes.FLOAT,

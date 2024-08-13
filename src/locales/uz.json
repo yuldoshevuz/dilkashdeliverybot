@@ -1,4 +1,8 @@
 {
+    "uz": "o'zbek",
+    "en": "ingliz",
+    "ru": "rus",
+
     "changeLanguage": "🇺🇿 Iltimos tilni tanlang:\n🇬🇧 Please select a language:\n🇷🇺 Пожалуйста, выберите язык:",
     "sendLocation": "Buyurtmalaringizni tezda yetkazib berishimiz uchun manzilingizni bizga yuboring. Joylashuvni qo'lda o'rnatishingiz ham mumkin",
     "errorLocating": "Joylashuvni aniqlashda xatolik yuz berdi, qayta urinib ko‘ring",
@@ -15,7 +19,7 @@
     "errorExcelSubcatalogRowText": "Excel faylingizda SubKatalog sheetida {errorData} qatorlarida xatoliklar bor",
     "errorExcelProductRowText": "Excel faylingizda Product sheetida {errorData} qatorlarida xatoliklar bor",
     "errorExcelWarningText": "Excel faylingizda sheet va ustun nomlari o'zgartirilgan. Iltimos, nomlarni o'zgartirmang va faqat ma'lumot qo'shing",
-    "welcomeText": "Hurmatli mehmonlarimiz! 🌟\n\nSizni <b>“Dilkash Shirin Taom”</b> oilaviy restoranimizda kutib olishdan mamnunmiz! 🍽️\n\nRestoranimiz — bu <b>turk va yevropa oshxonalari</b> uyg'unligi. Biz sizni samimiy mehmondo'stlik va ajoyib taomlar bilan kutib olishga tayyormiz. 🌙\n\n<b>Menyu</b>mizda:\n• 120 dan ortiq <b>milliy taomlar</b> 🍲\n• 25 dan ziyod <b>suyuqliklar</b> 🍵\n• 30 dan ortiq <b>salatlar</b> 🥗\n\nShuningdek, <b>taom yetkazib berish xizmati</b> ham mavjud. 🚚\n\n📞 <b>Telefon:</b> 97 616 08 88\n🕘 <b>Buyurtma qabul qilish vaqti:</b> 09:00 - 22:00",
+    "welcomeText": "Hurmatli mehmonlarimiz! 🌟\n\nSizni <b>“Dilkash Shirin Taom”</b> oilaviy restoranimizda kutib olishdan mamnunmiz! 🍽️\n\nRestoranimiz — bu <b>turk va yevropa oshxonalari</b> uyg'unligi. Biz sizni samimiy mehmondo'stlik va ajoyib taomlar bilan kutib olishga tayyormiz. 🌙\n\n<b>Menyu</b>mizda:\n• 120 dan ortiq <b>milliy taomlar</b> 🍲\n• 25 dan ziyod <b>suyuq ovqatlar</b> 🍵\n• 30 dan ortiq <b>salatlar</b> 🥗\n\nShuningdek, <b>taom yetkazib berish xizmati</b> ham mavjud. 🚚\n\n📞 <b>Telefon:</b> 97 616 08 88\n🕘 <b>Buyurtma qabul qilish vaqti:</b> 09:00 - 22:00",
     "sendMeContactBot": "Botdan foydalanish uchun kontaktingizni yuboring",
     "incorrectFormat": "Noto'g'ri format",
     "sendContactMandatory": "Botdan foydalanish uchun kontaktingizni yuboring",
@@ -46,5 +50,12 @@
     "acceptedText": "Buyurtma vaqtingiz qabul qilindi",
     "selectPaymentType": "To'lov turini tanlang",
     "socialMediaText": "Siz bizni quyidagi ijtimoiy tarmoqlar orqali ham kuzatishingiz mumkin:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
-    "startJobMessage": "👋 Siz ham bizning professional jamoamizning bir qismi bo'lishni xohlaysizmi? 🏢\n\nIshga kirish uchun, iltimos, rezyumeyingizni quyidagi botga yuboring va biz siz bilan bog'lanamiz:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nBiz sizni kutyapmiz! ✨"
+    "startJobMessage": "👋 Siz ham bizning professional jamoamizning bir qismi bo'lishni xohlaysizmi? 🏢\n\nIshga kirish uchun, iltimos, rezyumeyingizni quyidagi botga yuboring va biz siz bilan bog'lanamiz:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nBiz sizni kutyapmiz! ✨",
+
+    "welcomeAdmin": "Admin paneliga xush kelibsiz 👋",
+    "noCategories": "Hech qanday kategoriya mavjud emas",
+    "enterCategoryName": "Kategoriya nomini {{language}} tilida kiriting:",
+    "sendCategoryImage": "Juda soz! Endi kategoriya rasmini yuboring:",
+    "categoryDetails": "🍱 <b>Kategoriya nomi:</b> {{title}}\n🍽 <b>Ovqatlar soni</b>: {{foodCount}} ta\n🖼 <b>Rasmlar soni</b>: {{imagesCount}} ta\n\n🔧 <b>Nima qilishni xohlaysiz?</b>"
+    
 }

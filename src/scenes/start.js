@@ -1,6 +1,7 @@
 import { BaseScene } from "telegraf/scenes";
 import { buttons, startKeyboard } from "../utils/keyboards.js";
 import i18n from "../config/i18n.config.js";
+import isAdmin from "../middlewares/admin.middleware.js";
 const startScene = new BaseScene("start")
 
 startScene.enter(async (ctx) => {
@@ -21,6 +22,8 @@ startScene.enter(async (ctx) => {
         startKeyboard(ctx.session.lang)
     );
 });
+
+startScene.command("admin", isAdmin, async (ctx) => ctx.scene.enter("admin"));
 
 startScene.hears(async (button, ctx) => {
     try {

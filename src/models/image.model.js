@@ -19,7 +19,8 @@ const Image = sequelize.define("image", {
         references: {
             key: "id",
             model: Category
-        }
+        },
+        onDelete: "CASCADE"
     },
     foodId: {
         type: DataTypes.UUID,
@@ -27,7 +28,8 @@ const Image = sequelize.define("image", {
         references: {
             key: "id",
             model: Food
-        }
+        },
+        onDelete: "CASCADE"
     }
 })
 

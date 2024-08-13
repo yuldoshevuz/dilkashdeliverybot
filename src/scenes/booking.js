@@ -3,7 +3,7 @@ import i18n from "../config/i18n.config.js";
 import { backInlineKeyboard, buttons, cancelKeyboard, confirmOrBackKeyboard, selectBookingDateKeyboard, selectBookingTimeKeyboard, selectPeopleCount } from "../utils/keyboards.js";
 import { phoneValidation } from "../helpers/validations.js";
 import { formatBookingDetails } from "../helpers/date.js";
-import bookingRepo from "../reposotory/booking.repo.js";
+import Booking from "../reposotory/booking.js";
 
 const bookingScene = new WizardScene(
     "booking",
@@ -200,9 +200,22 @@ const bookingScene = new WizardScene(
                     }
                     
                     if (data === "confirm") {
+                        const bookingRepo = new Booking();
+                        const {
+                            customerName,
+                            startTime,
+                            endTime,
+                            numberOfPeople,
+                            contactNumber
+                        } = ctx.session.bookingDetails;
+
                         await bookingRepo.create({
-                            customerId: ctx.session.user.id,
-                            ...ctx.session.bookingDetails
+                            customerName,
+                            startTime,
+                            endTime,
+                            numberOfPeople,
+                            contactNumber,
+                            customerId: ctx.session.user.id
                         });
 
                         delete ctx.session.bookingDetails;

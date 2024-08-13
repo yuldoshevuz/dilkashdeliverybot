@@ -1,0 +1,128 @@
+// schema.prisma
+datasource db {
+  provider = "postgresql" // yoki boshqa ma'lumotlar bazasi provayderi
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Language {
+  en
+  uz
+  ru
+}
+
+enum OrderStatus {
+  pending
+  process
+  canceled
+  completed
+}
+
+model User {
+  id          String    @id @default(uuid())
+  chatId      BigInt    @unique
+  firstName   String
+  lastName    String?
+  phoneNumber String?
+  locations   Json?     @default("[]")
+  language    Language?
+  active      Boolean   @default(false)
+  isAdmin     Boolean   @default(false)
+  orders      Order[]
+  bookings    Booking[]
+
+  @@map("users")
+}
+
+model Booking {
+  id             String   @id @default(uuid())
+  customerId     String
+  startTime      DateTime
+  endTime        DateTime
+  numberOfPeople Int
+  customerName   String
+  contactNumber  String
+  customer       User     @relation(fields: [customerId], references: [id])
+
+  @@map("booking")
+}
+
+model Category {
+  id           String                @id @default(uuid())
+  foods        Food[]
+  images       Image[]
+  translations CategoryTranslation[]
+
+  @@map("categories")
+}
+
+model Food {
+  id           String            @id @default(uuid())
+  price        Float
+  language     Language?
+  categoryId   String
+  category     Category          @relation(fields: [categoryId], references: [id])
+  images       Image[]
+  orderItems   OrderItem[]
+  translations FoodTranslation[]
+
+  @@map("foods")
+}
+
+model Image {
+  id         String    @id @default(uuid())
+  url        String
+  categoryId String?
+  foodId     String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  food       Food?     @relation(fields: [foodId], references: [id])
+
+  @@map("images")
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  userId      String
+  totalAmount Float
+  status      OrderStatus @default(pending)
+  user        User        @relation(fields: [userId], references: [id])
+  orderItems  OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id       String @id @default(uuid())
+  orderId  String
+  foodId   String
+  quantity Int
+  price    Float
+  order    Order  @relation(fields: [orderId], references: [id])
+  food     Food   @relation(fields: [foodId], references: [id])
+
+  @@map("order_item")
+}
+
+model CategoryTranslation {
+  id         String    @id @default(uuid())
+  title      String
+  language   Language?
+  categoryId String
+  category   Category  @relation(fields: [categoryId], references: [id])
+
+  @@map("category_i18n")
+}
+
+model FoodTranslation {
+  id          String    @id @default(uuid())
+  title       String
+  composition String
+  language    Language?
+  foodId      String
+  food        Food      @relation(fields: [foodId], references: [id])
+
+  @@map("food_i18n")
+}

@@ -40,6 +40,6 @@ const Booking = sequelize.define("booking", {
         type: DataTypes.STRING,
         allowNull: false
     }
-});
+}, { freezeTableName: true });
 
 export default Booking;

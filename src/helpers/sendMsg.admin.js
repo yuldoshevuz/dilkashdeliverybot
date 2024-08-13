@@ -1,19 +1,10 @@
-import environments from "../config/environments.js";
 import i18n from "../config/i18n.config.js";
 import bot from "../core/bot.js";
-import userRepo from "../reposotory/user.repo.js";
-
+import reposotory from "../reposotory/reposotory.js";
 const sendMessageToAdmin = async (messageKey, messageData) => {
     try {
-        const adminUsers = await userRepo.findAll({ where: { isAdmin: true } }) || [];
-        const admins = [ ...adminUsers ];
-        
-        if (environments.ADMINS.length) {
-            for (const adminId of environments.ADMINS) {
-                const admin = await userRepo.findByChatId(+adminId);
-                admins.push(admin);
-            }
-        }
+        const admins = await reposotory.user.findAdmins();
+
         for (const admin of admins) {
             const adminLang = admin.language;
             const message = i18n.t(messageKey, {

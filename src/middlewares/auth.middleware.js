@@ -1,29 +1,28 @@
-import userRepo from "../reposotory/user.repo.js";
+import reposotory from "../reposotory/reposotory.js";
 
 const isAuth = async (ctx, next) => {
-    let userExists = await userRepo.findByChatId(ctx.from.id)
-
-    if (!userExists) {
+    let user = await reposotory.user.findByChatId(ctx.from?.id);
+    if (!user) {
         const { id, first_name, last_name } = ctx.from;
 
-        userExists = await userRepo.create({
+        user = await reposotory.user.create({
             chatId: id,
             firstName: first_name,
             lastName: last_name
-        })
+        });
     }
 
-    if (!userExists.language) {
+    if (!user.language) {
         ctx.scene.enter("auth");
         return;
     }
 
-    if (!userExists.active) {
-        userExists.active = true;
-        await userExists.save();
+    if (!user.active) {
+        user = await reposotory.user
+            .updateById(user.id, { active: true });
     }
 
-    ctx.session.user = userExists;
+    ctx.session.user = user;
     await next();
 }
 

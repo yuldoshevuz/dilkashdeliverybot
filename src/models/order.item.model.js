@@ -3,7 +3,7 @@ import { sequelize } from "../config/db.config.js";
 import Order from "./order.model.js";
 import Food from "./food.model.js";
 
-const OrderItem = sequelize.define("orderItem", {
+const OrderItem = sequelize.define("order_item", {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -16,6 +16,7 @@ const OrderItem = sequelize.define("orderItem", {
             key: "id",
         },
         allowNull: false,
+        onDelete: "CASCADE"
     },
     foodId: {
         type: DataTypes.UUID,
@@ -24,6 +25,7 @@ const OrderItem = sequelize.define("orderItem", {
             key: "id",
         },
         allowNull: false,
+        onDelete: "CASCADE"
     },
     quantity: {
         type: DataTypes.INTEGER,

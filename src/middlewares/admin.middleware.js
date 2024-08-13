@@ -1,15 +1,13 @@
-import environments from "../config/environments.js";
-import userRepo from "../reposotory/user.repo.js";
+import reposotory from "../reposotory/reposotory.js";
 
 const isAdmin = async (ctx, next) => {
     try {
-        const user = ctx.session.user || await userRepo.findByChatId(ctx.from.id);
-        const admins = environments.ADMINS.find(id => +id === ctx.from.id);
-
-        if (user && (user.isAdmin || admins)) {
-            ctx.session.user = user;
+        const admins = await reposotory.user.findAdmins();     
+        const userIsAdmin = admins.find((user) => Number(user?.chatId) === ctx.from.id);
+        if (userIsAdmin) {
             return next();
         }
+        
         await ctx.replyWithHTML(`<b>${ctx.from.id}</b>`);
     } catch (error) {
         console.log(error);
