@@ -27,6 +27,11 @@ export const adminButtons = {
         en: "🗑️ Delete",
         ru: "🗑️ Удалить"
     },
+    change_price: {
+        uz: "💰 Narxini o'zgartirish",
+        en: "💰 Change Price",
+        ru: "💰 Изменить цену"
+    },
     previous: "⬅️",
     next: "➡️",
     categories_menu: {
@@ -43,6 +48,11 @@ export const adminButtons = {
         uz: "➕ Kategoriya qo'shish",
         en: "➕ Add category",
         ru: "➕ Добавить категорию"
+    },
+    next: {
+        uz: "➡️ Keyingisi",
+        en: "➡️ Next",
+        ru: "➡️ Далее"
     },
     // edit_category: {
     //     uz: "✏️ Kategoriyani tahrirlash",
@@ -130,7 +140,7 @@ export const adminMenuKeyboard = (lang) => Markup.keyboard([
     [ Markup.button.text(adminButtons.back_to_admin_menu[lang]) ]
 ]).resize();
 
-export const adminFoodsKeyboard = (lang, foods) => {
+export const adminFoodsKeyboard = (foods, lang, add) => {
     const keyboards = [[]];
 
     for (const food of foods) {
@@ -144,7 +154,9 @@ export const adminFoodsKeyboard = (lang, foods) => {
         }
     }
 
+    add && keyboards.unshift([ Markup.button.text(adminButtons.add_food[lang]) ]);
     keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
+    return Markup.keyboard(keyboards).resize();
 }
 
 // Kategoriyalar menyusi
@@ -173,9 +185,20 @@ export const adminCategoriesKeyboard = (categories, lang) => {
 };
 
 export const adminCategorySettings = (lang, id) => Markup.inlineKeyboard([
-    [ Markup.button.callback(adminButtons.add_food[lang], `addFod:${id}`), Markup.button.callback(adminButtons.delete[lang], `deleteCategory:${id}`) ],
+    [ Markup.button.callback(adminButtons.foods[lang], `viewFoods:${id}`) ],
+    [ Markup.button.callback(adminButtons.add_food[lang], `addFood:${id}`), Markup.button.callback(adminButtons.delete[lang], `deleteCategory:${id}`) ],
     [ Markup.button.callback(adminButtons.back_to_admin_menu[lang], `back:admin`) ]
 ]);
+
+export const adminFoodSettings = (lang, id) => Markup.inlineKeyboard([
+    [ Markup.button.callback(adminButtons.change_price[lang], `changePrice:${id}`), Markup.button.callback(adminButtons.delete[lang], `deleteFood:${id}`) ],
+    [ Markup.button.callback(adminButtons.back_to_admin_menu[lang], `back:admin`) ]
+]);
+
+export const adminNextOrCancelKeyboard = (lang) => Markup.keyboard([
+    [ Markup.button.text(adminButtons.next[lang]) ],
+    [ Markup.button.text(buttons.cancel[lang]) ]
+]).resize();
 
 // Buyurtmalar menyusi
 export const ordersKeyboard = (lang) => Markup.keyboard([

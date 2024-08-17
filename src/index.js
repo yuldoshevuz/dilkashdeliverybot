@@ -11,4 +11,4 @@ bot.use(isAuth);
 bot.use(i18nInitilization);
 
 bot.start(async (ctx) => ctx.scene.enter("start", { home: false }));
-bot.command("admin", isAuth, isAdmin, async (ctx) => ctx.scene.enter("admin"))
+bot.command("admin", isAuth, isAdmin, async (ctx) => ctx.scene.enter("admin"));

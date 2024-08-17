@@ -4,6 +4,8 @@ import { backInlineKeyboard, buttons, cancelKeyboard, confirmOrBackKeyboard, sel
 import { phoneValidation } from "../helpers/validations.js";
 import { formatBookingDetails } from "../helpers/date.js";
 import Booking from "../reposotory/booking.js";
+import reposotory from "../reposotory/reposotory.js";
+import sendMessageToAdmin from "../helpers/sendMsg.admin.js";
 
 const bookingScene = new WizardScene(
     "booking",
@@ -209,13 +211,23 @@ const bookingScene = new WizardScene(
                             contactNumber
                         } = ctx.session.bookingDetails;
 
-                        await bookingRepo.create({
+                        const newBooking = await reposotory.booking.create({
                             customerName,
                             startTime,
                             endTime,
                             numberOfPeople,
                             contactNumber,
                             customerId: ctx.session.user.id
+                        });
+
+                        const bookingDetails = formatBookingDetails(ctx.session.bookingDetails)
+
+                        await sendMessageToAdmin("newBookingMessage", {
+                            customerName: bookingDetails.customerName,
+                            numberOfPeople: bookingDetails.numberOfPeople,
+                            timeRange: `${bookingDetails.startTime} - ${bookingDetails.endTime}`,
+                            bookingDate: bookingDetails.bookingDate,
+                            contactNumber: bookingDetails.contactNumber
                         });
 
                         delete ctx.session.bookingDetails;

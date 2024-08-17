@@ -3,6 +3,10 @@
     "en": "English",
     "ru": "Russian",
 
+    "uzCom": "sabzi, no'xat, piyoz, go'sht, ziravorlar",
+    "enCom": "carrots, peas, onions, meat, spices",
+    "ruCom": "морковь, горох, лук, мясо, специи",
+
     "changeLanguage": "🇺🇿 Iltimos tilni tanlang:\n🇬🇧 Please select a language:\n🇷🇺 Пожалуйста, выберите язык:",
     "sendLocation": "Send us your address so we can ship your orders quickly. You can also set the location manually",
     "errorLocating": "There was an error locating your location, please try again",
@@ -29,7 +33,7 @@
     "rateComment": "Leave your comment as a message:",
     "rateContact": "Thanks for your feedback! We will do our best to resolve the situation! Please send us your phone number so we can contact you:",
     "rateAccepted": "Accepted, thank you!",
-    "ratedMessage": "<b>{{firstName}} rated us 🌟</b>\n\n📊 <b>Service quality:</b> {{service}}\n\n🍽 <b>Food quality:</b> {{foods}}\n\n💬 <b>Comment:</b> \"{{comment}}.\"\n📞 <b>Contact number:</b> {{phoneContact}}",
+    "ratedMessage": "<b>{{firstName}} rated us 🌟</b>\n\n📊 <b>Service quality:</b> {{service}}\n\n🍽 <b>Food quality:</b> {{foods}}\n\n💬 <b>Comment:</b> \"{{comment}}.\"\n📞 <b>Contact number:</b> {{contactNumber}}",
     "invalidPhone": "Enter your phone number in this format:\n+998901112233",
     "deliverGo": "🍚 Tea House Pilaf - 210,000 UZS\n🥨 Wedding Roast + Tray - 450,000 UZS\n🧇 Norin 1kg - 85,000 UZS\n🥟 Manty 1 piece - 6,500 UZS\n🍚 Wedding Pilaf 1kg - 190,000 UZS\n🥓 Hasip 1kg - 80,000 UZS\n🍗 KFC 1kg - 92,000 UZS\n🍖 Tabaka Chicken 1kg - 85,000 UZS\n\nOrders for trays are accepted 1 day in advance",
     "workTime": "Working hours: 09:00-22:00",
@@ -56,6 +60,19 @@
     "noCategories": "No categories available",
     "enterCategoryName": "Enter the name of the category in {{language}}:",
     "sendCategoryImage": "Very good! Submit your category picture now:",
-    "categoryDetails": "📂 <b>Category Name:</b> {{title}}\n🍽 <b>Number of Meals:</b> {{foodCount}}\n🖼 <b>Number of Images:</b> {{imagesCount}}\n\n🔧 <b>What would you like to do?</b>"
+    "categoryDetails": "📂 <b>Category Name:</b> {{title}}\n🍽 <b>Number of Meals:</b> {{foodCount}}\n🖼 <b>Number of Images:</b> {{imagesCount}}\n\n🔧 <b>What would you like to do?</b>",
+    "cannotUploadLotsPhoto": "Sorry, cannot send more than 10 photos",
+    "must1Image": "You must submit at least 1 image",
+    "foodDetails": "🍽 <b>Food name:</b> {{title}}\n📂 <b>Category:</b> {{categoryName}}\n📋 <b>Ingredients:</b> {{composition}}\n💵 <b>Price:</b> {{price}} UZS\n🖼 <b>Number of images:</b> {{imagesCount}}\n\n🔧 <b>What would you like to do?</b>",
+    "enterNewPrice": "Enter a new price",
+    "noFoods": "No food available",
+    "whichCategory": "Which category would you like to add to?",
+    "enterFoodName": "Enter the name of the food in {{language}}:",
+    "enterFoodComposition": "Enter the contents of the meal in {{language}}.\nFor example: {{composition}}.",
+    "enterFoodPrice": "Enter the meal price.\nFor example: 25000",
+    "sendFoodImages": "Very good! Submit your food photos now:",
+    "newBookingMessage": "<b>{{customerName}} has booked a table 📅</b>\n\n👥 <b>Number of people:</b> {{numberOfPeople}} people\n\n🕒 <b>Booking time:</b> {{timeRange}}\n\n📅 <b>Booking date:</b> {{bookingDate}}\n\n📞 <b>Contact number:</b> {{contactNumber}}",
+    "bookingMessage": "👤 <b>Customer Name:</b> {{customerName}}\n\n👥 <b>Number of people:</b> {{numberOfPeople}} people\n\n🕒 <b>Booking time:</b> {{timeRange}}\n\n📅 <b>Booking date:</b> {{bookingDate}}\n\n📞 <b>Contact number:</b> {{contactNumber}}",
+    "noBooking": "There are currently no reservations available"
 
 }

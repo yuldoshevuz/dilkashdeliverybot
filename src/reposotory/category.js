@@ -90,13 +90,13 @@ class Category extends Model {
                         categoryId: true
                     },
                     where: {
-                        translations: { every: { language } }
+                        translations: { some: { language } }
                     }
                 }
             },
             where
         });
-
+        
         return this.formatCategory(category);
     }
 
@@ -109,7 +109,7 @@ class Category extends Model {
             .findOne({ translations: { some: { title, language } } }, language);
     }
 
-    async create(title, imageLink) {
+    async create({ title, images }) {
         const newCategory = await prisma.category.create({
             data: {
                 translations: {
@@ -122,12 +122,27 @@ class Category extends Model {
                     }
                 },
                 images: {
-                    create: { url: imageLink }
+                    createMany: {
+                        data: images.map((image) => ({ url: image }))
+                    }
                 }
             }
         });
 
         return await this.findById(newCategory.id);
+    }
+
+    async deleteById(id) {
+        try {
+            await prisma.categoryTranslation.deleteMany({ where: { categoryId: id } });
+            await prisma.food.deleteMany({ where: { categoryId: id } });
+            await super.deleteById(id);
+
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
     }
 }
 

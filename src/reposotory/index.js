@@ -1,5 +1,3 @@
-import prisma from "../config/prisma.client.js";
-
 class Model {
     constructor(model) {
         this.model = model;
@@ -10,11 +8,11 @@ class Model {
     }
 
     async findById(id) {
-        return await this.model.findUnique({ where: { id } });
+        return await this.model.findFirst({ where: { id } });
     }
 
     async findOne(where) {
-        return await this.model.findUnique({ where });
+        return await this.model.findFirst({ where });
     }
 
     async create(data) {

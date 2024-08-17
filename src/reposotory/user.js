@@ -8,7 +8,7 @@ class User extends Model {
     }
 
     async findByChatId(chatId) {
-        return await this.findOne({ chatId });
+        return await this.findOne({ chatId: BigInt(chatId) });
     }
 
     async findAdmins() {
@@ -17,9 +17,9 @@ class User extends Model {
 
         if (environments.ADMINS?.length) {
             for (const chatId of environments.ADMINS) {
-                const admin = await this.findByChatId(BigInt(chatId));
+                const admin = await this.findByChatId(chatId);
 
-                admins.push(admin);
+                admin && admins.push(admin);
             }
         }
 

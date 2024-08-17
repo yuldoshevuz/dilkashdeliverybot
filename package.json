@@ -35,7 +35,7 @@
     "i18next-fs-backend": "^2.3.2",
     "pm2": "^5.4.2",
     "random-useragent": "^0.5.0",
-    "telegraf": "^4.16.3"
+    "telegraf": "^4.16.3" 
   },
   "devDependencies": {
     "nodemon": "^3.1.4",

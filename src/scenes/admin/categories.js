@@ -27,12 +27,11 @@ adminCategories.hears(async (button, ctx) => {
     }
     
     const category = await reposotory.category.findByName(button, lang);
-
-    console.log(category);
-    
-
     if (category) {
         const mediaGroup = convertMediaGroup(category.images)
+
+        console.log(category);
+        
 
         await ctx.replyWithMediaGroup(mediaGroup);
         await ctx.replyWithHTML(
@@ -42,6 +41,37 @@ adminCategories.hears(async (button, ctx) => {
                 imagesCount: category.images.length
             }),
             adminCategorySettings(lang, category.id));
+    }
+})
+
+adminCategories.action(async (callbackData, ctx) => {
+    try {
+        ctx.answerCbQuery();
+        const [ cursor, data ] = callbackData.split(":")
+
+        if (cursor === "back" && data === "admin") {
+            return ctx.scene.enter("admin");
+        }
+
+        if (cursor === "deleteCategory") {
+            await reposotory.category.deleteById(data);
+            await ctx.deleteMessage();
+            return await ctx.scene.reenter();
+        }
+
+        if (cursor === "addFood") {
+            return await ctx.scene.enter("admin:addFood", {
+                categoryId: data
+            });
+        } else if (cursor === "viewFoods") {
+            return await ctx.scene.enter("admin:foods", {
+                categoryId: data
+            });
+        }
+
+    } catch (error) {
+        console.log(error);
+        
     }
 })
 

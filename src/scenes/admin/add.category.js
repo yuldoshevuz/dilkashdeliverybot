@@ -4,12 +4,13 @@ import { buttons, cancelKeyboard } from "../../utils/keyboards.js";
 import getImageUrl from "../../helpers/getImageUrl.js";
 import environments from "../../config/environments.js";
 import reposotory from "../../reposotory/reposotory.js";
+import { adminButtons, adminNextOrCancelKeyboard } from "../../utils/admin.keyboards.js";
 
 const adminaddCategory = new WizardScene("admin:addCategory",
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.category = { uz: ctx.message.text };
+                ctx.session.category = { uz: ctx.message.text, images: [] };
                 const language = i18n.t("en");
 
                 await ctx.reply(
@@ -53,7 +54,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
 
                 await ctx.reply(
                     i18n.t("sendCategoryImage"),
-                    cancelKeyboard(ctx.session.lang)
+                    adminNextOrCancelKeyboard(ctx.session.lang)
                 );
                 return ctx.wizard.next();
             }
@@ -67,11 +68,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
     },
     async (ctx) => {
         try {
-            
             if (ctx.message.photo) {
-
-                console.log(ctx.message.photo);
-
                 const imageUrl = await getImageUrl(ctx.message.photo);
                 let msgId;
 
@@ -88,24 +85,30 @@ const adminaddCategory = new WizardScene("admin:addCategory",
 
                 const imageLink = `${environments.CONTENTS_CHANNEL}/${msgId}`;
 
-                const images = [ imageLink ];
+                if (ctx.session.category.images.length > 10) {
+                    return await ctx.reply(i18n.t("cannotUploadLotsPhoto"))
+                }
 
-                console.log(imageLink);
-                console.log(images);
-                
-
-                // await reposotory.category
-                //     .create(
-                //         ctx.session.category,
-                //         imageLink
-                //     );
-
-                // await ctx.scene.leave();
-                // await ctx.scene.enter("admin:categories");
+                ctx.session.category.images.push(imageLink);
             }
 
-            if (ctx.message && !ctx.message.photo) {
-                await ctx.deleteMessage();
+            if (ctx.message.text) {
+                if (ctx.message.text === adminButtons.next[ctx.session.lang]) {
+                    const { images, uz, en, ru } = ctx.session.category;
+                    
+                    if (images?.length < 1) {
+                        return await ctx.reply(i18n.t("must1Image"));
+                    } else if (images?.length > 10) {
+                        return await ctx.reply(i18n.t("cannotUploadLotsPhoto"));
+                    }
+
+                    const data = { title: { uz, en, ru }, images };
+
+                    await reposotory.category.create(data);
+
+                    await ctx.scene.leave();
+                    await ctx.scene.enter("admin:categories");
+                }
             }
         } catch (error) {
             console.log(error)

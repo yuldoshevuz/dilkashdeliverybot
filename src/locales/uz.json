@@ -2,6 +2,10 @@
     "uz": "o'zbek",
     "en": "ingliz",
     "ru": "rus",
+    
+    "uzCom": "sabzi, no'xat, piyoz, go'sht, ziravorlar",
+    "enCom": "carrots, peas, onions, meat, spices",
+    "ruCom": "морковь, горох, лук, мясо, специи",
 
     "changeLanguage": "🇺🇿 Iltimos tilni tanlang:\n🇬🇧 Please select a language:\n🇷🇺 Пожалуйста, выберите язык:",
     "sendLocation": "Buyurtmalaringizni tezda yetkazib berishimiz uchun manzilingizni bizga yuboring. Joylashuvni qo'lda o'rnatishingiz ham mumkin",
@@ -29,7 +33,7 @@
     "rateComment": "Fikr-mulohazangizni xabar sifatida qoldiring:",
     "rateContact": "Fikr-mulohazangiz uchun rahmat! Vaziyatni hal qilish uchun barcha sa'y-harakatlarimizni qilamiz! Siz bilan bog'lanishimiz uchun iltimos telefon raqamingizni yuboring:",
     "rateAccepted": "Qabul qilindi, rahmat!",
-    "ratedMessage": "<b>{{firstName}} bizga baho berdi 🌟</b>\n\n📊 <b>Xizmat sifati:</b> {{service}}\n\n🍽 <b>Taomlar sifati:</b> {{foods}}\n\n💬 <b>Fikri:</b> \"{{comment}}.\"\n📞 <b>Bog'lanish uchun raqami:</b> {{phoneContact}}",
+    "ratedMessage": "<b>{{firstName}} bizga baho berdi 🌟</b>\n\n📊 <b>Xizmat sifati:</b> {{service}}\n\n🍽 <b>Taomlar sifati:</b> {{foods}}\n\n💬 <b>Fikri:</b> \"{{comment}}.\"\n📞 <b>Bog'lanish uchun raqami:</b> {{contactNumber}}",
     "invalidPhone": "Telefon raqamingizni ushbu formatda kiriting:\n+998901112233",
     "deliverGo": "🍚 Choyxona palov - 210 000 so'm\n🥨 To'y qovurdoq + padnos - 450 000 so'm\n🧇 Norin 1kg - 85 000 so'm\n🥟 Manti 1 dona - 6500 so'm\n🍚 Toy oshi 1kg - 190 000 so'm\n🥓 Xasip 1kg - 80 000 so'm\n🍗 KFC 1kg - 92 000 so'm\n🍖 Tabaka jo'ja 1kg - 85 000 so'm\n\nTog'ora uchun buyurtmalar 1 kun oldin qabul qilinadi",
     "workTime": "Ish vaqtimiz: 09:00-22:00",
@@ -55,7 +59,19 @@
     "welcomeAdmin": "Admin paneliga xush kelibsiz 👋",
     "noCategories": "Hech qanday kategoriya mavjud emas",
     "enterCategoryName": "Kategoriya nomini {{language}} tilida kiriting:",
-    "sendCategoryImage": "Juda soz! Endi kategoriya rasmini yuboring:",
-    "categoryDetails": "🍱 <b>Kategoriya nomi:</b> {{title}}\n🍽 <b>Ovqatlar soni</b>: {{foodCount}} ta\n🖼 <b>Rasmlar soni</b>: {{imagesCount}} ta\n\n🔧 <b>Nima qilishni xohlaysiz?</b>"
-    
+    "sendCategoryImage": "Juda soz! Endi kategoriya rasmlarini yuboring:",
+    "categoryDetails": "🍱 <b>Kategoriya nomi:</b> {{title}}\n🍽 <b>Ovqatlar soni</b>: {{foodCount}} ta\n🖼 <b>Rasmlar soni</b>: {{imagesCount}} ta\n\n🔧 <b>Nima qilishni xohlaysiz?</b>",
+    "cannotUploadLotsPhoto": "Kechirasiz, 10 dan ortiq fotosurat yuborish mumkin emas",
+    "must1Image": "Kamida 1 ta rasm yuborishingiz kerak",
+    "foodDetails": "🍽 <b>Ovqat nomi:</b> {{title}}\n📂 <b>Kategoriya:</b> {{categoryName}}\n📋 <b>Tarkibi:</b> {{composition}}\n💵 <b>Narxi:</b> {{price}} so'm\n🖼 <b>Rasmlar soni:</b> {{imagesCount}} ta\n\n🔧 <b>Nima qilishni xohlaysiz?</b>",
+    "enterNewPrice": "Yangi narxni kiriting",
+    "noFoods": "Hech qanday ovqat mavjud emas",
+    "whichCategory": "Qaysi kategoriyaga qo'shmoqchisiz?",
+    "enterFoodName": "Ovqat nomini {{language}} tilida kiriting:",
+    "enterFoodComposition": "Ovqat tarkibini {{language}} tilida kiriting.\nMasalan: {{composition}}.",
+    "enterFoodPrice": "Ta'om narxini kiriting.\nMisol uchun: 25000",
+    "sendFoodImages": "Juda soz! Endi ovqat rasmlarini yuboring:",
+    "newBookingMessage": "<b>{{customerName}} stol buyurtma qildi 📅</b>\n\n👥 <b>Necha kishi:</b> {{numberOfPeople}} kishi\n\n🕒 <b>Buyurtma vaqti:</b> {{timeRange}}\n\n📅 <b>Buyurtma sanasi:</b> {{bookingDate}}\n\n📞 <b>Bog'lanish uchun raqami:</b> {{contactNumber}}",
+    "bookingMessage": "👤 <b>Buyurtmachining ismi:</b> {{customerName}}\n\n👥 <b>Necha kishi:</b> {{numberOfPeople}} kishi\n\n🕒 <b>Buyurtma vaqti:</b> {{timeRange}}\n\n📅 <b>Buyurtma sanasi:</b> {{bookingDate}}\n\n📞 <b>Bog'lanish uchun raqami:</b> {{contactNumber}}",
+    "noBooking": "Hozirda band qilingan joylar mavjud emas"
 }

@@ -6,12 +6,12 @@ const sendMessageToAdmin = async (messageKey, messageData) => {
         const admins = await reposotory.user.findAdmins();
 
         for (const admin of admins) {
-            const adminLang = admin.language;
+            const adminLang = admin?.language;
             const message = i18n.t(messageKey, {
                 lng: adminLang,
                 ...messageData
             });
-            await bot.telegram.sendMessage(admin.chatId, message, { parse_mode: "HTML" });
+            await bot.telegram.sendMessage(Number(admin.chatId), message, { parse_mode: "HTML" });
         }
     } catch (error) {
         console.log(error);

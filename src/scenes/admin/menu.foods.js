@@ -1,8 +1,7 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
-import { adminButtons, adminMainMenuKeyboard, adminMenuKeyboard } from "../../utils/admin.keyboards.js";
-import Food from "../../reposotory/food.js";
-import Category from "../../reposotory/category.js";
+import { adminButtons, adminMenuKeyboard } from "../../utils/admin.keyboards.js";
+import reposotory from "../../reposotory/reposotory.js";
 
 const adminMenuScene = new BaseScene("admin:menuFood");
 
@@ -17,19 +16,27 @@ adminMenuScene.hears(async (button, ctx) => {
         const { lang } = ctx.session;
 
         if (button === adminButtons.foods[lang]) {
-            const foods = await new Food().findAll({ language: lang });
+            const foods = await reposotory.food.findAll(lang);
 
-            console.log(foods);
-        } else if (button === adminButtons.add_food[lang]) {
-            const categories = await new Category().findAll({ language: lang });
-            if (!categories.length) {
-                return await ctx.reply(i18n.t("noCategories"));
+            if (!foods?.length) {
+                return ctx.reply(i18n.t("noFoods"));
             }
-            return ctx.scene.enter("admin:addFood");
-        } else if (button === adminButtons.add_category[lang]) {
-            return ctx.scene.enter("admin:addCategory");
+
+            return await ctx.scene.enter("admin:foods");
+        } else if (button === adminButtons.add_food[lang]) {
+            const categories = await reposotory.category.findAll(lang);
+            if (!categories.length) {
+                return ctx.reply(i18n.t("noCategories"));
+            }
+            return await ctx.scene.enter("admin:addFood");
+        } else if (button === adminButtons.delete[lang]) {
+            const foods = await reposotory.food.findAll(lang);
+            if (!foods?.length) {
+                return ctx.reply(i18n.t("noFoods"));
+            }
+            return await ctx.scene.enter("admin:deleteFood");
         } else if (button === adminButtons.back_to_admin_menu[lang]) {
-            return ctx.scene.enter("admin");
+            return await ctx.scene.enter("admin");
         }
     } catch (error) {
         console.log(error)

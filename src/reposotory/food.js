@@ -7,16 +7,19 @@ class Food extends Model {
         this.model = prisma.food
     }
     
-    formatFood(food) {({
-        id: food.id,
-        title: food.translations[0].title,
-        composition: food.translations[0].composition,
-        images: food.images.map((image) => image.url),
-        price: food.price,
-    })}
+    formatFood(food) {
+        return food && {
+            id: food.id,
+            title: food.translations[0].title,
+            composition: food.translations[0].composition,
+            images: food.images.map((image) => image.url),
+            price: food.price,
+            categoryId: food.categoryId
+        } || null;
+    }
 
     async findOne(where = {}, language) {
-        const food = await prisma.food.findUnique({
+        const food = await prisma.food.findFirst({
             select: {
                 id: true,
                 translations: {
@@ -43,7 +46,12 @@ class Food extends Model {
         return await this.findOne({ id }, language)
     }
 
-    async findAll(where = {}, language) {
+    async findByName(title, language) {
+        return await this
+            .findOne({ translations: { some: { title, language } } }, language);
+    }
+
+    async findAll(language, where = {}) {
         const foods = await prisma.food.findMany({
             select: {
                 id: true,
@@ -68,42 +76,55 @@ class Food extends Model {
         return formatted;
     }
 
-    async create(title, composition, images, price) {
-        // const exampleFood = await this.model.create({
-        //     data: {
-        //         translations: {
-        //             createMany: {
-        //                 data: [
-        //                     {
-        //                         title: "Americano",
-        //                         composition: "Sut, qahva, suv ...",
-        //                         language: "uz"
-        //                     },
-        //                     {
-        //                         title: "Americano",
-        //                         composition: "Milk, coffee, water ...",
-        //                         language: "en"
-        //                     },
-        //                     {
-        //                         title: "Американо",
-        //                         composition: "Молоко, кофе, вода ...",
-        //                         language: "ru"
-        //                     }
-        //                 ]
-        //             }
-        //         },
-        //         images: {
-        //             createMany: {
-        //                 data: [
-        //                     { url: "http://example.com/coffee1.jpg" },
-        //                     { url: "http://exapmle.com/coffee2.jpg" },
-        //                     { url: "http://exapmle.com/coffee3.jpg" }
-        //                 ]
-        //             }
-        //         },
-        //         price: 25000
-        //     }
-        // });
+    async create({ title, composition, images, price, categoryId }) {
+        const newFood = await this.model.create({
+            data: {
+                translations: {
+                    createMany: {
+                        data: [
+                            {
+                                title: title.uz,
+                                composition: composition.uz,
+                                language: "uz"
+                            },
+                            {
+                                title: title.en,
+                                composition: composition.en,
+                                language: "en"
+                            },
+                            {
+                                title: title.ru,
+                                composition: composition.ru,
+                                language: "ru"
+                            }
+                        ]
+                    }
+                },
+                images: {
+                    createMany: {
+                        data: images.map((image) => ({ url: image }))
+                    }
+                },
+                price,
+                categoryId
+            }
+        });
+
+        return await this.findById(newFood.id);
+    }
+
+    async deleteById(id) {
+        try {
+            await prisma.foodTranslation.deleteMany({ where: { foodId: id } });
+            await prisma.image.deleteMany({ where: { foodId: id } });
+            await prisma.orderItem.deleteMany({ where: { foodId: id } });
+            await super.deleteById(id);
+
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
     }
 }
 

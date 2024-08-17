@@ -70,16 +70,16 @@ const rateScene = new WizardScene(
     async (ctx) => {
         try {
             if (ctx.message?.text) {
-                const phoneContact = ctx.message?.text;
+                const contactNumber = ctx.message?.text;
 
-                if (!phoneValidation(phoneContact)) {
+                if (!phoneValidation(contactNumber)) {
                     await ctx.reply(i18n.t("invalidPhone"));
                     return;
                 }
 
                 await sendMessageToAdmin("ratedMessage", {
                     firstName: parseHtml(ctx.from.first_name),
-                    phoneContact,
+                    contactNumber,
                     ...ctx.session.rating
                 });
 
