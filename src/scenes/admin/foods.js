@@ -23,7 +23,7 @@ adminFoodsScene.enter(async (ctx) => {
             adminFoodsKeyboard(foods, ctx.session.lang, true)
         );
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 })
 
@@ -59,7 +59,7 @@ adminFoodsScene.hears(async (button, ctx) => {
 
         await ctx.replyWithMediaGroup(mediaGroup);
         await ctx.replyWithHTML(
-            i18n.t("foodDetails", {
+            i18n.t("foodDetailsAdmin", {
                 title: food.title,
                 categoryName: category.title,
                 composition: food.composition,
@@ -103,7 +103,7 @@ adminFoodsScene.action(async (callbackData, ctx) => {
             delete ctx.session.foodId;
 
             await ctx.editMessageText(
-                i18n.t("foodDetails", {
+                i18n.t("foodDetailsAdmin", {
                     title: food.title,
                     categoryName: category.title,
                     composition: food.composition,
@@ -118,7 +118,7 @@ adminFoodsScene.action(async (callbackData, ctx) => {
         }
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
         
     }
 })

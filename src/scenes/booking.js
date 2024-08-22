@@ -38,7 +38,7 @@ const bookingScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -79,7 +79,7 @@ const bookingScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -111,7 +111,7 @@ const bookingScene = new WizardScene(
                 await ctx.deleteMessage();
             } 
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -141,7 +141,7 @@ const bookingScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -184,7 +184,7 @@ const bookingScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -193,7 +193,7 @@ const bookingScene = new WizardScene(
                 ctx.answerCbQuery();
                 const [ cursor, data ] = ctx.callbackQuery.data.split(":");
 
-                if (cursor === "confirmBooking") {
+                if (cursor === "confirm") {
                     if (data === "back") {
                         await ctx.editMessageText(i18n.t("sendYourPhone"), {
                             ...backInlineKeyboard(ctx.session.lang, "sendYourPhone")
@@ -243,7 +243,7 @@ const bookingScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 );
@@ -272,7 +272,7 @@ bookingScene.hears(async (button, ctx) => {
             return await ctx.scene.enter("start", { home: true });
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 })
 

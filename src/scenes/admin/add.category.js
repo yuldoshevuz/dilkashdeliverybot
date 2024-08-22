@@ -10,12 +10,20 @@ const adminaddCategory = new WizardScene("admin:addCategory",
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.category = { uz: ctx.message.text, images: [] };
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.category;
+                    return await ctx.scene.enter("admin:menuCategory");
+                }
+
+                ctx.session.category = { uz: text, images: [] };
                 const language = i18n.t("en");
 
                 await ctx.reply(
                     i18n.t("enterCategoryName", { language }),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -24,18 +32,26 @@ const adminaddCategory = new WizardScene("admin:addCategory",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.category.en = ctx.message.text;
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.category;
+                    return await ctx.scene.enter("admin:menuCategory");
+                }
+
+                ctx.session.category.en = text;
                 const language = i18n.t("ru");
 
                 await ctx.reply(
                     i18n.t("enterCategoryName", { language }),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -44,17 +60,25 @@ const adminaddCategory = new WizardScene("admin:addCategory",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.category.ru = ctx.message.text;
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.category;
+                    return await ctx.scene.enter("admin:menuCategory");
+                }
+                
+                ctx.session.category.ru = text;
 
                 await ctx.reply(
                     i18n.t("sendCategoryImage"),
-                    adminNextOrCancelKeyboard(ctx.session.lang)
+                    adminNextOrCancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -63,7 +87,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -93,7 +117,15 @@ const adminaddCategory = new WizardScene("admin:addCategory",
             }
 
             if (ctx.message.text) {
-                if (ctx.message.text === adminButtons.next[ctx.session.lang]) {
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.category;
+                    return await ctx.scene.enter("admin:menuCategory");
+                }
+
+                if (text === adminButtons.next[lang]) {
                     const { images, uz, en, ru } = ctx.session.category;
                     
                     if (images?.length < 1) {
@@ -111,7 +143,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
                 }
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 );
@@ -125,21 +157,8 @@ adminaddCategory.enter(async (ctx) => {
             cancelKeyboard(ctx.session.lang)
         );
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 });
-
-adminaddCategory.hears(async (button, ctx) => {
-    try {
-        const { lang } = ctx.session;
-        
-        if (button === buttons.cancel[lang]) {
-            delete ctx.session.category;
-            return await ctx.scene.enter("admin:menuCategory");
-        }
-    } catch (error) {
-        console.log(error)
-    }
-})
 
 export default adminaddCategory;

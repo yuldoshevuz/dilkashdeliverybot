@@ -14,7 +14,7 @@ const sendMessageToAdmin = async (messageKey, messageData) => {
             await bot.telegram.sendMessage(Number(admin.chatId), message, { parse_mode: "HTML" });
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 };
 

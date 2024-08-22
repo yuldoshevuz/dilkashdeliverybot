@@ -71,7 +71,7 @@ const authScene = new WizardScene(
                     .update({ chatId }, {
                         language: ctx.session.lang,
                         phoneNumber: ctx.session.phoneNumber,
-                        locations: [ addressLocation ],
+                        location: [ addressLocation ],
                         active: true
                     });
 

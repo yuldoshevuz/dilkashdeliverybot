@@ -1,6 +1,5 @@
-// schema.prisma
 datasource db {
-  provider = "postgresql" // yoki boshqa ma'lumotlar bazasi provayderi
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -27,12 +26,13 @@ model User {
   firstName   String
   lastName    String?
   phoneNumber String?
-  locations   Json?     @default("[]")
+  location   Json?     @default("[]")
   language    Language?
   active      Boolean   @default(false)
   isAdmin     Boolean   @default(false)
   orders      Order[]
   bookings    Booking[]
+  cart        Cart?
 
   @@map("users")
 }
@@ -51,23 +51,24 @@ model Booking {
 }
 
 model Category {
-  id           String                @id @default(uuid())
-  foods        Food[]
-  images       Image[]
-  translations CategoryTranslation[]
+  id     String                @id @default(uuid())
+  foods  Food[]
+  images Image[]
+  i18n   CategoryTranslation[]
 
   @@map("categories")
 }
 
 model Food {
-  id           String            @id @default(uuid())
-  price        Float
-  language     Language?
-  categoryId   String
-  category     Category          @relation(fields: [categoryId], references: [id])
-  images       Image[]
-  orderItems   OrderItem[]
-  translations FoodTranslation[]
+  id         String            @id @default(uuid())
+  price      Float
+  language   Language?
+  categoryId String
+  category   Category          @relation(fields: [categoryId], references: [id])
+  images     Image[]
+  orderItems OrderItem[]
+  cartItems  CartItem[]
+  i18n       FoodTranslation[]
 
   @@map("foods")
 }
@@ -84,12 +85,15 @@ model Image {
 }
 
 model Order {
-  id          String      @id @default(uuid())
-  userId      String
-  totalAmount Float
-  status      OrderStatus @default(pending)
-  user        User        @relation(fields: [userId], references: [id])
-  orderItems  OrderItem[]
+  id            String      @id @default(uuid())
+  orderNumber   Int         @default(autoincrement())
+  userId        String
+  paymentMethod String
+  location      Json
+  totalAmount   Float
+  status        OrderStatus @default(pending)
+  user          User        @relation(fields: [userId], references: [id])
+  orderItems    OrderItem[]
 
   @@map("orders")
 }
@@ -104,6 +108,27 @@ model OrderItem {
   food     Food   @relation(fields: [foodId], references: [id])
 
   @@map("order_item")
+}
+
+model Cart {
+  id     String     @id @default(uuid())
+  userId String     @unique
+  user   User       @relation(fields: [userId], references: [id])
+  items  CartItem[]
+
+  @@map("carts")
+}
+
+model CartItem {
+  id       String @id @default(uuid())
+  cartId   String
+  foodId   String
+  quantity Int
+  cart     Cart   @relation(fields: [cartId], references: [id])
+  food     Food   @relation(fields: [foodId], references: [id])
+
+  @@unique([cartId, foodId])
+  @@map("cart_items")
 }
 
 model CategoryTranslation {

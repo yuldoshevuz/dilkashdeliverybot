@@ -15,7 +15,7 @@ adminCategories.enter(async (ctx) => {
             adminCategoriesKeyboard(categories, ctx.session.lang)
         );
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 })
 
@@ -70,7 +70,7 @@ adminCategories.action(async (callbackData, ctx) => {
         }
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
         
     }
 })

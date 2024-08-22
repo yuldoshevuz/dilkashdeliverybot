@@ -24,9 +24,9 @@ export const buttons = {
         ru: "📍 Отправить мое местоположение"
     },
     my_locations: {
-        uz: "🗺️ Mening joylashuvlarim",
-        en: "🗺️ My locations",
-        ru: "🗺️ Мои геолокации"
+        uz: "🗺️ Mening joylashuvim",
+        en: "🗺️ My location",
+        ru: "🗺️ Моя геолокация"
     },
     menu: {
         uz: "🥘 Ta'omlar menyusi",
@@ -113,6 +113,11 @@ export const buttons = {
         en: "🌐 Change language",
         ru: "🌐 Изменить язык"
     },
+    change_address: {
+        uz: "📍 Manzilni o'zgartirish",
+        en: "📍 Change Address",
+        ru: "📍 Изменить адрес"
+    },
     yes: {
         uz: "✅ Ha",
         en: "✅ Yes",
@@ -134,9 +139,9 @@ export const buttons = {
         ru: "🛒 Корзина"
     },
     order_meal: {
-        uz: "🍽️ Buyurtma berish",
-        en: "🍽️ Order meal",
-        ru: "🍽️ Заказать еду"
+        uz: "🚚 Buyurtma berish",
+        en: "🚚 Order meal",
+        ru: "🚚 Заказать еду"
     },
     clear_basket: {
         uz: "🗑️ Savatni tozalash",
@@ -186,6 +191,7 @@ export const sendLocationKeyboard = (lang) => Markup.keyboard([
 
 export const settingsKeyboard = (lang) => Markup.keyboard([
     [ Markup.button.text(buttons.change_language[lang]) ],
+    [ Markup.button.text(buttons.change_address[lang]) ],
     [ Markup.button.text(buttons.back[lang]) ]
 ]).resize();
 
@@ -203,6 +209,64 @@ export const backMainKeyboard = (lang) =>
 export const cancelKeyboard = (lang) =>
     Markup.keyboard([Markup.button.text(buttons.cancel[lang])
 ]).resize();
+
+export const categoriesKeyboard = (categories, lang) => {
+    const keyboards = [[]]
+
+    for (const category of categories) {
+        const lastItem = keyboards[ keyboards.length - 1 ];
+        const button = Markup.button.text(category.title);
+
+        if (lastItem.length < 2) {
+            lastItem.push(button);
+        } else {
+            keyboards.push([ button ]);
+        }
+    }
+
+    keyboards.unshift([ Markup.button.text(buttons.basket[lang]) ]);
+    keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
+    return Markup.keyboard(keyboards).resize();
+};
+
+export const foodsKeyboard = (foods, lang) => {
+    const keyboards = [[]];
+
+    for (const food of foods) {
+        const lastItem = keyboards[ keyboards.length - 1 ];
+        const button = Markup.button.text(food.title);
+
+        if (lastItem.length < 2) {
+            lastItem.push(button);
+        } else {
+            keyboards.push([ button ]);
+        }
+    }
+
+    keyboards.unshift([ Markup.button.text(buttons.basket[lang]) ]);
+    keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
+    return Markup.keyboard(keyboards).resize();
+}
+
+export const addCartKeyboard = (quantity, foodId, lang) => Markup.inlineKeyboard([
+    [
+        Markup.button.callback("➖", `decrement:${foodId}:${quantity}`),
+        Markup.button.callback(quantity, `quantity:${foodId}:${quantity}`),
+        Markup.button.callback("➕", `increment:${foodId}:${quantity}`),
+    ],
+    [ Markup.button.callback(buttons.add_to_basket[lang], `addCart:${foodId}:${quantity}`) ]
+]);
+
+export const orderOrCancelKeyboard = (lang) => Markup.inlineKeyboard([
+    [ Markup.button.callback(buttons.clear_basket[lang], "clearCart") ],
+    [ Markup.button.callback(buttons.order_meal[lang], "order") ]
+]);
+
+export const paymentMethodKeyboard = (lang) => Markup.inlineKeyboard([
+    [ Markup.button.callback("🔵 Click", "payment:click"), Markup.button.callback("🟢 Payme", "payment:payme") ],
+    [ Markup.button.callback(buttons.cash_payment[lang], "payment:cash") ],
+    [ Markup.button.callback(buttons.back[lang], "back:cart") ]
+]);
 
 export const selectBookingDateKeyboard = (lang) => {
     const count = 7;
@@ -281,8 +345,8 @@ export const selectPeopleCount = (lang) => {
 }
 
 export const confirmOrBackKeyboard = (lang) => Markup.inlineKeyboard([
-    [ Markup.button.callback(buttons.confirm[lang], "confirmBooking:confirm") ],
-    [ Markup.button.callback(buttons.back[lang], "confirmBooking:back") ]
+    [ Markup.button.callback(buttons.confirm[lang], "confirm:confirm") ],
+    [ Markup.button.callback(buttons.back[lang], "confirm:back") ]
 ])
 
 export const rateInlineKeyboard = (cursor) => Markup.inlineKeyboard([
@@ -321,3 +385,8 @@ export const changeLangKeyboard = () => Markup.inlineKeyboard([
     [Markup.button.callback("🇬🇧 English", "language:en")],
     [Markup.button.callback("🇷🇺 Русский", "language:ru")]
 ]);
+
+export const sendLocationOrBackKeyboard = (lang) => Markup.keyboard([
+    [ Markup.button.locationRequest(buttons.send_location[lang]) ],
+    [ Markup.button.text(buttons.back[lang]) ]
+]).resize();

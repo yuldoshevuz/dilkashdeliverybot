@@ -55,6 +55,8 @@
     "selectPaymentType": "Select payment type",
     "socialMediaText": "You can also follow us on social media:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
     "startJobMessage": "👋 Would you like to become part of our professional team? 🏢\n\nTo start the job, please send your resume to the bot below, and we will reach out to you:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nWe're looking forward to hearing from you! ✨",
+    "locationInfoAndChange": "📍 <b>Your current location:</b> {{address}}\n\n📍 <b>Select a new delivery address:</b>\n\n🔘 <i>Use the 'Send Location' button to share your location or enter the address manually.</i>\n\n🗺 <i>Don't forget to confirm the address after entering it.</i>",
+    "confirmAddress": "✅ <b>Do you confirm this address?</b>\n\n🏠 <b>Entered address:</b> <i>{{address}}</i>\n\nIf the address is correct, press \"Confirm\", otherwise go back and re-enter the address.",
 
     "welcomeAdmin": "Welcome to admin panel 👋",
     "noCategories": "No categories available",
@@ -63,7 +65,7 @@
     "categoryDetails": "📂 <b>Category Name:</b> {{title}}\n🍽 <b>Number of Meals:</b> {{foodCount}}\n🖼 <b>Number of Images:</b> {{imagesCount}}\n\n🔧 <b>What would you like to do?</b>",
     "cannotUploadLotsPhoto": "Sorry, cannot send more than 10 photos",
     "must1Image": "You must submit at least 1 image",
-    "foodDetails": "🍽 <b>Food name:</b> {{title}}\n📂 <b>Category:</b> {{categoryName}}\n📋 <b>Ingredients:</b> {{composition}}\n💵 <b>Price:</b> {{price}} UZS\n🖼 <b>Number of images:</b> {{imagesCount}}\n\n🔧 <b>What would you like to do?</b>",
+    "foodDetailsAdmin": "🍽 <b>Food name:</b> {{title}}\n📂 <b>Category:</b> {{categoryName}}\n📋 <b>Ingredients:</b> {{composition}}\n💵 <b>Price:</b> {{price}} UZS\n🖼 <b>Number of images:</b> {{imagesCount}}\n\n🔧 <b>What would you like to do?</b>",
     "enterNewPrice": "Enter a new price",
     "noFoods": "No food available",
     "whichCategory": "Which category would you like to add to?",
@@ -73,6 +75,17 @@
     "sendFoodImages": "Very good! Submit your food photos now:",
     "newBookingMessage": "<b>{{customerName}} has booked a table 📅</b>\n\n👥 <b>Number of people:</b> {{numberOfPeople}} people\n\n🕒 <b>Booking time:</b> {{timeRange}}\n\n📅 <b>Booking date:</b> {{bookingDate}}\n\n📞 <b>Contact number:</b> {{contactNumber}}",
     "bookingMessage": "👤 <b>Customer Name:</b> {{customerName}}\n\n👥 <b>Number of people:</b> {{numberOfPeople}} people\n\n🕒 <b>Booking time:</b> {{timeRange}}\n\n📅 <b>Booking date:</b> {{bookingDate}}\n\n📞 <b>Contact number:</b> {{contactNumber}}",
-    "noBooking": "There are currently no reservations available"
+    "noBooking": "There are currently no reservations available",
+    "selectCategories": "Choose one of the categories below",
+    "foodDetails": "🍽 <b>Food name:</b> {{title}}\n📋 <b>Ingredients:</b> {{composition}}\n💵 <b>Price:</b> {{price}} UZS",
+    "cartIsEmpty": "The basket is empty",
+    "cartItemText": "🥘 <b>{{title}}</b> - <i>{{price}} UZS</i> x <b>{{quantity}} items</b>",
+    "cartText": "🛒 <b>Your cart items:</b>\n\n{{cartItems}}\n\n🧾 <b>Total quantity: {{totalQuantity}} items\n🛵 Delivery: {{deliveryPrice}} UZS\n💰 Total price: {{totalPrice}} UZS</b>",
+    "showQuantity": "{{quantity}} pc",
+    "addedToCart": "Added to cart ✅",
+    "selectPaymentMethod": "Select the payment method:",
+    "orderAddressInfo": "📍 <b>Delivery Address:</b>\n\n<i>{{address}}</i>\n\n❓ <i>Are you sure this address is correct? If needed, you can update it in the settings.</i>\n\n🔄 <i>Providing the correct address ensures quick and smooth delivery service.</i>",
+    "orderSummary": "📋 <b>Your order:</b>\n\n<b>{{orderItems}}</b>\n\n🏠 <b>Address:</b> {{address}}\n\n💵 <b>Products:</b> {{productTotal}} UZS\n🚚 <b>Delivery:</b> {{deliveryCost}} UZS\n\n<b>Total:</b> {{totalAmount}} UZS",
+    "ordered": "📦 <b>Your order number:</b> #{{orderNumber}} is being processed!\n📞 <i>Please wait for a call from the operator.</i>\n🚚 <b>We will deliver your order within 30 minutes.</b>\n☎️ Friendly delivery service: <b>97 616 08 88</b>"
 
 }

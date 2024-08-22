@@ -13,7 +13,7 @@ adminCategoryScene.enter(async (ctx) => {
             adminCategoryKeyboard(ctx.session.lang)
         );
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 });
 
@@ -39,7 +39,7 @@ adminCategoryScene.hears(async (button, ctx) => {
             return await ctx.scene.enter("admin");
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 });
 

@@ -39,7 +39,7 @@ adminMenuScene.hears(async (button, ctx) => {
             return await ctx.scene.enter("admin");
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 })
 

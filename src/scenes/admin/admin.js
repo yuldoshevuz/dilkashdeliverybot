@@ -26,7 +26,7 @@ adminScene.hears(async (button, ctx) => {
         } else if (button === adminButtons.view_bookings[lang]) {
             const bookings = await reposotory.booking.findAllActive();
             if (!bookings.length) {
-                return await ctx.reply(i18n.t("noBoking"))
+                return await ctx.reply(i18n.t("noBooking"));
             }
 
             for (const booking of bookings) {
@@ -44,7 +44,7 @@ adminScene.hears(async (button, ctx) => {
             }
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 });
 

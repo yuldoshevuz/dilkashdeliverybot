@@ -26,7 +26,7 @@ aboutusScene.hears(async (button, ctx) => {
             return await ctx.scene.enter("start", { home: true });
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 });
 
@@ -69,7 +69,7 @@ aboutusScene.action(async (callbackData, ctx) => {
             return;
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 })
 

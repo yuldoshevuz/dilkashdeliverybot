@@ -10,7 +10,7 @@ class Category extends Model {
     formatCategory(category) {
         return category && {
             id: category.id,
-            title: category.translations[0].title,
+            title: category.i18n[0].title,
             images: category.images.map((image) => image.url),
             foods: category.foods.map((food) => new Food().formatFood(food))
         } || null;
@@ -20,7 +20,7 @@ class Category extends Model {
         const categories = await prisma.category.findMany({
             select: {
                 id: true,
-                translations: {
+                i18n: {
                     select: {
                         title: true,
                         language: true
@@ -33,7 +33,7 @@ class Category extends Model {
                 foods: {
                     select: {
                         id: true,
-                        translations: {
+                        i18n: {
                             select: {
                                 title: true,
                                 composition: true,
@@ -60,7 +60,7 @@ class Category extends Model {
         const category = await prisma.category.findFirst({
             select: {
                 id: true,
-                translations: {
+                i18n: {
                     select: {
                         title: true,
                         language: true
@@ -75,7 +75,7 @@ class Category extends Model {
                 foods: {
                     select: {
                         id: true,
-                        translations: {
+                        i18n: {
                             select: {
                                 title: true,
                                 composition: true,
@@ -90,7 +90,7 @@ class Category extends Model {
                         categoryId: true
                     },
                     where: {
-                        translations: { some: { language } }
+                        i18n: { some: { language } }
                     }
                 }
             },
@@ -106,13 +106,13 @@ class Category extends Model {
 
     async findByName(title, language) {
         return await this
-            .findOne({ translations: { some: { title, language } } }, language);
+            .findOne({ i18n: { some: { title, language } } }, language);
     }
 
     async create({ title, images }) {
         const newCategory = await prisma.category.create({
             data: {
-                translations: {
+                i18n: {
                     createMany: {
                         data: [
                             { title: title.uz, language: "uz" },
@@ -140,7 +140,7 @@ class Category extends Model {
 
             return true;
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return false;
         }
     }

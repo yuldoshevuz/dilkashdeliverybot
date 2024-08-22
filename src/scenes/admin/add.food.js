@@ -10,15 +10,23 @@ const adminAddFood = new WizardScene("admin:addFood",
     async (ctx) => {
         try {
             if (ctx.message.text) {
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
                 ctx.session.food = {
-                    title: { uz: ctx.message.text },
+                    title: { uz: text },
                     images: []
                 };
                 const language = i18n.t("en");
 
                 await ctx.reply(
                     i18n.t("enterFoodName", { language }),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -27,18 +35,26 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.food.title.en = ctx.message.text;
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                ctx.session.food.title.en = text;
                 const language = i18n.t("ru");
 
                 await ctx.reply(
                     i18n.t("enterFoodName", { language }),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -47,19 +63,27 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.food.title.ru = ctx.message.text;
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                ctx.session.food.title.ru = text;
                 const language = i18n.t("uz");
                 const composition = i18n.t("uzCom")
 
                 await ctx.reply(
                     i18n.t("enterFoodComposition", { language, composition }),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -68,19 +92,27 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.food.composition = { uz: ctx.message.text };
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                ctx.session.food.composition = { uz: text };
                 const language = i18n.t("en");
                 const composition = i18n.t("enCom")
 
                 await ctx.reply(
                     i18n.t("enterFoodComposition", { language, composition }),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -89,19 +121,27 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.food.composition.en = ctx.message.text;
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                ctx.session.food.composition.en = text;
                 const language = i18n.t("ru");
                 const composition = i18n.t("ruCom")
 
                 await ctx.reply(
                     i18n.t("enterFoodComposition", { language,   composition }),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -110,13 +150,21 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                ctx.session.food.composition.ru = ctx.message.text;
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                ctx.session.food.composition.ru = text;
                 const { categoryId } = ctx.scene.state;
 
                 if (categoryId) {
@@ -125,17 +173,17 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                     await ctx.reply(
                         i18n.t("enterFoodPrice"),
-                        cancelKeyboard(ctx.session.lang)
+                        cancelKeyboard(lang)
                     );
                     return ctx.wizard.next();
                 }
 
                 const categories = await reposotory.category
-                    .findAll(ctx.session.lang);
+                    .findAll(lang);
 
                 await ctx.reply(
                     i18n.t("whichCategory"),
-                    adminCategoriesKeyboard(categories, ctx.session.lang)
+                    adminCategoriesKeyboard(categories, lang)
                 );
                 return ctx.wizard.next();
             }
@@ -144,20 +192,26 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
                 const text = ctx.message.text;
+                const lang = ctx.session.lang;
 
-                if (text === buttons.back[ctx.session.lang]) {
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                if (text === buttons.back[lang]) {
                     return await ctx.scene.enter("admin:menuFood");
                 }
 
                 const category = await reposotory.category
-                    .findByName(text, ctx.session.lang);
+                    .findByName(text, lang);
 
                 if (!category) {
                     return await ctx.reply(i18n.t("noCategories"))
@@ -167,7 +221,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 await ctx.reply(
                     i18n.t("enterFoodPrice"),
-                    cancelKeyboard(ctx.session.lang)
+                    cancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -176,21 +230,29 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
         try {
             if (ctx.message.text) {
-                if (isNaN(ctx.message.text)) {
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                if (isNaN(text)) {
                     return await ctx.reply(i18n.t("enterFoodPrice") + ", 25.000");
                 }
                 
-                ctx.session.food.price = +ctx.message.text;
+                ctx.session.food.price = +text;
 
                 await ctx.reply(
                     i18n.t("sendFoodImages"),
-                    adminNextOrCancelKeyboard(ctx.session.lang)
+                    adminNextOrCancelKeyboard(lang)
                 );
                 return ctx.wizard.next();
             }
@@ -199,7 +261,7 @@ const adminAddFood = new WizardScene("admin:addFood",
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -229,7 +291,15 @@ const adminAddFood = new WizardScene("admin:addFood",
             }
 
             if (ctx.message.text) {
-                if (ctx.message.text === adminButtons.next[ctx.session.lang]) {
+                const text = ctx.message.text;
+                const lang = ctx.session.lang;
+
+                if (text === buttons.cancel[lang]) {
+                    delete ctx.session.food;
+                    return await ctx.scene.enter("admin:menuFood");
+                }
+
+                if (text === adminButtons.next[lang]) {
                     const { images, title, composition, categoryId, price } = ctx.session.food;
                     
                     if (images?.length < 1) {
@@ -247,7 +317,7 @@ const adminAddFood = new WizardScene("admin:addFood",
                 }
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 );
@@ -261,20 +331,8 @@ adminAddFood.enter(async (ctx) => {
             cancelKeyboard(ctx.session.lang)
         );
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 });
-
-adminAddFood.hears(async (button, ctx) => {
-    try {
-        const { lang } = ctx.session;
-        
-        if (button === buttons.cancel[lang]) {
-            return await ctx.scene.enter("admin:menuFood");
-        }
-    } catch (error) {
-        console.log(error)
-    }
-})
 
 export default adminAddFood;

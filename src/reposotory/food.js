@@ -10,8 +10,8 @@ class Food extends Model {
     formatFood(food) {
         return food && {
             id: food.id,
-            title: food.translations[0].title,
-            composition: food.translations[0].composition,
+            title: food.i18n[0].title,
+            composition: food.i18n[0].composition,
             images: food.images.map((image) => image.url),
             price: food.price,
             categoryId: food.categoryId
@@ -22,7 +22,7 @@ class Food extends Model {
         const food = await prisma.food.findFirst({
             select: {
                 id: true,
-                translations: {
+                i18n: {
                     select: {
                         title: true,
                         composition: true,
@@ -48,14 +48,14 @@ class Food extends Model {
 
     async findByName(title, language) {
         return await this
-            .findOne({ translations: { some: { title, language } } }, language);
+            .findOne({ i18n: { some: { title, language } } }, language);
     }
 
     async findAll(language, where = {}) {
         const foods = await prisma.food.findMany({
             select: {
                 id: true,
-                translations: {
+                i18n: {
                     select: {
                         title: true,
                         composition: true,
@@ -79,7 +79,7 @@ class Food extends Model {
     async create({ title, composition, images, price, categoryId }) {
         const newFood = await this.model.create({
             data: {
-                translations: {
+                i18n: {
                     createMany: {
                         data: [
                             {

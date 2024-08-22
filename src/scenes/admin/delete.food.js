@@ -14,7 +14,7 @@ adminDeleteFoodScene.enter(async (ctx) => {
             adminFoodsKeyboard(foods, ctx.session.lang)
         );
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 })
 

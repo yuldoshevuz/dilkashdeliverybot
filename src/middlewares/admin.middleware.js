@@ -10,7 +10,7 @@ const isAdmin = async (ctx, next) => {
         
         await ctx.replyWithHTML(`<b>${ctx.from.id}</b>`);
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 };
 

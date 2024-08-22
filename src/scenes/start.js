@@ -13,7 +13,7 @@ startScene.enter(async (ctx) => {
             parse_mode: "HTML"
         });
         return await ctx.replyWithHTML(
-            i18n.t("selectOptions"),
+            `<b>${i18n.t("selectOptions")}</b>`,
             startKeyboard(ctx.session.lang)
         );
     }
@@ -29,7 +29,9 @@ startScene.hears(async (button, ctx) => {
     try {
         const { lang } = ctx.session;
 
-        if (button === buttons.reservation[lang]){
+        if (button === buttons.menu[lang]) {
+            return await ctx.scene.enter("menu");
+        } if (button === buttons.reservation[lang]){
             return await ctx.scene.enter("booking");
         } else if (button === buttons.rate_us[lang]) {
             return await ctx.scene.enter("rate");
@@ -39,7 +41,7 @@ startScene.hears(async (button, ctx) => {
             return await ctx.scene.enter("aboutus");
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 });
 

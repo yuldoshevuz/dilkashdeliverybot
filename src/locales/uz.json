@@ -9,12 +9,12 @@
 
     "changeLanguage": "🇺🇿 Iltimos tilni tanlang:\n🇬🇧 Please select a language:\n🇷🇺 Пожалуйста, выберите язык:",
     "sendLocation": "Buyurtmalaringizni tezda yetkazib berishimiz uchun manzilingizni bizga yuboring. Joylashuvni qo'lda o'rnatishingiz ham mumkin",
-    "errorLocating": "Joylashuvni aniqlashda xatolik yuz berdi, qayta urinib ko‘ring",
+    "errorLocating": "Joylashuvni aniqlashda xatolik yuz berdi, qayta urinib ko'ring",
     "changeMeal": "Taomlarni o'zgartirish",
     "commentsUsers": "Obunachilarning fikr-mulohazalari",
     "bookingList": "Buyurtmalar ro'yxati",
     "bookingOrder": "Buyurtma qilingan stollar ro'yxati",
-    "selectOptions": "<b>Quyidagilardan birini tanlang:</b> 🌟",
+    "selectOptions": "Quyidagilardan birini tanlang: 🌟",
     "homeMessage": "🏠 Bosh sahifa",
     "youAreNotAdmin": "Siz admin emassiz",
     "welcomeToAdmin": "Admin panelga xush kelibsiz",
@@ -55,6 +55,8 @@
     "selectPaymentType": "To'lov turini tanlang",
     "socialMediaText": "Siz bizni quyidagi ijtimoiy tarmoqlar orqali ham kuzatishingiz mumkin:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
     "startJobMessage": "👋 Siz ham bizning professional jamoamizning bir qismi bo'lishni xohlaysizmi? 🏢\n\nIshga kirish uchun, iltimos, rezyumeyingizni quyidagi botga yuboring va biz siz bilan bog'lanamiz:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nBiz sizni kutyapmiz! ✨",
+    "locationInfoAndChange": "📍 <b>Hozirgi joylashuvingiz:</b> {{address}}\n\n📍 <b>Yangi yetkazib berish manzilini tanlang:</b>\n\n🔘 <i>Joylashuvingizni yuborish uchun 'Lokatsiya yuborish' tugmasidan foydalaning yoki manzilni qo'lda kiriting.</i>\n\n🗺 <i>Manzil kiritilgandan so'ng, uni tasdiqlashni unutmang.</i>",
+    "confirmAddress": "✅ <b>Manzilni tasdiqlaysizmi?</b>\n\n🏠 <b>Kiritilgan manzil:</b> <i>{{address}}</i>\n\nAgar manzil to'g'ri bo'lsa, \"Tasdiqlash\" tugmasini bosing, aks holda ortga qaytib, manzilni qaytadan kiriting.",
 
     "welcomeAdmin": "Admin paneliga xush kelibsiz 👋",
     "noCategories": "Hech qanday kategoriya mavjud emas",
@@ -63,7 +65,7 @@
     "categoryDetails": "🍱 <b>Kategoriya nomi:</b> {{title}}\n🍽 <b>Ovqatlar soni</b>: {{foodCount}} ta\n🖼 <b>Rasmlar soni</b>: {{imagesCount}} ta\n\n🔧 <b>Nima qilishni xohlaysiz?</b>",
     "cannotUploadLotsPhoto": "Kechirasiz, 10 dan ortiq fotosurat yuborish mumkin emas",
     "must1Image": "Kamida 1 ta rasm yuborishingiz kerak",
-    "foodDetails": "🍽 <b>Ovqat nomi:</b> {{title}}\n📂 <b>Kategoriya:</b> {{categoryName}}\n📋 <b>Tarkibi:</b> {{composition}}\n💵 <b>Narxi:</b> {{price}} so'm\n🖼 <b>Rasmlar soni:</b> {{imagesCount}} ta\n\n🔧 <b>Nima qilishni xohlaysiz?</b>",
+    "foodDetailsAdmin": "🍽 <b>Ovqat nomi:</b> {{title}}\n📂 <b>Kategoriya:</b> {{categoryName}}\n📋 <b>Tarkibi:</b> {{composition}}\n💵 <b>Narxi:</b> {{price}} so'm\n🖼 <b>Rasmlar soni:</b> {{imagesCount}} ta\n\n🔧 <b>Nima qilishni xohlaysiz?</b>",
     "enterNewPrice": "Yangi narxni kiriting",
     "noFoods": "Hech qanday ovqat mavjud emas",
     "whichCategory": "Qaysi kategoriyaga qo'shmoqchisiz?",
@@ -73,5 +75,17 @@
     "sendFoodImages": "Juda soz! Endi ovqat rasmlarini yuboring:",
     "newBookingMessage": "<b>{{customerName}} stol buyurtma qildi 📅</b>\n\n👥 <b>Necha kishi:</b> {{numberOfPeople}} kishi\n\n🕒 <b>Buyurtma vaqti:</b> {{timeRange}}\n\n📅 <b>Buyurtma sanasi:</b> {{bookingDate}}\n\n📞 <b>Bog'lanish uchun raqami:</b> {{contactNumber}}",
     "bookingMessage": "👤 <b>Buyurtmachining ismi:</b> {{customerName}}\n\n👥 <b>Necha kishi:</b> {{numberOfPeople}} kishi\n\n🕒 <b>Buyurtma vaqti:</b> {{timeRange}}\n\n📅 <b>Buyurtma sanasi:</b> {{bookingDate}}\n\n📞 <b>Bog'lanish uchun raqami:</b> {{contactNumber}}",
-    "noBooking": "Hozirda band qilingan joylar mavjud emas"
+    "noBooking": "Hozirda band qilingan joylar mavjud emas",
+    "selectCategories": "Quyidagi kategoriyalardan birini tanlang",
+    "foodDetails": "🍽 <b>Taom nomi:</b> {{title}}\n📋 <b>Tarkibi:</b> {{composition}}\n💵 <b>Narxi:</b> {{price}} so'm",
+    "cartIsEmpty": "Savat bo'sh",
+    "cartItemText": "🥘 <b>{{title}}</b> - <i>{{price}} so'm</i> x <b>{{quantity}} dona</b>",
+    "cartText": "🛒 <b>Savatingizdagi mahsulotlar:</b>\n\n{{cartItems}}\n\n🧾 <b>Umumiy miqdor: {{totalQuantity}} ta\n🛵 Yetkazib berish: {{deliveryPrice}} so'm\n💰 Umumiy narx: {{totalPrice}} so'm</b>",
+    "showQuantity": "{{quantity}} ta",
+    "addedToCart": "Savatga qo'shildi ✅",
+    "selectPaymentMethod": "To'lov usulini tanlang:",
+    "orderAddressInfo": "📍 <b>Buyurtmani yetkazish manzili:</b>\n\n<i>{{address}}</i>\n\n❓ <i>Manzil to'g'ri ekanligiga ishonchingiz komilmi? Agar kerak bo'lsa, uni sozlamalar orqali o'zgartirishingiz mumkin.</i>\n\n🔄 <i>To'g'ri manzilni kiritish bizning tez va oson yetkazib berish xizmatimiz uchun juda muhimdir.</i>",
+    "orderSummary": "📋 <b>Sizning buyurtmangiz:</b>\n\n<b>{{orderItems}}</b>\n\n🏠 <b>Manzil:</b> {{address}}\n\n💵 <b>Mahsulotlar:</b> {{productTotal}} so'm\n🚚 <b>Yetkazib berish:</b> {{deliveryCost}} so'm\n\n<b>Jami:</b> {{totalAmount}} so'm",
+    "ordered": "📦 <b>Buyurtma raqamingiz:</b> #{{orderNumber}} ko'rib chiqilmoqda!\n📞 <i>Iltimos, operatordan qo'ng'iroqni kuting.</i>\n🚚 <b>Buyurtmangizni 30 daqiqa ichida yetkazib beramiz.</b>\n☎️ Dilkash eltuv xizmati: <b>97 616 08 88</b>"
+
 }

@@ -27,7 +27,7 @@ const rateScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -48,7 +48,7 @@ const rateScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -64,7 +64,7 @@ const rateScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     },
     async (ctx) => {
@@ -94,7 +94,7 @@ const rateScene = new WizardScene(
                 await ctx.deleteMessage();
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 );
@@ -121,7 +121,7 @@ rateScene.hears(async (button, ctx) => {
             return await ctx.scene.enter("start", { home: true });
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 })
 export default rateScene;
