@@ -27,7 +27,7 @@ adminCategoryScene.hears(async (button, ctx) => {
                 return ctx.reply(i18n.t("noCategories"));
             }
             return ctx.scene.enter("admin:categories");
-        } else if (button === adminButtons.add_category[lang]) {
+        } else if (button === adminButtons.addCategory[lang]) {
             return ctx.scene.enter("admin:addCategory");
         } else if (button === adminButtons.delete[lang]) {
             const categories = await repository.category.findAll(lang);
@@ -35,7 +35,7 @@ adminCategoryScene.hears(async (button, ctx) => {
                 return await  ctx.reply(i18n.t("noCategories"));
             }
             return await ctx.scene.enter("admin:deleteCategory");
-        } else if (button === adminButtons.back_to_admin_menu[lang]) {
+        } else if (button === adminButtons.backToAdminMenu[lang]) {
             return await ctx.scene.enter("admin");
         }
     } catch (error) {

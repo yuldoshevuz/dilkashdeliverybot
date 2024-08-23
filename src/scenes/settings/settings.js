@@ -19,9 +19,9 @@ settingsScene.hears(async (button, ctx) => {
 
         if (button === buttons.back[lang] || button === "/start") {
             return await ctx.scene.enter("start", { home: true });
-        } else if (button === buttons.change_language[lang]) {
+        } else if (button === buttons.changeLanguage[lang]) {
             return await ctx.scene.enter("changeLanguage");
-        } else if (button === buttons.change_address[lang]) {
+        } else if (button === buttons.changeAddress[lang]) {
             return await ctx.scene.enter("changeLocation");
         }
     } catch (error) {

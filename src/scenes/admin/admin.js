@@ -16,17 +16,17 @@ adminScene.hears(async (button, ctx) => {
         const { lang } = ctx.session;
 
         switch (button) {
-            case buttons.back_to_main_menu[lang]:
+            case buttons.backToMainMenu[lang]:
                 return await ctx.scene.enter("start", { home: true });
             case adminButtons.menu[lang]:
                 return await ctx.scene.enter("admin:menuFood");
-            case adminButtons.categories_menu[lang]:
+            case adminButtons.categoriesMenu[lang]:
                 return await ctx.scene.enter("admin:menuCategory");
-            case adminButtons.view_bookings[lang]:
+            case adminButtons.viewBookings[lang]:
                 return await ctx.scene.enter("admin:viewBooking");
             case adminButtons.orders[lang]:
                 return await ctx.scene.enter("admin:viewOrders");
-            case adminButtons.view_reports[lang]:
+            case adminButtons.viewReports[lang]:
                 return await ctx.scene.enter("admin:viewReport");        
             default:
                 break;

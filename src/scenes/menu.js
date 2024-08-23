@@ -2,7 +2,7 @@ import { WizardScene } from "telegraf/scenes";
 import repository from "../repository/repository.js";
 import i18n from "../config/i18n.config.js";
 import { addCartKeyboard, buttons, categoriesKeyboard, foodsKeyboard } from "../utils/keyboards.js";
-import convertMediaGroup from "../helpers/convert.media.group.js";
+import { convertMediaGroup } from "../helpers/index.js";
 
 const menuScene = new WizardScene("menu",
     async (ctx) => {
@@ -13,7 +13,7 @@ const menuScene = new WizardScene("menu",
 
                 if (text === buttons.back[lang]) {
                     return await ctx.scene.enter("start", { home: true });
-                } else if (text === buttons.basket[lang]) {
+                } else if (text === buttons.cart[lang]) {
                     return await ctx.scene.enter("cart", { cursor: ctx.wizard.cursor });
                 }
 
@@ -54,7 +54,7 @@ const menuScene = new WizardScene("menu",
                         categoriesKeyboard(categories, lang)
                     );
                     return ctx.wizard.back();
-                } else if (text === buttons.basket[lang]) {
+                } else if (text === buttons.cart[lang]) {
                     return await ctx.scene.enter("cart", { cursor: ctx.wizard.cursor });
                 }
 
@@ -71,14 +71,7 @@ const menuScene = new WizardScene("menu",
                 await ctx.replyWithHTML(
                     i18n.t("foodDetails", food),
                     addCartKeyboard(cartItem?.quantity || 0, food.id, lang)
-                );
-
-                // const cart = await repository.cart.new(ctx.session.user.id);
-                // const cartItem = await repository.cartItem.new(food.id, cart.id);
-
-                // console.log(cart);
-                // console.log(cartItem);              
-                
+                );             
             }
 
             if (ctx.callbackQuery) {

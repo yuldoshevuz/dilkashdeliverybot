@@ -3,7 +3,7 @@ import i18n from "../../config/i18n.config.js";
 import { buttons, cancelKeyboard } from "../../utils/keyboards.js";
 import { adminButtons, adminCategoriesKeyboard, adminNextOrCancelKeyboard } from "../../utils/admin.keyboards.js";
 import repository from "../../repository/repository.js";
-import getImageUrl from "../../helpers/getImageUrl.js";
+import { getImageUrl } from "../../helpers/index.js";
 import environments from "../../config/environments.js";
 
 const adminAddFood = new WizardScene("admin:addFood",

@@ -1,7 +1,7 @@
 import { WizardScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { buttons, cancelKeyboard } from "../../utils/keyboards.js";
-import getImageUrl from "../../helpers/getImageUrl.js";
+import { getImageUrl } from "../../helpers/index.js";
 import environments from "../../config/environments.js";
 import repository from "../../repository/repository.js";
 import { adminButtons, adminNextOrCancelKeyboard } from "../../utils/admin.keyboards.js";

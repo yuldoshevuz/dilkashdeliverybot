@@ -1,7 +1,7 @@
 import { WizardScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { buttons, confirmOrBackKeyboard, sendLocationOrBackKeyboard } from "../../utils/keyboards.js";
-import fetchLocationAddress from "../../helpers/fetch.address.js";
+import { fetchLocationAddress } from "../../helpers/index.js";
 import repository from "../../repository/repository.js";
 
 const changeLocationScene = new WizardScene("changeLocation",

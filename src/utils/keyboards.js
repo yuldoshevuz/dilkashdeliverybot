@@ -1,32 +1,21 @@
 import { Markup } from 'telegraf';
 import { formatTime, getDate, isToday, timeSlots } from '../helpers/date.js';
 
-// Tugmalarni yaratish
 export const buttons = {
-    switch_to_bot: {
-        uz: "🔗 Botga o'tish",
-        en: "🔗 Switch to bot",
-        ru: "🔗 Перейти на бот"
-    },
-    send_contact: {
+    sendContact: {
         uz: "📱 Kontakt yuborish",
         en: "📱 Send contact",
         ru: "📱 Отправить контакт"
     },
-    back_to_main_menu: {
+    backToMainMenu: {
         uz: "🏠 Bosh menuga qaytish",
         en: "🏠 Back to main menu",
         ru: "🏠 Вернуться в главное меню"
     },
-    send_location: {
+    sendLocation: {
         uz: "📍 Joylashuvimni yuborish",
         en: "📍 Send my location",
         ru: "📍 Отправить мое местоположение"
-    },
-    my_locations: {
-        uz: "🗺️ Mening joylashuvim",
-        en: "🗺️ My location",
-        ru: "🗺️ Моя геолокация"
     },
     menu: {
         uz: "🥘 Ta'omlar menyusi",
@@ -47,11 +36,6 @@ export const buttons = {
         uz: "🌟 Baholash",
         en: "🌟 Rate Us",
         ru: "🌟 Оценить"
-    },
-    location_contact: {
-        uz: "📍 Bizning joylashuv / 📞 Kontaktlar",
-        en: "📍 Our Location / 📞 Contacts",
-        ru: "📍 Наше местоположение / 📞 Контакты"
     },
     location: {
         uz: "📍 Joylashuv",
@@ -88,32 +72,12 @@ export const buttons = {
         en: "⬅️ Back",
         ru: "⬅️ Назад"
     },
-    manual: {
-        uz: "📚 Qo'llanma",
-        en: "📚 User Guide",
-        ru: "📚 Руководство пользователя"
-    },
-    send_resume: {
-        uz: "💼 Resume yuborish",
-        en: "💼 Submit Resume",
-        ru: "💼 Отправить резюме"
-    },
-    order_togora: {
-        uz: "🍲 Tog'ora - Buyurtma uchun",
-        en: "🍲 Togora for order",
-        ru: "🍲 Togora for order"
-    },
-    order_phone: {
-        uz: "📞 Buyurtma qilish",
-        en: "📞 Order",
-        ru: "📞 Заказать"
-    },
-    change_language: {
+    changeLanguage: {
         uz: "🌐 Tilni o'zgartirish",
         en: "🌐 Change language",
         ru: "🌐 Изменить язык"
     },
-    change_address: {
+    changeAddress: {
         uz: "📍 Manzilni o'zgartirish",
         en: "📍 Change Address",
         ru: "📍 Изменить адрес"
@@ -128,30 +92,25 @@ export const buttons = {
         en: "❌ No",
         ru: "❌ Нет"
     },
-    add_to_basket: {
+    addToCart: {
         uz: "🛒 Savatga qo'shish",
         en: "🛒 Add to basket",
         ru: "🛒 Добавить в корзину"
     },
-    basket: {
+    cart: {
         uz: "🛒 Savat",
         en: "🛒 Basket",
         ru: "🛒 Корзина"
     },
-    order_meal: {
+    order: {
         uz: "🚚 Buyurtma berish",
         en: "🚚 Order meal",
         ru: "🚚 Заказать еду"
     },
-    clear_basket: {
+    clearCart: {
         uz: "🗑️ Savatni tozalash",
         en: "🗑️ Clear basket",
         ru: "🗑️ Очистить корзину"
-    },
-    delivery_time: {
-        uz: "⏰ Yetkazib berish vaqti",
-        en: "⏰ Delivery time",
-        ru: "⏰ Время доставки"
     },
     cash_payment: {
         uz: "💵 Naqd pul",
@@ -170,28 +129,23 @@ export const buttons = {
     }
 };
 
-// Asosiy menyu tugmalari
 export const startKeyboard = (lang) => Markup.keyboard([
     [Markup.button.text(buttons.menu[lang]), Markup.button.text(buttons.reservation[lang])],
     [Markup.button.text(buttons.rate_us[lang]), Markup.button.text(buttons.settings[lang])],
     [Markup.button.text(buttons.abousUs[lang])]
-    // [Markup.button.text(buttons.location_contact[lang])],
-    // [Markup.button.text(buttons.connect[lang]), Markup.button.text(buttons.manual[lang])],
-    // [Markup.button.text(buttons.send_resume[lang])]
 ]).resize();
 
-// Boshqa tugmalar uchun misollar
 export const contactKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.contactRequest(buttons.send_contact[lang])]
+    [Markup.button.contactRequest(buttons.sendContact[lang])]
 ]).resize();
 
 export const sendLocationKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.locationRequest(buttons.send_location[lang])]
+    [Markup.button.locationRequest(buttons.sendLocation[lang])]
 ]).resize();
 
 export const settingsKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.text(buttons.change_language[lang]) ],
-    [ Markup.button.text(buttons.change_address[lang]) ],
+    [ Markup.button.text(buttons.changeLanguage[lang]) ],
+    [ Markup.button.text(buttons.changeAddress[lang]) ],
     [ Markup.button.text(buttons.back[lang]) ]
 ]).resize();
 
@@ -203,7 +157,7 @@ export const backInlineKeyboard = (lang, cursor) =>
     Markup.inlineKeyboard([ Markup.button.callback(buttons.back[lang], `${cursor}:back`) ])
 
 export const backMainKeyboard = (lang) =>
-    Markup.keyboard([Markup.button.text(buttons.back_to_main_menu[lang])
+    Markup.keyboard([Markup.button.text(buttons.backToMainMenu[lang])
 ]).resize();
 
 export const cancelKeyboard = (lang) =>
@@ -224,7 +178,7 @@ export const categoriesKeyboard = (categories, lang) => {
         }
     }
 
-    keyboards.unshift([ Markup.button.text(buttons.basket[lang]) ]);
+    keyboards.unshift([ Markup.button.text(buttons.cart[lang]) ]);
     keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
     return Markup.keyboard(keyboards).resize();
 };
@@ -243,7 +197,7 @@ export const foodsKeyboard = (foods, lang) => {
         }
     }
 
-    keyboards.unshift([ Markup.button.text(buttons.basket[lang]) ]);
+    keyboards.unshift([ Markup.button.text(buttons.cart[lang]) ]);
     keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
     return Markup.keyboard(keyboards).resize();
 }
@@ -254,12 +208,12 @@ export const addCartKeyboard = (quantity, foodId, lang) => Markup.inlineKeyboard
         Markup.button.callback(quantity, `quantity:${foodId}:${quantity}`),
         Markup.button.callback("➕", `increment:${foodId}:${quantity}`),
     ],
-    [ Markup.button.callback(buttons.add_to_basket[lang], `addCart:${foodId}:${quantity}`) ]
+    [ Markup.button.callback(buttons.addToCart[lang], `addCart:${foodId}:${quantity}`) ]
 ]);
 
 export const orderOrCancelKeyboard = (lang) => Markup.inlineKeyboard([
-    [ Markup.button.callback(buttons.clear_basket[lang], "clearCart") ],
-    [ Markup.button.callback(buttons.order_meal[lang], "order") ],
+    [ Markup.button.callback(buttons.clearCart[lang], "clearCart") ],
+    [ Markup.button.callback(buttons.order[lang], "order") ],
     [ Markup.button.callback(buttons.back[lang], "back") ]
 
 ]);
@@ -371,17 +325,6 @@ export const ourLocationsKeyboard = (lang) => Markup.inlineKeyboard([
     ]
 ])
 
-export const basketKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.text(buttons.add_to_basket[lang]), Markup.button.text(buttons.clear_basket[lang])],
-    [Markup.button.text(buttons.basket[lang]), Markup.button.text(buttons.back[lang])]
-]).resize();
-
-export const bookingKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.text(buttons.order_meal[lang]), Markup.button.text(buttons.delivery_time[lang])],
-    [Markup.button.text(buttons.cash_payment[lang]), Markup.button.text(buttons.confirm[lang])],
-    [Markup.button.text(buttons.cancel[lang]), Markup.button.text(buttons.back[lang])]
-]).resize();
-
 export const changeLangKeyboard = () => Markup.inlineKeyboard([
     [Markup.button.callback("🇺🇿 O'zbekcha", "language:uz")],
     [Markup.button.callback("🇬🇧 English", "language:en")],
@@ -389,6 +332,6 @@ export const changeLangKeyboard = () => Markup.inlineKeyboard([
 ]);
 
 export const sendLocationOrBackKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.locationRequest(buttons.send_location[lang]) ],
+    [ Markup.button.locationRequest(buttons.sendLocation[lang]) ],
     [ Markup.button.text(buttons.back[lang]) ]
 ]).resize();

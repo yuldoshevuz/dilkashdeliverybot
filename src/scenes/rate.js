@@ -1,9 +1,7 @@
 import { WizardScene } from "telegraf/scenes";
 import { buttons, cancelKeyboard, rateInlineKeyboard } from "../utils/keyboards.js";
 import i18n from "../config/i18n.config.js";
-import { phoneValidation } from "../helpers/validations.js";
-import sendMessageToAdmin from "../helpers/sendMsg.admin.js";
-import parseHtml from "../helpers/parse.html.js";
+import { phoneValidation, sendMessageToAdmin, parseHtml } from "../helpers/index.js";
 
 const rateScene = new WizardScene(
     "rate",

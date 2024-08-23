@@ -9,7 +9,7 @@ changeLanguageScene.enter(async (ctx) => {
     const lang = ctx.session.lang;
 
     await ctx.reply(
-        buttons.change_language[lang],
+        buttons.changeLanguage[lang],
         cancelKeyboard(lang)
     );
     await ctx.reply(

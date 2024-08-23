@@ -2,7 +2,7 @@ import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import {  } from "../../utils/keyboards.js";
 import { adminButtons, backToAdminMenuKeyboard, changeOrderStatusKeyboard, orderKeyboard } from "../../utils/admin.keyboards.js";
-import { getOrderNumber, getOrderStatus, makeOrderText } from "../../helpers/order.js";
+import { getOrderNumber, getOrderStatus, makeOrderText } from "../../helpers/index.js";
 import repository from "../../repository/repository.js";
 
 const adminViewOrdersScene = new BaseScene("admin:viewOrders");
@@ -17,7 +17,7 @@ adminViewOrdersScene.hears(async (text, ctx) => {
     try {
         const lang = ctx.session.lang;
 
-        if (text === adminButtons.back_to_admin_menu[lang]) {
+        if (text === adminButtons.backToAdminMenu[lang]) {
             return await ctx.scene.enter("admin");
         }
 

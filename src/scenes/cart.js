@@ -2,7 +2,7 @@ import { BaseScene } from "telegraf/scenes";
 import repository from "../repository/repository.js";
 import i18n from "../config/i18n.config.js";
 import { backKeyboard, buttons, orderOrCancelKeyboard } from "../utils/keyboards.js";
-import { makeCartText } from "../helpers/order.js";
+import { makeCartText } from "../helpers/index.js";
 import environments from "../config/environments.js";
 
 const cartScene = new BaseScene("cart");
@@ -30,7 +30,7 @@ cartScene.enter(async (ctx) => {
             });
         }
 
-        await ctx.reply(buttons.basket[lang], {
+        await ctx.reply(buttons.cart[lang], {
             reply_markup: { remove_keyboard: true }
         });
         await ctx.replyWithHTML(cartText,
@@ -44,12 +44,15 @@ cartScene.enter(async (ctx) => {
 
 cartScene.action(async (data, ctx) => {
     try {
-        ctx.answerCbQuery();
-
         if (data === "clearCart") {
             await repository.cart.clear(ctx.session.user.id);
+            await ctx.answerCbQuery(i18n.t("cartCleared"), {
+                show_alert: true
+            });
             return await ctx.scene.enter("menu");
         }
+        
+        ctx.answerCbQuery();
 
         if (data === "order") {
             return await ctx.scene.enter("order");

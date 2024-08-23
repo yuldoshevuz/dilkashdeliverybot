@@ -22,7 +22,7 @@ aboutusScene.hears(async (button, ctx) => {
     try {
         const { lang } = ctx.session;
 
-        if (button === buttons.back_to_main_menu[lang]) {
+        if (button === buttons.backToMainMenu[lang]) {
             return await ctx.scene.enter("start", { home: true });
         }
     } catch (error) {

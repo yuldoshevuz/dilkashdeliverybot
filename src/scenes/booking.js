@@ -1,11 +1,10 @@
 import { WizardScene } from "telegraf/scenes";
 import i18n from "../config/i18n.config.js";
 import { backInlineKeyboard, buttons, cancelKeyboard, confirmOrBackKeyboard, selectBookingDateKeyboard, selectBookingTimeKeyboard, selectPeopleCount } from "../utils/keyboards.js";
-import { phoneValidation } from "../helpers/validations.js";
+import { phoneValidation, sendMessageToAdmin } from "../helpers/index.js";
 import { formatBookingDetails } from "../helpers/date.js";
 import Booking from "../repository/booking.js";
 import repository from "../repository/repository.js";
-import sendMessageToAdmin from "../helpers/sendMsg.admin.js";
 
 const bookingScene = new WizardScene(
     "booking",

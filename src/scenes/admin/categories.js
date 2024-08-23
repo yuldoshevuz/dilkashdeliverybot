@@ -3,7 +3,7 @@ import i18n from "../../config/i18n.config.js";
 import { adminCategoriesKeyboard, adminCategorySettings } from "../../utils/admin.keyboards.js";
 import repository from "../../repository/repository.js";
 import { buttons } from "../../utils/keyboards.js";
-import convertMediaGroup from "../../helpers/convert.media.group.js";
+import { convertMediaGroup } from "../../helpers/index.js";
 
 const adminCategories = new BaseScene("admin:categories");
 
@@ -17,7 +17,7 @@ adminCategories.enter(async (ctx) => {
     } catch (error) {
         console.error(error)
     }
-})
+});
 
 adminCategories.hears(async (button, ctx) => {
     const { lang } = ctx.session;
@@ -28,10 +28,7 @@ adminCategories.hears(async (button, ctx) => {
     
     const category = await repository.category.findByName(button, lang);
     if (category) {
-        const mediaGroup = convertMediaGroup(category.images)
-
-        console.log(category);
-        
+        const mediaGroup = convertMediaGroup(category.images);       
 
         await ctx.replyWithMediaGroup(mediaGroup);
         await ctx.replyWithHTML(
@@ -40,9 +37,10 @@ adminCategories.hears(async (button, ctx) => {
                 foodCount: category.foods.length,
                 imagesCount: category.images.length
             }),
-            adminCategorySettings(lang, category.id));
+            adminCategorySettings(lang, category.id)
+        );
     }
-})
+});
 
 adminCategories.action(async (callbackData, ctx) => {
     try {
@@ -73,6 +71,6 @@ adminCategories.action(async (callbackData, ctx) => {
         console.error(error);
         
     }
-})
+});
 
 export default adminCategories;

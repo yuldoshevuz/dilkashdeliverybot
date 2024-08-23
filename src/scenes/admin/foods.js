@@ -3,7 +3,7 @@ import i18n from "../../config/i18n.config.js";
 import { adminButtons, adminFoodSettings, adminFoodsKeyboard } from "../../utils/admin.keyboards.js";
 import repository from "../../repository/repository.js";
 import { backInlineKeyboard, buttons } from "../../utils/keyboards.js";
-import convertMediaGroup from "../../helpers/convert.media.group.js";
+import { convertMediaGroup } from "../../helpers/index.js";
 
 const adminFoodsScene = new BaseScene("admin:foods");
 
@@ -32,7 +32,7 @@ adminFoodsScene.hears(async (button, ctx) => {
 
     if (button === buttons.back[lang]) {
         return await ctx.scene.enter("admin:menuFood");
-    } else if (button === adminButtons.add_food[lang]) {
+    } else if (button === adminButtons.addFood[lang]) {
         const { categoryId } = ctx.scene.state
         return await ctx.scene.enter("admin:addFood", { categoryId });
     }

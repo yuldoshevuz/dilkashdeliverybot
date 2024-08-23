@@ -2,7 +2,7 @@ import { WizardScene } from "telegraf/scenes";
 import i18n from "../config/i18n.config.js";
 import { confirmOrBackKeyboard, paymentMethodKeyboard } from "../utils/keyboards.js";
 import repository from "../repository/repository.js";
-import { sendNewOrderNotification } from "../helpers/order.js";
+import { sendNewOrderNotification } from "../helpers/index.js";
 
 const orderScene = new WizardScene("order",
     async (ctx) => {
@@ -85,7 +85,7 @@ orderScene.enter(async (ctx) => {
             ...paymentMethodKeyboard(ctx.session.lang)
         });
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 })
 

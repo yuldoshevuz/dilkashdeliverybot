@@ -2,7 +2,7 @@ import { WizardScene } from "telegraf/scenes";
 import i18n from "../config/i18n.config.js";
 import { changeLangKeyboard, contactKeyboard, sendLocationKeyboard } from "../utils/keyboards.js";
 import isAuth from "../middlewares/auth.middleware.js";
-import fetchLocationAddress from "../helpers/fetch.address.js";
+import { fetchLocationAddress } from "../helpers/index.js";
 import repository from "../repository/repository.js";
 
 const authScene = new WizardScene(

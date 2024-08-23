@@ -1,7 +1,7 @@
 import { BaseScene } from "telegraf/scenes";
 import repository from "../../repository/repository.js";
 import i18n from "../../config/i18n.config.js";
-import { formatDateTime } from "../../helpers/order.js";
+import { formatDateTime } from "../../helpers/index.js";
 
 const adminViewReport = new BaseScene("admin:viewReport");
 
