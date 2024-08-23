@@ -55,8 +55,8 @@
     "selectPaymentType": "To'lov turini tanlang",
     "socialMediaText": "Siz bizni quyidagi ijtimoiy tarmoqlar orqali ham kuzatishingiz mumkin:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
     "startJobMessage": "👋 Siz ham bizning professional jamoamizning bir qismi bo'lishni xohlaysizmi? 🏢\n\nIshga kirish uchun, iltimos, rezyumeyingizni quyidagi botga yuboring va biz siz bilan bog'lanamiz:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nBiz sizni kutyapmiz! ✨",
-    "locationInfoAndChange": "📍 <b>Hozirgi joylashuvingiz:</b> {{address}}\n\n📍 <b>Yangi yetkazib berish manzilini tanlang:</b>\n\n🔘 <i>Joylashuvingizni yuborish uchun 'Lokatsiya yuborish' tugmasidan foydalaning yoki manzilni qo'lda kiriting.</i>\n\n🗺 <i>Manzil kiritilgandan so'ng, uni tasdiqlashni unutmang.</i>",
-    "confirmAddress": "✅ <b>Manzilni tasdiqlaysizmi?</b>\n\n🏠 <b>Kiritilgan manzil:</b> <i>{{address}}</i>\n\nAgar manzil to'g'ri bo'lsa, \"Tasdiqlash\" tugmasini bosing, aks holda ortga qaytib, manzilni qaytadan kiriting.",
+    "locationInfoAndChange": "📍 <b>Hozirgi joylashuvingiz:</b> {{address}}\n\n📍 <b>Yangi yetkazib berish manzilini tanlang:</b>\n\n🔘 <i>Joylashuvingizni yuborish uchun <b>Joylashuvimni yuborish</b> tugmasidan foydalaning yoki manzilni qo'lda kiriting.</i>\n\n🗺 <i>Manzil kiritilgandan so'ng, uni tasdiqlashni unutmang.</i>",
+    "confirmAddress": "✅ <b>Manzilni tasdiqlaysizmi?</b>\n\n🏠 <b>Kiritilgan manzil:</b> <i>{{address}}</i>\n\nAgar manzil to'g'ri bo'lsa, <b>Tasdiqlash</b> tugmasini bosing, aks holda ortga qaytib, manzilni qaytadan kiriting.",
 
     "welcomeAdmin": "Admin paneliga xush kelibsiz 👋",
     "noCategories": "Hech qanday kategoriya mavjud emas",
@@ -80,12 +80,30 @@
     "foodDetails": "🍽 <b>Taom nomi:</b> {{title}}\n📋 <b>Tarkibi:</b> {{composition}}\n💵 <b>Narxi:</b> {{price}} so'm",
     "cartIsEmpty": "Savat bo'sh",
     "cartItemText": "🥘 <b>{{title}}</b> - <i>{{price}} so'm</i> x <b>{{quantity}} dona</b>",
-    "cartText": "🛒 <b>Savatingizdagi mahsulotlar:</b>\n\n{{cartItems}}\n\n🧾 <b>Umumiy miqdor: {{totalQuantity}} ta\n🛵 Yetkazib berish: {{deliveryPrice}} so'm\n💰 Umumiy narx: {{totalPrice}} so'm</b>",
+    "cartText": "🛒 <b>Savatingizdagi mahsulotlar:</b>\n\n{{cartItems}}\n\n🧾 <b>Umumiy miqdor: {{totalQuantity}} ta\n🛵 Yetkazib berish: {{deliveryCost}} so'm\n💰 Umumiy narx: {{totalPrice}} so'm</b>",
     "showQuantity": "{{quantity}} ta",
     "addedToCart": "Savatga qo'shildi ✅",
     "selectPaymentMethod": "To'lov usulini tanlang:",
-    "orderAddressInfo": "📍 <b>Buyurtmani yetkazish manzili:</b>\n\n<i>{{address}}</i>\n\n❓ <i>Manzil to'g'ri ekanligiga ishonchingiz komilmi? Agar kerak bo'lsa, uni sozlamalar orqali o'zgartirishingiz mumkin.</i>\n\n🔄 <i>To'g'ri manzilni kiritish bizning tez va oson yetkazib berish xizmatimiz uchun juda muhimdir.</i>",
+    "orderAddressInfo": "📍 <b>Buyurtmani yetkazish manzili:</b>\n\n<i><b>{{address}}</b></i>\n\n❓ <i>Manzil to'g'ri ekanligiga ishonchingiz komilmi? Agar kerak bo'lsa, uni sozlamalar orqali o'zgartirishingiz mumkin.</i>\n\n🔄 <i>To'g'ri manzilni kiritish bizning tez va oson yetkazib berish xizmatimiz uchun juda muhimdir.</i>",
     "orderSummary": "📋 <b>Sizning buyurtmangiz:</b>\n\n<b>{{orderItems}}</b>\n\n🏠 <b>Manzil:</b> {{address}}\n\n💵 <b>Mahsulotlar:</b> {{productTotal}} so'm\n🚚 <b>Yetkazib berish:</b> {{deliveryCost}} so'm\n\n<b>Jami:</b> {{totalAmount}} so'm",
-    "ordered": "📦 <b>Buyurtma raqamingiz:</b> #{{orderNumber}} ko'rib chiqilmoqda!\n📞 <i>Iltimos, operatordan qo'ng'iroqni kuting.</i>\n🚚 <b>Buyurtmangizni 30 daqiqa ichida yetkazib beramiz.</b>\n☎️ Dilkash eltuv xizmati: <b>97 616 08 88</b>"
+    "ordered": "📦 <b>Buyurtma raqamingiz:</b> #{{orderNumber}} ko'rib chiqilmoqda!\n📞 <i>Iltimos, operatordan qo'ng'iroqni kuting.</i>\n\n🚚 <b>Buyurtmangizni 30 daqiqa ichida yetkazib beramiz.</b>\n\n☎️ Dilkash eltuv xizmati: <b>97 616 08 88</b>",
+    "orderDetails": "🧾 <b>Buyurtma raqami:</b> #{{orderNumber}}\n🕒 <b>Vaqti:</b> {{orderTime}}\n\n👤 <b>Buyurtmachi:</b>\nIsmi: {{customerName}}\nTelefon raqami: {{customerPhone}}\nTelegram: {{customerUsername}}\n\n📍 <b>Yetkazish manzili:</b>\n{{address}}\n\n🍽 <b>Buyurtma tafsilotlari:</b>\n{{orderItems}}\n\n💵 <b>Mahsulotlar:</b> {{productTotal}} so'm\n🚚 <b>Yetkazib berish:</b> {{deliveryCost}} so'm\n💳 To'lov usuli: {{paymentMethod}}\n\n<b>Jami:</b> {{totalAmount}} so'm\n\n📦 <b>Buyurtma holati:</b> {{orderStatus}}",
+    "orderStatuses": {
+        "pending": "⏳ Kutilmoqda",
+        "process": "🚚 Yetkazilmoqda",
+        "canceled": "❌ Bekor qilindi",
+        "completed": "✅ Yetkazib berildi"
+    },
+    "paymentMethods": {
+        "click": "🔵 Click",
+        "payme": "🟢 Payme",
+        "cash": "💵 Naqd pul"
+    },
+    "newOrder": "🔔 <b>Yangi buyurtma!</b>",
+    "enterOrderNumber": "Buyurtma raqamini kiriting. Misol uchun #123",
+    "dataNotFound": "Hech qanday ma'lumot topilmadi",
+    "cannotChangeStatus": "Buyurtma allaqachon yetkazib berilgan yoki bekor qilingan",
+    "errorChangingStatus": "Buyurtma holatini o'zgartirishda xatolik yuz berdi",
+    "report": "📊 <b>Hisobot</b>:\n\n👤 <b>Aktiv foydalanuvchilar:</b> {{activeUsers}} ta\n➖➖➖➖➖➖\n📦 <b>Barcha buyurtmalar:</b> {{totalOrders}} ta\n➖➖➖➖➖➖\n🚚 <b>Yetkazib berilgan:</b> {{deliveredOrders}} ta\n➖➖➖➖➖➖\n❌ <b>Bekor qilingan:</b> {{canceledOrders}} ta\n➖➖➖➖➖➖\n🔄 <b>Boshqalari:</b> {{otherOrders}} ta\n➖➖➖➖➖➖\n\n📅 <b>Bugun:</b> {{todayOrders}} ta buyurtma qabul qilingan\n⏳ <b>Oxirgi yangilanish:</b> {{lastUpdated}}"
 
 }

@@ -1,6 +1,6 @@
 import prisma from "../config/prisma.client.js";
 import Model from "./index.js";
-import reposotory from "./reposotory.js";
+import repository from "./repository.js";
 
 class CartItem extends Model {
     constructor() {
@@ -22,7 +22,7 @@ class CartItem extends Model {
             return null;
         }
 
-        const food = await reposotory.food.findById(cartItem.foodId, lang);
+        const food = await repository.food.findById(cartItem.foodId, lang);
 
         return { ...cartItem, food };
     }

@@ -1,7 +1,7 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { adminCategoriesKeyboard, adminCategorySettings } from "../../utils/admin.keyboards.js";
-import reposotory from "../../reposotory/reposotory.js";
+import repository from "../../repository/repository.js";
 import { buttons } from "../../utils/keyboards.js";
 import convertMediaGroup from "../../helpers/convert.media.group.js";
 
@@ -9,7 +9,7 @@ const adminCategories = new BaseScene("admin:categories");
 
 adminCategories.enter(async (ctx) => {
     try {
-        const categories = await reposotory.category.findAll(ctx.session.lang);
+        const categories = await repository.category.findAll(ctx.session.lang);
 
         await ctx.replyWithHTML(i18n.t("selectOptions"),
             adminCategoriesKeyboard(categories, ctx.session.lang)
@@ -26,7 +26,7 @@ adminCategories.hears(async (button, ctx) => {
         return await ctx.scene.enter("admin:menuCategory");
     }
     
-    const category = await reposotory.category.findByName(button, lang);
+    const category = await repository.category.findByName(button, lang);
     if (category) {
         const mediaGroup = convertMediaGroup(category.images)
 
@@ -54,7 +54,7 @@ adminCategories.action(async (callbackData, ctx) => {
         }
 
         if (cursor === "deleteCategory") {
-            await reposotory.category.deleteById(data);
+            await repository.category.deleteById(data);
             await ctx.deleteMessage();
             return await ctx.scene.reenter();
         }

@@ -1,5 +1,5 @@
 import { WizardScene } from "telegraf/scenes";
-import reposotory from "../reposotory/reposotory.js";
+import repository from "../repository/repository.js";
 import i18n from "../config/i18n.config.js";
 import { addCartKeyboard, buttons, categoriesKeyboard, foodsKeyboard } from "../utils/keyboards.js";
 import convertMediaGroup from "../helpers/convert.media.group.js";
@@ -17,7 +17,7 @@ const menuScene = new WizardScene("menu",
                     return await ctx.scene.enter("cart", { cursor: ctx.wizard.cursor });
                 }
 
-                const category = await reposotory.category.findByName(text, lang);
+                const category = await repository.category.findByName(text, lang);
 
                 if (!category) {
                     return await ctx.reply(i18n.t("noCategories"));
@@ -48,7 +48,7 @@ const menuScene = new WizardScene("menu",
                 const lang = ctx.session.lang;
 
                 if (text === buttons.back[lang]) {
-                    const categories = await reposotory.category.findAll(lang);
+                    const categories = await repository.category.findAll(lang);
 
                     await ctx.reply(i18n.t("selectCategories"),
                         categoriesKeyboard(categories, lang)
@@ -58,13 +58,13 @@ const menuScene = new WizardScene("menu",
                     return await ctx.scene.enter("cart", { cursor: ctx.wizard.cursor });
                 }
 
-                const food = await reposotory.food.findByName(text, lang);
+                const food = await repository.food.findByName(text, lang);
 
                 if (!food) {
                     return await ctx.reply(i18n.t("noFoods"));
                 }
 
-                const cartItem = await reposotory.cartItem.findByFoodID(food.id, lang);
+                const cartItem = await repository.cartItem.findByFoodID(food.id, lang);
                 
                 await ctx.replyWithMediaGroup(convertMediaGroup(food.images));
 
@@ -73,8 +73,8 @@ const menuScene = new WizardScene("menu",
                     addCartKeyboard(cartItem?.quantity || 0, food.id, lang)
                 );
 
-                // const cart = await reposotory.cart.new(ctx.session.user.id);
-                // const cartItem = await reposotory.cartItem.new(food.id, cart.id);
+                // const cart = await repository.cart.new(ctx.session.user.id);
+                // const cartItem = await repository.cartItem.new(food.id, cart.id);
 
                 // console.log(cart);
                 // console.log(cartItem);              
@@ -120,8 +120,8 @@ const menuScene = new WizardScene("menu",
                 }
 
                 if (cursor === "addCart" && +quantity > 0) {
-                    const cart = await reposotory.cart.new(user.id);
-                    await reposotory.cartItem.new({
+                    const cart = await repository.cart.new(user.id);
+                    await repository.cartItem.new({
                         foodId,
                         cartId: cart.id,
                         quantity: +quantity
@@ -146,7 +146,7 @@ const menuScene = new WizardScene("menu",
 menuScene.enter(async (ctx) => {
     try {
         const lang = ctx.session.lang;
-        const categories = await reposotory.category.findAll(lang);
+        const categories = await repository.category.findAll(lang);
 
         if (!categories.length) {
             await ctx.reply(i18n.t("noFoods"));

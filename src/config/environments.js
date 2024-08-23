@@ -18,7 +18,8 @@ const environments = {
     SERVER_URL,
     ADMINS: ADMINS ? ADMINS.split(",") : [],
     CONTENTS_CHANNEL,
-    CONTENTS_CHATID
+    CONTENTS_CHATID,
+    DELIVERY_COST: 5000
 }
 
 export default environments

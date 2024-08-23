@@ -3,7 +3,7 @@ import i18n from "../../config/i18n.config.js";
 import { buttons, cancelKeyboard } from "../../utils/keyboards.js";
 import getImageUrl from "../../helpers/getImageUrl.js";
 import environments from "../../config/environments.js";
-import reposotory from "../../reposotory/reposotory.js";
+import repository from "../../repository/repository.js";
 import { adminButtons, adminNextOrCancelKeyboard } from "../../utils/admin.keyboards.js";
 
 const adminaddCategory = new WizardScene("admin:addCategory",
@@ -136,7 +136,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
 
                     const data = { title: { uz, en, ru }, images };
 
-                    await reposotory.category.create(data);
+                    await repository.category.create(data);
 
                     await ctx.scene.leave();
                     await ctx.scene.enter("admin:categories");

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "orders" ADD COLUMN     "deliveryCost" DOUBLE PRECISION NOT NULL DEFAULT 5000;

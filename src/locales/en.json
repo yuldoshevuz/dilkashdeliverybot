@@ -55,8 +55,8 @@
     "selectPaymentType": "Select payment type",
     "socialMediaText": "You can also follow us on social media:\n\n📱 <b>Telegram:</b> <a href=\"https://t.me/+sR4CcuhA7KE3Yjgy\">Dilkash Olmaliq</a>\n📸 <b>Instagram:</b> <a href=\"https://www.instagram.com/dilkash.restaurant/\">@dilkash.restaurant</a>",
     "startJobMessage": "👋 Would you like to become part of our professional team? 🏢\n\nTo start the job, please send your resume to the bot below, and we will reach out to you:\n\n🔗 <a href=\"https://t.me/rabotaDilkashBot\">@rabotaDilkashBot</a>\n\nWe're looking forward to hearing from you! ✨",
-    "locationInfoAndChange": "📍 <b>Your current location:</b> {{address}}\n\n📍 <b>Select a new delivery address:</b>\n\n🔘 <i>Use the 'Send Location' button to share your location or enter the address manually.</i>\n\n🗺 <i>Don't forget to confirm the address after entering it.</i>",
-    "confirmAddress": "✅ <b>Do you confirm this address?</b>\n\n🏠 <b>Entered address:</b> <i>{{address}}</i>\n\nIf the address is correct, press \"Confirm\", otherwise go back and re-enter the address.",
+    "locationInfoAndChange": "📍 <b>Your current location:</b> {{address}}\n\n📍 <b>Select a new delivery address:</b>\n\n🔘 <i>Use the <b>Send my location</b> button to share your location or enter the address manually.</i>\n\n🗺 <i>Don't forget to confirm the address after entering it.</i>",
+    "confirmAddress": "✅ <b>Do you confirm this address?</b>\n\n🏠 <b>Entered address:</b> <i>{{address}}</i>\n\nIf the address is correct, press <b>Confirm</b>, otherwise go back and re-enter the address.",
 
     "welcomeAdmin": "Welcome to admin panel 👋",
     "noCategories": "No categories available",
@@ -80,12 +80,30 @@
     "foodDetails": "🍽 <b>Food name:</b> {{title}}\n📋 <b>Ingredients:</b> {{composition}}\n💵 <b>Price:</b> {{price}} UZS",
     "cartIsEmpty": "The basket is empty",
     "cartItemText": "🥘 <b>{{title}}</b> - <i>{{price}} UZS</i> x <b>{{quantity}} items</b>",
-    "cartText": "🛒 <b>Your cart items:</b>\n\n{{cartItems}}\n\n🧾 <b>Total quantity: {{totalQuantity}} items\n🛵 Delivery: {{deliveryPrice}} UZS\n💰 Total price: {{totalPrice}} UZS</b>",
+    "cartText": "🛒 <b>Your cart items:</b>\n\n{{cartItems}}\n\n🧾 <b>Total quantity: {{totalQuantity}} items\n🛵 Delivery: {{deliveryCost}} UZS\n💰 Total price: {{totalPrice}} UZS</b>",
     "showQuantity": "{{quantity}} pc",
     "addedToCart": "Added to cart ✅",
     "selectPaymentMethod": "Select the payment method:",
-    "orderAddressInfo": "📍 <b>Delivery Address:</b>\n\n<i>{{address}}</i>\n\n❓ <i>Are you sure this address is correct? If needed, you can update it in the settings.</i>\n\n🔄 <i>Providing the correct address ensures quick and smooth delivery service.</i>",
+    "orderAddressInfo": "📍 <b>Delivery Address:</b>\n\n<i><b>{{address}}</b></i>\n\n❓ <i>Are you sure this address is correct? If needed, you can update it in the settings.</i>\n\n🔄 <i>Providing the correct address ensures quick and smooth delivery service.</i>",
     "orderSummary": "📋 <b>Your order:</b>\n\n<b>{{orderItems}}</b>\n\n🏠 <b>Address:</b> {{address}}\n\n💵 <b>Products:</b> {{productTotal}} UZS\n🚚 <b>Delivery:</b> {{deliveryCost}} UZS\n\n<b>Total:</b> {{totalAmount}} UZS",
-    "ordered": "📦 <b>Your order number:</b> #{{orderNumber}} is being processed!\n📞 <i>Please wait for a call from the operator.</i>\n🚚 <b>We will deliver your order within 30 minutes.</b>\n☎️ Friendly delivery service: <b>97 616 08 88</b>"
+    "ordered": "📦 <b>Your order number:</b> #{{orderNumber}} is being processed!\n📞 <i>Please wait for a call from the operator.</i>\n\n🚚 <b>We will deliver your order within 30 minutes.</b>\n\n☎️ Friendly delivery service: <b>97 616 08 88</b>",
+    "orderDetails": "🧾 <b>Order ID:</b> #{{orderNumber}}\n🕒 <b>Time:</b> {{orderTime}}\n\n👤 <b>Customer:</b>\nName: {{customerName}}\nPhone Number: {{customerPhone}}\nTelegram: {{customerUsername}}\n\n📍 <b>Delivery Address:</b>\n{{address}}\n\n🍽 <b>Order Details:</b>\n{{orderItems}}\n\n💵 <b>Products:</b> {{productTotal}} UZS\n🚚 <b>Delivery:</b> {{deliveryCost}} UZS\n💳 Payment method: {{paymentMethod}}\n\n<b>Total:</b> {{totalAmount}} UZS\n\n📦 <b>Order Status:</b> {{orderStatus}}",
+    "orderStatuses": {
+        "pending": "⏳ Pending",
+        "process": "🚚 Delivering",
+        "canceled": "❌ Canceled",
+        "completed": "✅ Delivered"
+    },
+    "paymentMethods": {
+        "click": "🔵 Click",
+        "payme": "🟢 Payme",
+        "cash": "💵 Cash payment"
+    },
+    "newOrder": "🔔 <b>New Order!</b>",
+    "enterOrderNumber": "Please enter the order number. For example #123",
+    "dataNotFound": "No information was found",
+    "cannotChangeStatus": "The order has already been delivered or cancelled",
+    "errorChangingStatus": "An error occurred while changing the order status",
+    "report": "📊 <b>Report</b>:\n\n👤 <b>Active Users:</b> {{activeUsers}}\n➖➖➖➖➖➖\n📦 <b>Total Orders:</b> {{totalOrders}}\n➖➖➖➖➖➖\n🚚 <b>Delivered:</b> {{deliveredOrders}}\n➖➖➖➖➖➖\n❌ <b>Canceled:</b> {{canceledOrders}}\n➖➖➖➖➖➖\n🔄 <b>Others:</b> {{otherOrders}}\n➖➖➖➖➖➖\n\n📅 <b>Today:</b> {{todayOrders}} orders received\n⏳ <b>Last Updated:</b> {{lastUpdated}}"
 
 }

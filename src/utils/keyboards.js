@@ -259,7 +259,9 @@ export const addCartKeyboard = (quantity, foodId, lang) => Markup.inlineKeyboard
 
 export const orderOrCancelKeyboard = (lang) => Markup.inlineKeyboard([
     [ Markup.button.callback(buttons.clear_basket[lang], "clearCart") ],
-    [ Markup.button.callback(buttons.order_meal[lang], "order") ]
+    [ Markup.button.callback(buttons.order_meal[lang], "order") ],
+    [ Markup.button.callback(buttons.back[lang], "back") ]
+
 ]);
 
 export const paymentMethodKeyboard = (lang) => Markup.inlineKeyboard([

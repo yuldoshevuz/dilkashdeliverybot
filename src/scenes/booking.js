@@ -3,8 +3,8 @@ import i18n from "../config/i18n.config.js";
 import { backInlineKeyboard, buttons, cancelKeyboard, confirmOrBackKeyboard, selectBookingDateKeyboard, selectBookingTimeKeyboard, selectPeopleCount } from "../utils/keyboards.js";
 import { phoneValidation } from "../helpers/validations.js";
 import { formatBookingDetails } from "../helpers/date.js";
-import Booking from "../reposotory/booking.js";
-import reposotory from "../reposotory/reposotory.js";
+import Booking from "../repository/booking.js";
+import repository from "../repository/repository.js";
 import sendMessageToAdmin from "../helpers/sendMsg.admin.js";
 
 const bookingScene = new WizardScene(
@@ -211,7 +211,7 @@ const bookingScene = new WizardScene(
                             contactNumber
                         } = ctx.session.bookingDetails;
 
-                        const newBooking = await reposotory.booking.create({
+                        const newBooking = await repository.booking.create({
                             customerName,
                             startTime,
                             endTime,

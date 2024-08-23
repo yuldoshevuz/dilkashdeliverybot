@@ -1,7 +1,7 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { adminButtons, adminMenuKeyboard } from "../../utils/admin.keyboards.js";
-import reposotory from "../../reposotory/reposotory.js";
+import repository from "../../repository/repository.js";
 
 const adminMenuScene = new BaseScene("admin:menuFood");
 
@@ -16,7 +16,7 @@ adminMenuScene.hears(async (button, ctx) => {
         const { lang } = ctx.session;
 
         if (button === adminButtons.foods[lang]) {
-            const foods = await reposotory.food.findAll(lang);
+            const foods = await repository.food.findAll(lang);
 
             if (!foods?.length) {
                 return ctx.reply(i18n.t("noFoods"));
@@ -24,13 +24,13 @@ adminMenuScene.hears(async (button, ctx) => {
 
             return await ctx.scene.enter("admin:foods");
         } else if (button === adminButtons.add_food[lang]) {
-            const categories = await reposotory.category.findAll(lang);
+            const categories = await repository.category.findAll(lang);
             if (!categories.length) {
                 return ctx.reply(i18n.t("noCategories"));
             }
             return await ctx.scene.enter("admin:addFood");
         } else if (button === adminButtons.delete[lang]) {
-            const foods = await reposotory.food.findAll(lang);
+            const foods = await repository.food.findAll(lang);
             if (!foods?.length) {
                 return ctx.reply(i18n.t("noFoods"));
             }

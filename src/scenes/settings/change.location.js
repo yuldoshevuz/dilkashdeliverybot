@@ -2,7 +2,7 @@ import { WizardScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { buttons, confirmOrBackKeyboard, sendLocationOrBackKeyboard } from "../../utils/keyboards.js";
 import fetchLocationAddress from "../../helpers/fetch.address.js";
-import reposotory from "../../reposotory/reposotory.js";
+import repository from "../../repository/repository.js";
 
 const changeLocationScene = new WizardScene("changeLocation",
     async (ctx) => {
@@ -55,7 +55,7 @@ const changeLocationScene = new WizardScene("changeLocation",
                     }
 
                     if (data === "confirm") {
-                        await reposotory.user.updateById(user.id, { location });
+                        await repository.user.updateById(user.id, { location });
                         await ctx.deleteMessage();
 
                         delete ctx.session.location;

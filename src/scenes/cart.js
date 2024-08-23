@@ -1,8 +1,9 @@
 import { BaseScene } from "telegraf/scenes";
-import reposotory from "../reposotory/reposotory.js";
+import repository from "../repository/repository.js";
 import i18n from "../config/i18n.config.js";
 import { backKeyboard, buttons, orderOrCancelKeyboard } from "../utils/keyboards.js";
 import { makeCartText } from "../helpers/order.js";
+import environments from "../config/environments.js";
 
 const cartScene = new BaseScene("cart");
 
@@ -13,14 +14,14 @@ cartScene.enter(async (ctx) => {
 
         const { cursor, back } = ctx.scene.state;
         
-        const cart = await reposotory.cart.findMy(user.id, lang);
+        const cart = await repository.cart.findMy(user.id, lang);
         
-        if (!cart || !cart.items.length) {
+        if (!cart?.items.length) {
             await ctx.reply(i18n.t("cartIsEmpty"));
             return await ctx.scene.enter("menu", { cursor });
         }
 
-        const cartText = makeCartText(cart, 5000);
+        const cartText = makeCartText(cart, environments.DELIVERY_COST);
         
         if (back) {
             return await ctx.editMessageText(cartText, {
@@ -28,10 +29,10 @@ cartScene.enter(async (ctx) => {
                 parse_mode: "HTML"
             });
         }
-        
-        await ctx.reply(buttons.basket[lang],
-            backKeyboard(lang)
-        );
+
+        await ctx.reply(buttons.basket[lang], {
+            reply_markup: { remove_keyboard: true }
+        });
         await ctx.replyWithHTML(cartText,
             orderOrCancelKeyboard(lang)
         );
@@ -46,23 +47,15 @@ cartScene.action(async (data, ctx) => {
         ctx.answerCbQuery();
 
         if (data === "clearCart") {
-            await reposotory.cart.clear(ctx.session.user.id);
+            await repository.cart.clear(ctx.session.user.id);
             return await ctx.scene.enter("menu");
         }
 
         if (data === "order") {
             return await ctx.scene.enter("order");
         }
-    } catch (error) {
-        console.error(error);
-    }
-})
 
-cartScene.hears(async (button, ctx) => {
-    try {
-        const lang = ctx.session.lang;
-
-        if (button === buttons.back[lang]) {
+        if (data === "back") {
             return await ctx.scene.enter("menu");
         }
     } catch (error) {

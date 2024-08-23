@@ -1,11 +1,17 @@
 import { Markup } from "telegraf";
 import { buttons } from "./keyboards.js";
+import { getOrderStatusAndCompare, getOrderStatusNoSmile } from "../helpers/order.js";
 
 export const adminButtons = {
+    orders: {
+        uz: "🛵 Buyurtmalar",
+        en: "🛵 Orders",
+        ru: "🛵 Заказы"
+    },
     menu: {
-        uz: "🥘 Ta'omlar menyusi",
-        en: "🥘 Food menu",
-        ru: "🥘 Меню еды"
+        uz: "🥘 Menyu",
+        en: "🥘 Menu",
+        ru: "🥘 Меню"
     },
     foods: {
         uz: "🍲 Ta'omlar",
@@ -53,6 +59,11 @@ export const adminButtons = {
         uz: "➡️ Keyingisi",
         en: "➡️ Next",
         ru: "➡️ Далее"
+    },
+    changeOrderStatus: {
+        uz: "♻️ Buyurtma holatini o'zgartirish",
+        en: "♻️ Change order status",
+        ru: "♻️ Изменить статус заказа"
     },
     // edit_category: {
     //     uz: "✏️ Kategoriyani tahrirlash",
@@ -110,7 +121,7 @@ export const adminButtons = {
         ru: "🏠 Вернуться в меню администратора"
     },
     view_reports: {
-        uz: "📊 Hisobotlar ",
+        uz: "📊 Hisobotlar",
         en: "📊 Reports",
         ru: "📊 Отчеты"
     },
@@ -128,8 +139,9 @@ export const adminButtons = {
 
 // Admin menyu tugmalari
 export const adminMainMenuKeyboard = (lang) => Markup.keyboard([
+    [ Markup.button.text(adminButtons.orders[lang]), Markup.button.text(adminButtons.view_reports[lang]) ],
     [ Markup.button.text(adminButtons.menu[lang]), Markup.button.text(adminButtons.categories_menu[lang]) ],
-    [ Markup.button.text(adminButtons.view_bookings[lang]), Markup.button.text(adminButtons.view_reports[lang]) ],
+    [ Markup.button.text(adminButtons.view_bookings[lang]) ],
     [ Markup.button.text(buttons.back_to_main_menu[lang]) ]
 ]).resize();
 
@@ -139,6 +151,26 @@ export const adminMenuKeyboard = (lang) => Markup.keyboard([
     [ Markup.button.text(adminButtons.add_food[lang]), Markup.button.text(adminButtons.delete[lang]) ],
     [ Markup.button.text(adminButtons.back_to_admin_menu[lang]) ]
 ]).resize();
+
+export const backToAdminMenuKeyboard = (lang) => Markup.keyboard([
+    [ Markup.button.text(adminButtons.back_to_admin_menu[lang]) ]
+]).resize();
+
+export const orderKeyboard = (lang, orderId) => Markup.inlineKeyboard([
+    [ Markup.button.callback(adminButtons.changeOrderStatus[lang], `changeOrderStatus:${orderId}:change`) ]
+]);
+
+export const changeOrderStatusKeyboard = (lang, currentStatus, orderId) => Markup.inlineKeyboard([
+    [
+        Markup.button.callback(getOrderStatusAndCompare(currentStatus, "pending", lang), `changeOrderStatus:${orderId}:pending`),
+        Markup.button.callback(getOrderStatusAndCompare(currentStatus, "process", lang), `changeOrderStatus:${orderId}:process`)
+    ],
+    [
+        Markup.button.callback(getOrderStatusAndCompare(currentStatus,"canceled", lang), `changeOrderStatus:${orderId}:canceled`),
+        Markup.button.callback(getOrderStatusAndCompare(currentStatus,"completed", lang), `changeOrderStatus:${orderId}:completed`)
+    ],
+    [ Markup.button.callback(buttons.back[lang], `changeOrderStatus:${orderId}:back`) ]
+]);
 
 export const adminFoodsKeyboard = (foods, lang, add) => {
     const keyboards = [[]];

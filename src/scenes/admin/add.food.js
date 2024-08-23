@@ -2,7 +2,7 @@ import { WizardScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { buttons, cancelKeyboard } from "../../utils/keyboards.js";
 import { adminButtons, adminCategoriesKeyboard, adminNextOrCancelKeyboard } from "../../utils/admin.keyboards.js";
-import reposotory from "../../reposotory/reposotory.js";
+import repository from "../../repository/repository.js";
 import getImageUrl from "../../helpers/getImageUrl.js";
 import environments from "../../config/environments.js";
 
@@ -178,7 +178,7 @@ const adminAddFood = new WizardScene("admin:addFood",
                     return ctx.wizard.next();
                 }
 
-                const categories = await reposotory.category
+                const categories = await repository.category
                     .findAll(lang);
 
                 await ctx.reply(
@@ -210,7 +210,7 @@ const adminAddFood = new WizardScene("admin:addFood",
                     return await ctx.scene.enter("admin:menuFood");
                 }
 
-                const category = await reposotory.category
+                const category = await repository.category
                     .findByName(text, lang);
 
                 if (!category) {
@@ -310,7 +310,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                     const data = { title, composition, categoryId, price, images };
 
-                    await reposotory.food.create(data);
+                    await repository.food.create(data);
 
                     await ctx.scene.leave();
                     await ctx.scene.enter("admin:foods");

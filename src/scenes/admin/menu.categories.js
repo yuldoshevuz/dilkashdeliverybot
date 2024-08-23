@@ -1,8 +1,8 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { adminButtons, adminCategoryKeyboard } from "../../utils/admin.keyboards.js";
-import Category from "../../reposotory/category.js";
-import reposotory from "../../reposotory/reposotory.js";
+import Category from "../../repository/category.js";
+import repository from "../../repository/repository.js";
 
 const adminCategoryScene = new BaseScene("admin:menuCategory");
 
@@ -22,7 +22,7 @@ adminCategoryScene.hears(async (button, ctx) => {
         const { lang } = ctx.session
 
         if (button === adminButtons.categories[lang]) {
-            const categories = await reposotory.category.findAll(lang);
+            const categories = await repository.category.findAll(lang);
             if (!categories?.length) {
                 return ctx.reply(i18n.t("noCategories"));
             }
@@ -30,7 +30,7 @@ adminCategoryScene.hears(async (button, ctx) => {
         } else if (button === adminButtons.add_category[lang]) {
             return ctx.scene.enter("admin:addCategory");
         } else if (button === adminButtons.delete[lang]) {
-            const categories = await reposotory.category.findAll(lang);
+            const categories = await repository.category.findAll(lang);
             if (!categories?.length) {
                 return await  ctx.reply(i18n.t("noCategories"));
             }

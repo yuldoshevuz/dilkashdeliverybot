@@ -1,7 +1,7 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
 import { adminButtons, adminFoodSettings, adminFoodsKeyboard } from "../../utils/admin.keyboards.js";
-import reposotory from "../../reposotory/reposotory.js";
+import repository from "../../repository/repository.js";
 import { backInlineKeyboard, buttons } from "../../utils/keyboards.js";
 import convertMediaGroup from "../../helpers/convert.media.group.js";
 
@@ -13,9 +13,9 @@ adminFoodsScene.enter(async (ctx) => {
         let foods;
 
         if (categoryId) {
-            foods = await reposotory.food.findAll(ctx.session.lang, { categoryId });
+            foods = await repository.food.findAll(ctx.session.lang, { categoryId });
         } else {
-            foods = await reposotory.food.findAll(ctx.session.lang);
+            foods = await repository.food.findAll(ctx.session.lang);
         }
  
         await ctx.replyWithHTML(
@@ -42,7 +42,7 @@ adminFoodsScene.hears(async (button, ctx) => {
             return await ctx.reply(i18n.t("enterFoodPrice") + ", 25.000");
         }
 
-        await reposotory.food.updateById(
+        await repository.food.updateById(
             ctx.session.foodId,
             { price: +button }
         );
@@ -51,8 +51,8 @@ adminFoodsScene.hears(async (button, ctx) => {
         return await ctx.scene.reenter();
     }
     
-    const food = await reposotory.food.findByName(button, lang);
-    const category = await reposotory.category.findById(food.categoryId, lang)
+    const food = await repository.food.findByName(button, lang);
+    const category = await repository.category.findById(food.categoryId, lang)
 
     if (food) {
         const mediaGroup = convertMediaGroup(food.images)
@@ -81,7 +81,7 @@ adminFoodsScene.action(async (callbackData, ctx) => {
         }
 
         if (cursor === "deleteFood") {
-            await reposotory.food.deleteById(data);
+            await repository.food.deleteById(data);
             await ctx.deleteMessage();
             return await ctx.scene.enter("admin:menuFood");
         }
@@ -95,9 +95,9 @@ adminFoodsScene.action(async (callbackData, ctx) => {
         }
 
         if (cursor === "foods" && data === "back") {
-            const food = await reposotory.food
+            const food = await repository.food
                 .findById(ctx.session.foodId, ctx.session.lang);
-            const category = await reposotory.category
+            const category = await repository.category
                 .findById(food.categoryId, ctx.session.lang);
 
             delete ctx.session.foodId;

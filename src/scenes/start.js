@@ -29,16 +29,19 @@ startScene.hears(async (button, ctx) => {
     try {
         const { lang } = ctx.session;
 
-        if (button === buttons.menu[lang]) {
-            return await ctx.scene.enter("menu");
-        } if (button === buttons.reservation[lang]){
-            return await ctx.scene.enter("booking");
-        } else if (button === buttons.rate_us[lang]) {
-            return await ctx.scene.enter("rate");
-        } else if (button === buttons.settings[lang]) {
-            return await ctx.scene.enter("settings");
-        } else if (button === buttons.abousUs[lang]) {
-            return await ctx.scene.enter("aboutus");
+        switch (button) {
+            case buttons.menu[lang]:
+                return await ctx.scene.enter("menu");
+            case buttons.reservation[lang]:
+                return await ctx.scene.enter("booking");
+            case buttons.rate_us[lang]:
+                return await ctx.scene.enter("rate");
+            case buttons.settings[lang]:
+                return await ctx.scene.enter("settings");
+            case buttons.abousUs[lang]:
+                return await ctx.scene.enter("aboutus");    
+            default:
+                break;
         }
     } catch (error) {
         console.error(error)

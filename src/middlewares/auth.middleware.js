@@ -1,14 +1,15 @@
-import reposotory from "../reposotory/reposotory.js";
+import repository from "../repository/repository.js";
 
 const isAuth = async (ctx, next) => {
-    let user = await reposotory.user.findByChatId(ctx.from?.id);
+    let user = await repository.user.findByChatId(ctx.from?.id);
     if (!user) {
-        const { id, first_name, last_name } = ctx.from;
+        const { id, first_name, last_name, username } = ctx.from;
 
-        user = await reposotory.user.create({
+        user = await repository.user.create({
             chatId: id,
             firstName: first_name,
-            lastName: last_name
+            lastName: last_name,
+            username
         });
     }
 
@@ -18,7 +19,7 @@ const isAuth = async (ctx, next) => {
     }
 
     if (!user.active) {
-        user = await reposotory.user
+        user = await repository.user
             .updateById(user.id, { active: true });
     }
 

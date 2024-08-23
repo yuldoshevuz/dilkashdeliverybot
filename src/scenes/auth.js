@@ -3,7 +3,7 @@ import i18n from "../config/i18n.config.js";
 import { changeLangKeyboard, contactKeyboard, sendLocationKeyboard } from "../utils/keyboards.js";
 import isAuth from "../middlewares/auth.middleware.js";
 import fetchLocationAddress from "../helpers/fetch.address.js";
-import reposotory from "../reposotory/reposotory.js";
+import repository from "../repository/repository.js";
 
 const authScene = new WizardScene(
     "auth",
@@ -67,11 +67,11 @@ const authScene = new WizardScene(
 
                 const chatId = ctx.from.id;
 
-                const newUser = await reposotory.user
+                const newUser = await repository.user
                     .update({ chatId }, {
                         language: ctx.session.lang,
                         phoneNumber: ctx.session.phoneNumber,
-                        location: [ addressLocation ],
+                        location: addressLocation,
                         active: true
                     });
 

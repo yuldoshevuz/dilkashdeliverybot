@@ -1,6 +1,6 @@
 import prisma from "../config/prisma.client.js";
 import Model from "./index.js";
-import reposotory from "./reposotory.js";
+import repository from "./repository.js";
 
 class Cart extends Model {
     constructor() {
@@ -28,7 +28,7 @@ class Cart extends Model {
         }
 
         const itemsOfCart = await Promise.all(cart.items.map(async({ id, foodId, quantity }) => {
-            const food = await reposotory.food.findById(foodId, lang);
+            const food = await repository.food.findById(foodId, lang);
             const total = food.price * quantity;
 
             return { id, food, quantity, total };
