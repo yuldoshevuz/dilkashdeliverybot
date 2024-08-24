@@ -7,7 +7,7 @@ class Booking extends Model {
     }
 
     async findAllActive(where = {}) {
-        return await prisma.booking.findMany({
+        return await this.model.findMany({
             orderBy: { endTime: "asc" },
             where: {
                 endTime: { gt: new Date() },

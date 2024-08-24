@@ -7,6 +7,46 @@ class Category extends Model {
         super(prisma.category);
     }
 
+    selectCategory(language) {
+        return {
+            id: true,
+            i18n: {
+                select: {
+                    title: true,
+                    language: true
+                },
+                where: { language }
+            },
+            images: {
+                select: {
+                    url: true
+                }
+            },
+            foods: {
+                select: {
+                    id: true,
+                    i18n: {
+                        select: {
+                            title: true,
+                            composition: true,
+                            language: true
+                        },
+                        where: { language }
+                    },
+                    images: {
+                        select: { url: true }
+                    },
+                    price: true,
+                    categoryId: true
+                },
+                where: {
+                    deleted: false,
+                    i18n: { some: { language } }
+                }
+            }
+        };
+    }
+
     formatCategory(category) {
         return category && {
             id: category.id,
@@ -17,38 +57,8 @@ class Category extends Model {
     }
 
     async findAll(language, where = {}) {
-        const categories = await prisma.category.findMany({
-            select: {
-                id: true,
-                i18n: {
-                    select: {
-                        title: true,
-                        language: true
-                    },
-                    where: { language }
-                },
-                images: {
-                    select: { url: true }
-                },
-                foods: {
-                    select: {
-                        id: true,
-                        i18n: {
-                            select: {
-                                title: true,
-                                composition: true,
-                                language: true
-                            },
-                            where: { language }
-                        },
-                        images: {
-                            select: { url: true }
-                        },
-                        price: true,
-                        categoryId: true
-                    }
-                }
-            },
+        const categories = await this.model.findMany({
+            select: this.selectCategory(language),
             where: { deleted: false, ...where }
         })
 
@@ -57,44 +67,8 @@ class Category extends Model {
     }
 
     async findOne(where = {}, language) {
-        const category = await prisma.category.findFirst({
-            select: {
-                id: true,
-                i18n: {
-                    select: {
-                        title: true,
-                        language: true
-                    },
-                    where: { language }
-                },
-                images: {
-                    select: {
-                        url: true
-                    }
-                },
-                foods: {
-                    select: {
-                        id: true,
-                        i18n: {
-                            select: {
-                                title: true,
-                                composition: true,
-                                language: true
-                            },
-                            where: { language }
-                        },
-                        images: {
-                            select: { url: true }
-                        },
-                        price: true,
-                        categoryId: true
-                    },
-                    where: {
-                        deleted: false,
-                        i18n: { some: { language } }
-                    }
-                }
-            },
+        const category = await this.model.findFirst({
+            select: this.selectCategory(language),
             where: { deleted: false, ...where }
         });
         
@@ -111,7 +85,7 @@ class Category extends Model {
     }
 
     async create({ title, images }) {
-        const newCategory = await prisma.category.create({
+        const newCategory = await this.model.create({
             data: {
                 i18n: {
                     createMany: {
@@ -135,7 +109,7 @@ class Category extends Model {
 
     async deleteById(id) {
         try {
-            await prisma.category.update({
+            await this.model.update({
                 data: { deleted: true },
                 where: { id, deleted: false }
             });

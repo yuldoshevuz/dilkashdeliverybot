@@ -4,7 +4,25 @@ import Model from "./index.js";
 class Food extends Model {
     constructor() {
         super(prisma.food);
-        this.model = prisma.food
+    }
+    
+    selectFoods(language) {
+        return {
+            id: true,
+            i18n: {
+                select: {
+                    title: true,
+                    composition: true,
+                    language: true
+                },
+                where: { language }
+            },
+            images: {
+                select: { url: true }
+            },
+            price: true,
+            categoryId: true
+        }
     }
     
     formatFood(food) {
@@ -19,23 +37,8 @@ class Food extends Model {
     }
 
     async findOne(where = {}, language) {
-        const food = await prisma.food.findFirst({
-            select: {
-                id: true,
-                i18n: {
-                    select: {
-                        title: true,
-                        composition: true,
-                        language: true
-                    },
-                    where: { language }
-                },
-                images: {
-                    select: { url: true }
-                },
-                price: true,
-                categoryId: true
-            },
+        const food = await this.model.findFirst({
+            select: this.selectFoods(language),
             where: { deleted: false, ...where }
         });
 
@@ -52,23 +55,8 @@ class Food extends Model {
     }
 
     async findAll(language, where = {}) {
-        const foods = await prisma.food.findMany({
-            select: {
-                id: true,
-                i18n: {
-                    select: {
-                        title: true,
-                        composition: true,
-                        language: true
-                    },
-                    where: { language }
-                },
-                images: {
-                    select: { url: true }
-                },
-                price: true,
-                categoryId: true
-            },
+        const foods = await this.model.findMany({
+            select: this.selectFoods(language),
             where: { deleted: false, ...where }
         })
 
@@ -115,7 +103,7 @@ class Food extends Model {
 
     async deleteById(id) {
         try {
-            await prisma.food.update({
+            await this.model.update({
                 data: { deleted: true },
                 where: { id, deleted: false }
             });

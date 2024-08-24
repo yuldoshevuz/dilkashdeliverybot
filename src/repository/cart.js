@@ -8,7 +8,7 @@ class Cart extends Model {
     }
 
     async findMy(userId, lang) {
-        const cart = await prisma.cart.findFirst({
+        const cart = await this.model.findFirst({
             select: {
                 id: true,
                 userId: true,
@@ -43,7 +43,7 @@ class Cart extends Model {
     async clear(userId) {
         try {
             const cart = await this.findMy(userId, "uz");
-            await prisma.cartItem.deleteMany({
+            await this.model.deleteMany({
                 where: { cartId: cart.id }
             });
     
@@ -54,7 +54,7 @@ class Cart extends Model {
     }
 
     async new(userId) {
-        return await prisma.cart.upsert({
+        return await this.model.upsert({
             where: { userId },
             create: { userId },
             update: {}

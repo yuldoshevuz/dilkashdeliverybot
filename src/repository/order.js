@@ -83,7 +83,7 @@ class Order extends Model {
     }
 
     async findMyAll(userId) {
-        return await prisma.order.findMany({
+        return await this.model.findMany({
             select: {
                 id: true,
                 orderNumber: true,

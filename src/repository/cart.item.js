@@ -8,7 +8,7 @@ class CartItem extends Model {
     }
 
     async findByFoodID(foodId, lang) {
-        const cartItem = await prisma.cartItem.findFirst({
+        const cartItem = await this.model.findFirst({
             select: {
                 id: true,
                 foodId: true,
@@ -28,7 +28,7 @@ class CartItem extends Model {
     }
 
     async new({foodId, cartId, quantity = 1}) {
-        return await prisma.cartItem.upsert({
+        return await this.model.upsert({
             where: {
                 cartId_foodId: {
                     cartId,
