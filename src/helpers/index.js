@@ -251,10 +251,7 @@ export const compareWorkTimeAndCurrent = () => {
     const endWork = new Date();
 
     startWork.setHours(9, 0, 0, 0);
-    endWork.setHours(21, 59, 59, 999);
+    endWork.setHours(22, 0, 0, 0);
 
-    if (current >= startWork && current < endWork) {
-        return true;
-    }
-    return false;
+    return current >= startWork && current < endWork;
 }

@@ -43,12 +43,13 @@ class Cart extends Model {
     async clear(userId) {
         try {
             const cart = await this.findMy(userId, "uz");
-            await this.model.deleteMany({
+            await prisma.cartItem.deleteMany({
                 where: { cartId: cart.id }
             });
     
             return true;
         } catch (error) {
+            console.error(error);
             return false;
         }
     }
