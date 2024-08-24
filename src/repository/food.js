@@ -36,7 +36,7 @@ class Food extends Model {
                 price: true,
                 categoryId: true
             },
-            where
+            where: { deleted: false, ...where }
         });
 
         return this.formatFood(food);
@@ -69,7 +69,7 @@ class Food extends Model {
                 price: true,
                 categoryId: true
             },
-            where
+            where: { deleted: false, ...where }
         })
 
         const formatted = foods.map((food) => this.formatFood(food));
@@ -115,10 +115,10 @@ class Food extends Model {
 
     async deleteById(id) {
         try {
-            await prisma.foodTranslation.deleteMany({ where: { foodId: id } });
-            await prisma.image.deleteMany({ where: { foodId: id } });
-            await prisma.orderItem.deleteMany({ where: { foodId: id } });
-            await super.deleteById(id);
+            await prisma.food.update({
+                data: { deleted: true },
+                where: { id, deleted: false }
+            });
 
             return true;
         } catch (error) {

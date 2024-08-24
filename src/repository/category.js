@@ -49,7 +49,7 @@ class Category extends Model {
                     }
                 }
             },
-            where
+            where: { deleted: false, ...where }
         })
 
         const formatted = categories.map((category) => this.formatCategory(category));
@@ -90,11 +90,12 @@ class Category extends Model {
                         categoryId: true
                     },
                     where: {
+                        deleted: false,
                         i18n: { some: { language } }
                     }
                 }
             },
-            where
+            where: { deleted: false, ...where }
         });
         
         return this.formatCategory(category);
@@ -134,9 +135,10 @@ class Category extends Model {
 
     async deleteById(id) {
         try {
-            await prisma.categoryTranslation.deleteMany({ where: { categoryId: id } });
-            await prisma.food.deleteMany({ where: { categoryId: id } });
-            await super.deleteById(id);
+            await prisma.category.update({
+                data: { deleted: true },
+                where: { id, deleted: false }
+            });
 
             return true;
         } catch (error) {
