@@ -114,7 +114,7 @@ class Category extends Model {
                 where: { id, deleted: false }
             });
 
-            await this.model.updateMany({
+            await prisma.food.updateMany({
                 data: { deleted: true },
                 where: { categoryId: id, deleted: false }
             });

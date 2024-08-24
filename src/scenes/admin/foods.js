@@ -7,98 +7,94 @@ import { convertMediaGroup } from "../../helpers/index.js";
 
 const adminFoodsScene = new BaseScene("admin:foods");
 
+async function getFoodDetails(food, lang) {
+    const [category, mediaGroup] = await Promise.all([
+        repository.category.findById(food.categoryId, lang),
+        convertMediaGroup(food.images),
+    ]);
+
+    return { category, mediaGroup };
+}
+
 adminFoodsScene.enter(async (ctx) => {
     try {
         const { categoryId } = ctx.scene.state;
-        let foods;
+        const foods = categoryId
+            ? await repository.food.findAll(ctx.session.lang, { categoryId })
+            : await repository.food.findAll(ctx.session.lang);
 
-        if (categoryId) {
-            foods = await repository.food.findAll(ctx.session.lang, { categoryId });
-        } else {
-            foods = await repository.food.findAll(ctx.session.lang);
-        }
- 
         await ctx.replyWithHTML(
             i18n.t("selectOptions"),
             adminFoodsKeyboard(foods, ctx.session.lang)
         );
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-})
+});
 
 adminFoodsScene.hears(async (button, ctx) => {
     const { lang, foodId } = ctx.session;
 
     if (button === buttons.back[lang]) {
-        return await ctx.scene.enter("admin:menu");
-    } else if (button === adminButtons.addFood[lang]) {
-        const { categoryId } = ctx.scene.state
-        return await ctx.scene.enter("admin:addFood", { categoryId });
+        return ctx.scene.enter("admin:menu");
     }
-
+    if (button === adminButtons.addFood[lang]) {
+        const { categoryId } = ctx.scene.state;
+        return ctx.scene.enter("admin:addFood", { categoryId });
+    }
     if (foodId) {
         if (isNaN(button)) {
-            return await ctx.reply(i18n.t("enterFoodPrice") + ", 25.000");
+            return ctx.reply(i18n.t("enterFoodPrice") + ", 25.000");
         }
 
-        await repository.food.updateById(
-            ctx.session.foodId,
-            { price: +button }
-        );
-
+        await repository.food.updateById(foodId, { price: +button });
         delete ctx.session.foodId;
-        return await ctx.scene.reenter();
+        return ctx.scene.reenter();
     }
-    
+
     const food = await repository.food.findByName(button, lang);
-    const category = await repository.category.findById(food.categoryId, lang)
-
-    if (food) {
-        const mediaGroup = convertMediaGroup(food.images)
-
-        await ctx.replyWithMediaGroup(mediaGroup);
-        await ctx.replyWithHTML(
-            i18n.t("foodDetailsAdmin", {
-                title: food.title,
-                categoryName: category.title,
-                composition: food.composition,
-                price: food.price,
-                imagesCount: food.images.length
-            }),
-            adminFoodSettingsKeyboard(lang, food.id)
-        );
+    if (!food) {
+        return ctx.reply(i18n.t("noFoods"));
     }
-})
+
+    const { category, mediaGroup } = await getFoodDetails(food, lang);
+
+    await ctx.replyWithMediaGroup(mediaGroup);
+    await ctx.replyWithHTML(
+        i18n.t("foodDetailsAdmin", {
+            title: food.title,
+            categoryName: category.title,
+            composition: food.composition,
+            price: food.price,
+            imagesCount: food.images.length,
+        }),
+        adminFoodSettingsKeyboard(lang, food.id)
+    );
+});
 
 adminFoodsScene.action(async (callbackData, ctx) => {
     try {
         ctx.answerCbQuery();
-        const [ cursor, data ] = callbackData.split(":")
+        const [cursor, data] = callbackData.split(":");
 
         if (cursor === "back" && data === "admin") {
             return ctx.scene.enter("admin");
         }
-
         if (cursor === "deleteFood") {
             await repository.food.deleteById(data);
             await ctx.deleteMessage();
-            return await ctx.scene.enter("admin:menu");
+            return ctx.scene.enter("admin:menu");
         }
-
         if (cursor === "changePrice") {
             await ctx.editMessageText(
                 i18n.t("enterNewPrice"),
                 backInlineKeyboard(ctx.session.lang, "foods")
-            )
-            return ctx.session.foodId = data;
+            );
+            return (ctx.session.foodId = data);
         }
-
         if (cursor === "foods" && data === "back") {
-            const food = await repository.food
-                .findById(ctx.session.foodId, ctx.session.lang);
-            const category = await repository.category
-                .findById(food.categoryId, ctx.session.lang);
+            const food = await repository.food.findById(ctx.session.foodId, ctx.session.lang);
+            const { category } = await getFoodDetails(food, ctx.session.lang);
 
             delete ctx.session.foodId;
 
@@ -108,19 +104,17 @@ adminFoodsScene.action(async (callbackData, ctx) => {
                     categoryName: category.title,
                     composition: food.composition,
                     price: food.price,
-                    imagesCount: food.images.length
+                    imagesCount: food.images.length,
                 }),
                 {
                     ...adminFoodSettingsKeyboard(ctx.session.lang, food.id),
-                    parse_mode: "HTML"
+                    parse_mode: "HTML",
                 }
-            )
+            );
         }
-
     } catch (error) {
         console.error(error);
-        
     }
-})
+});
 
 export default adminFoodsScene;
