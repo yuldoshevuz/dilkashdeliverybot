@@ -9,7 +9,7 @@ const isWorkTime = async (ctx, next) => {
 
     const warningMsg = i18n.t("workTimeOff");
     const lang = ctx.session?.lang;
-    const ignoredTexts = [buttons.cancel[lang], buttons.back[lang]];
+    const ignoredTexts = [ buttons.cancel[lang], buttons.back[lang], buttons.backToMainMenu[lang] ];
 
     if (ctx.message) {
         const messageText = ctx.message.text;

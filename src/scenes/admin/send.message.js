@@ -24,10 +24,8 @@ sendMessageScene.hears(async (messageText, ctx) => {
         
         ctx.session.messageText = parseHtml(messageText);
 
-        await ctx.replyWithHTML(
-            i18n.t("confirmMessage", {
-                messageText: parseHtml(messageText)
-            }),
+        await ctx.reply(parseHtml(messageText));
+        await ctx.reply(i18n.t("confirmMessage"),
             confirmOrBackKeyboard(lang)
         );
     } catch (error) {

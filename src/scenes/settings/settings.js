@@ -17,7 +17,7 @@ settingsScene.hears(async (button, ctx) => {
     try {
         const lang = ctx.session.lang;
 
-        if (button === buttons.back[lang] || button === "/start") {
+        if (button === buttons.backToMainMenu[lang] || button === "/start") {
             return await ctx.scene.enter("start", { home: true });
         } else if (button === buttons.changeLanguage[lang]) {
             return await ctx.scene.enter("changeLanguage");

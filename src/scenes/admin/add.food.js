@@ -183,7 +183,7 @@ const adminAddFoodScene = new WizardScene("admin:addFood",
 
                 await ctx.reply(
                     i18n.t("whichCategory"),
-                    adminCategoriesKeyboard(categories, lang)
+                    adminCategoriesKeyboard(categories, lang, false)
                 );
                 return ctx.wizard.next();
             }

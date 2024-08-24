@@ -135,7 +135,7 @@ export const adminFoodsKeyboard = (foods, lang) => {
     return Markup.keyboard(keyboards).resize();
 }
 
-export const adminCategoriesKeyboard = (categories, lang) => {
+export const adminCategoriesKeyboard = (categories, lang, adding = true) => {
     const keyboards = [[]];
 
     for (const category of categories) {
@@ -149,7 +149,7 @@ export const adminCategoriesKeyboard = (categories, lang) => {
         }
     }
 
-    keyboards.unshift([ Markup.button.text(adminButtons.addCategory[lang]) ]);
+    adding && keyboards.unshift([ Markup.button.text(adminButtons.addCategory[lang]) ]);
     keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
     return Markup.keyboard(keyboards).resize();
 };

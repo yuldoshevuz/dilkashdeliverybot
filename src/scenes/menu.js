@@ -11,7 +11,7 @@ const menuScene = new WizardScene("menu",
                 const text = ctx.message.text;
                 const lang = ctx.session.lang;
 
-                if (text === buttons.back[lang]) {
+                if (text === buttons.backToMainMenu[lang]) {
                     return await ctx.scene.enter("start", { home: true });
                 } else if (text === buttons.cart[lang]) {
                     return await ctx.scene.enter("cart", { cursor: ctx.wizard.cursor });

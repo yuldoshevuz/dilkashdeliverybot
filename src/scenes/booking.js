@@ -1,14 +1,12 @@
 import { WizardScene } from "telegraf/scenes";
 import i18n from "../config/i18n.config.js";
-import { backInlineKeyboard, buttons, cancelKeyboard, confirmOrBackKeyboard, selectBookingDateKeyboard, selectBookingTimeKeyboard, selectPeopleCount } from "../utils/keyboards.js";
+import { backInlineKeyboard, backMainKeyboard, buttons, confirmOrBackKeyboard, selectBookingDateKeyboard, selectBookingTimeKeyboard, selectPeopleCount } from "../utils/keyboards.js";
 import { phoneValidation, sendMessageToAdmin } from "../helpers/index.js";
 import { formatBookingDetails } from "../helpers/date.js";
-import Booking from "../repository/booking.js";
 import repository from "../repository/repository.js";
 import isWorkTime from "../middlewares/worktime.middleware.js";
 
-const bookingScene = new WizardScene(
-    "booking",
+const bookingScene = new WizardScene("booking",
     async (ctx) => {
         try {
             if (ctx.callbackQuery) {
@@ -202,7 +200,6 @@ const bookingScene = new WizardScene(
                     }
                     
                     if (data === "confirm") {
-                        const bookingRepo = new Booking();
                         const {
                             customerName,
                             startTime,
@@ -255,7 +252,7 @@ bookingScene.enter(async (ctx) => {
         const lang = ctx.session.lang;
 
         await ctx.reply(i18n.t("workTime"),
-            cancelKeyboard(lang)
+            backMainKeyboard(lang)
         );
         await ctx.reply(i18n.t("selectBookTableDate"), 
             selectBookingDateKeyboard(lang)
@@ -269,7 +266,7 @@ bookingScene.hears(async (button, ctx) => {
     try {
         const { lang } = ctx.session;
         
-        if (button === buttons.cancel[lang] || button === "/start") {
+        if (button === buttons.backToMainMenu[lang] || button === "/start") {
             delete ctx.session?.bookingDetails;
             return await ctx.scene.enter("start", { home: true });
         }

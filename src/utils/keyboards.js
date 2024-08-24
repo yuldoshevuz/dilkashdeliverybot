@@ -140,9 +140,9 @@ export const sendLocationKeyboard = (lang) => Markup.keyboard([
 ]).resize();
 
 export const settingsKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.text(buttons.changeLanguage[lang]) ],
     [ Markup.button.text(buttons.changeAddress[lang]) ],
-    [ Markup.button.text(buttons.back[lang]) ]
+    [ Markup.button.text(buttons.changeLanguage[lang]) ],
+    [ Markup.button.text(buttons.backToMainMenu[lang]) ]
 ]).resize();
 
 export const backKeyboard = (lang) =>
@@ -175,7 +175,7 @@ export const categoriesKeyboard = (categories, lang) => {
     }
 
     keyboards.unshift([ Markup.button.text(buttons.cart[lang]) ]);
-    keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
+    keyboards.push([ Markup.button.text(buttons.backToMainMenu[lang]) ]);
     return Markup.keyboard(keyboards).resize();
 };
 
