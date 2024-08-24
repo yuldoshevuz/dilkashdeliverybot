@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "order_item" ADD COLUMN     "total" DOUBLE PRECISION NOT NULL DEFAULT 0,
+ALTER COLUMN "price" SET DEFAULT 0;

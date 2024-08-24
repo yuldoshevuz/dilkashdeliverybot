@@ -143,7 +143,7 @@ export const makeCartText = (cart, deliveryCost) => {
 
 
 export const makeOrderItemsText = (orderItems, lang) =>
-    orderItems.map(({ food: { title, price }, quantity }) =>
+    orderItems.map(({ food: { title }, price, quantity }) =>
     i18n.t("cartItemText", {
         title,
         price,
@@ -196,7 +196,7 @@ export const makeOrderText = (order, customer, lang) => {
         productTotal: totalAmount - deliveryCost,
         deliveryCost,
         paymentMethod: getPaymentMethod(paymentMethod, lang),
-        totalAmount: totalAmount,
+        totalAmount,
         orderStatus: getOrderStatus(status, lang),
         lng: lang
     });

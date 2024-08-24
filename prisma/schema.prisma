@@ -52,10 +52,10 @@ model Booking {
 }
 
 model Category {
-  id        String                @id @default(uuid())
-  foods     Food[]
-  images    Image[]
-  i18n      CategoryTranslation[]
+  id      String                @id @default(uuid())
+  foods   Food[]
+  images  Image[]
+  i18n    CategoryTranslation[]
   deleted Boolean               @default(false)
 
   @@map("categories")
@@ -71,7 +71,7 @@ model Food {
   orderItems OrderItem[]
   cartItems  CartItem[]
   i18n       FoodTranslation[]
-  deleted  Boolean           @default(false)
+  deleted    Boolean           @default(false)
 
   @@map("foods")
 }
@@ -110,6 +110,7 @@ model OrderItem {
   foodId   String
   quantity Int
   price    Float
+  total    Float
   order    Order  @relation(fields: [orderId], references: [id])
   food     Food   @relation(fields: [foodId], references: [id])
 

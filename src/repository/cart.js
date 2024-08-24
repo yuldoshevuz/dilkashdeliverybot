@@ -8,7 +8,7 @@ class Cart extends Model {
     }
 
     async findMy(userId, lang) {
-        const cart = await this.model.findFirst({
+        const cart = await prisma.cart.findFirst({
             select: {
                 id: true,
                 userId: true,
@@ -31,7 +31,7 @@ class Cart extends Model {
             const food = await repository.food.findById(foodId, lang);
             const total = food.price * quantity;
 
-            return { id, food, quantity, total };
+            return { id, food, quantity, price: food.price, total };
         }));
 
         const totalPrice = itemsOfCart.reduce((acc, current) => acc + current.total, 0);

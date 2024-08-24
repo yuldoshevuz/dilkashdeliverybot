@@ -35,7 +35,8 @@ class Order extends Model {
                     orderId: true,
                     foodId: true,
                     quantity: true,
-                    price: true
+                    price: true,
+                    total: true
                 }
             },
             deliveryCost: true,
@@ -129,10 +130,11 @@ class Order extends Model {
     }
 
     async create({ paymentMethod, location, userId, cart }) {
-        const orderItems = cart.items.map(({ food, quantity, total }) => ({
+        const orderItems = cart.items.map(({ food, quantity, price, total }) => ({
             foodId: food.id,
             quantity,
-            price: total
+            price,
+            total
         }));
 
         const newOrder = await this.model.create({
