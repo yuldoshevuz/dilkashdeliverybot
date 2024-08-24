@@ -96,8 +96,16 @@ export const backToAdminMenuKeyboard = (lang) => Markup.keyboard([
 ]).resize();
 
 export const orderKeyboard = (lang, orderId) => Markup.inlineKeyboard([
-    [ Markup.button.callback(adminButtons.changeOrderStatus[lang], `changeOrderStatus:${orderId}:change`) ]
+    [ Markup.button.callback(adminButtons.changeOrderStatus[lang], `orderSettings:${orderId}:change`) ],
+    [ Markup.button.callback(buttons.location[lang], `orderSettings:${orderId}:location`) ]
 ]);
+
+export const deliveryLocationKeyboard = (lang, latitude, longitude) => Markup.inlineKeyboard([
+    [
+        Markup.button.url(buttons.googleMaps[lang], `https://maps.google.com/maps?q=${latitude},${longitude}&ll=${latitude},${longitude}&z=16`),
+        Markup.button.url(buttons.yandexMaps[lang], `https://yandex.com/maps/?ll=${longitude},${latitude}&z=16`)
+    ]
+])
 
 export const changeOrderStatusKeyboard = (lang, currentStatus, orderId) => Markup.inlineKeyboard([
     [

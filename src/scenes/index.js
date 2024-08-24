@@ -9,6 +9,7 @@ import menuScene from "./menu.js";
 import cartScene from "./cart.js";
 import orderScene from "./order.js";
 import settings from "./settings/index.js";
+import viewMyOrders from "./view.orders.js";
 
 export const stage = new Stage([
     authScene,
@@ -19,6 +20,7 @@ export const stage = new Stage([
     menuScene,
     cartScene,
     orderScene,
+    viewMyOrders,
     ...settings,
     ...admin
 ])

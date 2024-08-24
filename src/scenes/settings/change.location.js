@@ -10,7 +10,7 @@ const changeLocationScene = new WizardScene("changeLocation",
             if (ctx.message?.location) {
                 const { latitude, longitude } = ctx.message.location;
 
-                const waiting = await ctx.reply("⏳", {
+                const pendingMsg = await ctx.reply("⏳", {
                     reply_markup: { remove_keyboard: true }
                 });
 
@@ -18,7 +18,7 @@ const changeLocationScene = new WizardScene("changeLocation",
                 
                 ctx.session.location = addressLocation;
 
-                await ctx.deleteMessage(waiting.message_id);
+                await ctx.deleteMessage(pendingMsg.message_id);
                 await ctx.replyWithHTML(
                     i18n.t("confirmAddress", {
                         address: addressLocation.address

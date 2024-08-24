@@ -99,7 +99,7 @@ const rateScene = new WizardScene(
 
 rateScene.enter(async (ctx) => {
     try {
-        await ctx.reply(buttons.rate_us[ctx.session.lang],
+        await ctx.reply(buttons.rateUs[ctx.session.lang],
             cancelKeyboard(ctx.session.lang)
         );
         await ctx.reply(i18n.t("rateService"), 

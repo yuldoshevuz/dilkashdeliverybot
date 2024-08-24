@@ -46,14 +46,14 @@ class Order extends Model {
     }
 
     async findAll(where) {
-        return await prisma.order.findMany({
+        return await this.model.findMany({
             select: this.orderSelectFields,
             where
         });
     }
 
     async findOne(where, lang) {
-        const order = await prisma.order.findFirst({
+        const order = await this.model.findFirst({
             select: this.orderSelectFields,
             where
         });
@@ -70,8 +70,8 @@ class Order extends Model {
         return { ...order, orderItems: itemsWithFoods };
     }
 
-    async findMy(userId) {
-        return await this.findAll({ userId });
+    async findMy(orderNumber, userId, lang) {
+        return await this.findOne({ orderNumber, userId }, lang);
     }
 
     async findById(id, lang) {
@@ -82,8 +82,21 @@ class Order extends Model {
         return await this.findOne({ orderNumber }, lang);
     }
 
+    async findMyAll(userId) {
+        return await prisma.order.findMany({
+            select: {
+                id: true,
+                orderNumber: true,
+                status: true,
+                createdAt: true
+            },
+            orderBy: { orderNumber: "asc" },
+            where: { userId }
+        });
+    }
+
     async count(where = {}) {
-        return await prisma.order.count({ where });
+        return await this.model.count({ where });
     }
     
     async deliveredCount() {
@@ -122,7 +135,7 @@ class Order extends Model {
             price: total
         }));
 
-        const newOrder = await prisma.order.create({
+        const newOrder = await this.model.create({
             data: {
                 userId,
                 location,
@@ -139,7 +152,7 @@ class Order extends Model {
     }
 
     async changeStatus(id, newStatus, lang) {
-        const updatedOrder = await prisma.order.update({
+        const updatedOrder = await this.model.update({
             data: { status: newStatus },
             where: { id }
         });

@@ -32,9 +32,11 @@ startScene.hears(async (button, ctx) => {
         switch (button) {
             case buttons.menu[lang]:
                 return await ctx.scene.enter("menu");
+            case buttons.myOrders[lang]:
+                return await ctx.scene.enter("viewMyOrders");
             case buttons.reservation[lang]:
                 return await ctx.scene.enter("booking");
-            case buttons.rate_us[lang]:
+            case buttons.rateUs[lang]:
                 return await ctx.scene.enter("rate");
             case buttons.settings[lang]:
                 return await ctx.scene.enter("settings");

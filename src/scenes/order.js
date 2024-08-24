@@ -3,6 +3,7 @@ import i18n from "../config/i18n.config.js";
 import { confirmOrBackKeyboard, paymentMethodKeyboard } from "../utils/keyboards.js";
 import repository from "../repository/repository.js";
 import { sendNewOrderNotification } from "../helpers/index.js";
+import isWorkTime from "../middlewares/worktime.middleware.js";
 
 const orderScene = new WizardScene("order",
     async (ctx) => {
@@ -78,8 +79,10 @@ const orderScene = new WizardScene("order",
     }
 );
 
+orderScene.use(isWorkTime);
+
 orderScene.enter(async (ctx) => {
-    try {
+    try {        
         await ctx.editMessageText(
             i18n.t("selectPaymentMethod"), {
             ...paymentMethodKeyboard(ctx.session.lang)

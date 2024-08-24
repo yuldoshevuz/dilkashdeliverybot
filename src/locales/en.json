@@ -83,10 +83,15 @@
         "cash": "💵 Cash payment"
     },
     "newOrder": "🔔 <b>New Order!</b>",
-    "enterOrderNumber": "Please enter the order number. For example #123",
+    "enterOrderNumber": "Please enter the order number (e.g., #123):",
+    "deliveryLocation": "Order delivery location",
     "dataNotFound": "No information was found",
     "cannotChangeStatus": "The order has already been delivered or cancelled",
     "errorChangingStatus": "An error occurred while changing the order status",
-    "report": "📊 <b>Report</b>:\n\n👤 <b>Active Users:</b> {{activeUsers}}\n➖➖➖➖➖➖\n📦 <b>Total Orders:</b> {{totalOrders}}\n➖➖➖➖➖➖\n🚚 <b>Delivered:</b> {{deliveredOrders}}\n➖➖➖➖➖➖\n❌ <b>Canceled:</b> {{canceledOrders}}\n➖➖➖➖➖➖\n🔄 <b>Others:</b> {{otherOrders}}\n➖➖➖➖➖➖\n\n📅 <b>Today:</b> {{todayOrders}} orders received\n⏳ <b>Last Updated:</b> {{lastUpdated}}"
+    "report": "📊 <b>Report</b>:\n\n👤 <b>Active Users:</b> {{activeUsers}}\n➖➖➖➖➖➖\n📦 <b>Total Orders:</b> {{totalOrders}}\n➖➖➖➖➖➖\n🚚 <b>Delivered:</b> {{deliveredOrders}}\n➖➖➖➖➖➖\n❌ <b>Canceled:</b> {{canceledOrders}}\n➖➖➖➖➖➖\n🔄 <b>Others:</b> {{otherOrders}}\n➖➖➖➖➖➖\n\n📅 <b>Today:</b> {{todayOrders}} orders received\n⏳ <b>Last Updated:</b> {{lastUpdated}}",
+    "myOrders": "Your orders:\n\n",
+    "myOrderDetails": "🧾 <b>Order number:</b> #{{orderNumber}}\n🕒 <b>Time:</b> {{orderTime}}\n📦 <b>Status:</b> {{orderStatus}}",
+    "enterYourOrderNumber": "Enter the order number for more details (e.g., #123):",
+    "noOrders": "You currently have no orders. 😕\n\nTo place a new order, click the button below and choose from our menu!"
 
 }

@@ -32,7 +32,7 @@ export const buttons = {
         en: "⚙️ Settings",
         ru: "⚙️ Настройки"
     },
-    rate_us: {
+    rateUs: {
         uz: "🌟 Baholash",
         en: "🌟 Rate Us",
         ru: "🌟 Оценить"
@@ -62,6 +62,11 @@ export const buttons = {
         en: "📋 About us",
         ru: "📋 О нас"
     },
+    myOrders: {
+        uz: "🍔 Buyurtmalarim",
+        en: "🍔 My Orders",
+        ru: "🍔 Мои заказы"
+    },
     startJob: {
         uz: "🔍 Ishga ariza yuborish",
         en: "🔍 Apply for a Job",
@@ -81,16 +86,6 @@ export const buttons = {
         uz: "📍 Manzilni o'zgartirish",
         en: "📍 Change Address",
         ru: "📍 Изменить адрес"
-    },
-    yes: {
-        uz: "✅ Ha",
-        en: "✅ Yes",
-        ru: "✅ Да"
-    },
-    no: {
-        uz: "❌ Yo'q",
-        en: "❌ No",
-        ru: "❌ Нет"
     },
     addToCart: {
         uz: "🛒 Savatga qo'shish",
@@ -130,8 +125,9 @@ export const buttons = {
 };
 
 export const startKeyboard = (lang) => Markup.keyboard([
-    [Markup.button.text(buttons.menu[lang]), Markup.button.text(buttons.reservation[lang])],
-    [Markup.button.text(buttons.rate_us[lang]), Markup.button.text(buttons.settings[lang])],
+    [Markup.button.text(buttons.menu[lang]), Markup.button.text(buttons.myOrders[lang])],
+    [Markup.button.text(buttons.rateUs[lang]), Markup.button.text(buttons.settings[lang])],
+    [Markup.button.text(buttons.reservation[lang])],
     [Markup.button.text(buttons.abousUs[lang])]
 ]).resize();
 

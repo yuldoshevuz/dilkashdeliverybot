@@ -1,7 +1,6 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
-import {  } from "../../utils/keyboards.js";
-import { adminButtons, backToAdminMenuKeyboard, changeOrderStatusKeyboard, orderKeyboard } from "../../utils/admin.keyboards.js";
+import { adminButtons, backToAdminMenuKeyboard, changeOrderStatusKeyboard, deliveryLocationKeyboard, orderKeyboard } from "../../utils/admin.keyboards.js";
 import { getOrderNumber, getOrderStatus, makeOrderText } from "../../helpers/index.js";
 import repository from "../../repository/repository.js";
 
@@ -18,104 +17,120 @@ adminViewOrdersScene.hears(async (text, ctx) => {
         const lang = ctx.session.lang;
 
         if (text === adminButtons.backToAdminMenu[lang]) {
-            return await ctx.scene.enter("admin");
+            return ctx.scene.enter("admin");
         }
 
         const orderNumber = getOrderNumber(text);
 
         if (!orderNumber) {
-            return await ctx.reply(
-                i18n.t("enterOrderNumber")
-            );
+            return ctx.reply(i18n.t("enterOrderNumber"));
         }
 
         const order = await repository.order.findByNumber(orderNumber, lang);
 
         if (!order) {
-            return await ctx.reply(
-                i18n.t("dataNotFound")
-            );
+            return ctx.reply(i18n.t("dataNotFound"));
         }
 
         const orderDetails = makeOrderText(order, order.user, lang);
 
-        await ctx.replyWithHTML(orderDetails,
-            orderKeyboard(lang, order.id)
-        );
+        await ctx.replyWithHTML(orderDetails, orderKeyboard(lang, order.id));
+        ctx.session.locationSended = false;
     } catch (error) {
         console.error(error);        
     }
-})
+});
 
 adminViewOrdersScene.action(async (callbackData, ctx) => {
     try {
-        const [ cursor, orderId, status ] = callbackData.split(":");
+        const [cursor, orderId, data] = callbackData.split(":");
         const lang = ctx.session.lang;
 
-        if (cursor === "changeOrderStatus") {
-            const order = await repository.order.findById(orderId, lang);
-            const changeAccess = order.status === "pending" || order.status === "process";
-
-            if (status === "back") {
-                ctx.answerCbQuery();
-                return await ctx.editMessageReplyMarkup(
-                    orderKeyboard(lang, orderId).reply_markup
-                );
-            }
-
-            if (status === "change" && !changeAccess || !changeAccess) {
-                return await ctx.answerCbQuery(i18n.t("cannotChangeStatus"), {
-                    show_alert: true
-                });
-            }
-
-
-            if (status === "change" && changeAccess) {
-                ctx.answerCbQuery();
-                return await ctx.editMessageReplyMarkup(
-                    changeOrderStatusKeyboard(lang, order.status, orderId).reply_markup
-                );
-            }
-
-
-            const statusText = getOrderStatus(status, lang);
-
-            if (status === order.status) {
-                return await ctx.answerCbQuery(statusText);
-            }
-
-            const updatedOrder = await repository.order.changeStatus(orderId, status, lang);
-        
-            const orderDetails = makeOrderText(updatedOrder, updatedOrder.user, lang);
-
-            if (status === "canceled" || status === "completed") {
-                await ctx.editMessageText(orderDetails, {
-                    ...orderKeyboard(lang, orderId),
-                    parse_mode: "HTML"
-                });
-                return await ctx.answerCbQuery(
-                    statusText, {
-                    show_alert: true
-                });
-            }
-
-            await ctx.editMessageText(orderDetails, {
-                ...changeOrderStatusKeyboard(lang, status, orderId),
-                parse_mode: "HTML"
-            });
-
-            await ctx.answerCbQuery(
-                statusText, {
-                show_alert: true
-            });
+        if (cursor === "orderSettings") {
+            await handleOrderSettings(ctx, orderId, data, lang);
+        } else if (cursor === "changeOrderStatus") {
+            await handleChangeOrderStatus(ctx, orderId, data, lang);
         }
 
     } catch (error) {
         console.error(error);
-        await ctx.answerCbQuery(i18n.t("errorChangingStatus"), {
+        await ctx.answerCbQuery(i18n.t("errorChangingStatus"), { show_alert: true });
+    }
+});
+
+async function handleOrderSettings(ctx, orderId, data, lang) {
+    const order = await repository.order.findById(orderId, lang);
+    const changeAccess = ["pending", "process"].includes(order.status);
+
+    if (data === "location" && !ctx.session.locationSended) {
+        const { latitude, longitude } = order.location;
+
+        await ctx.replyWithLocation(latitude, longitude, deliveryLocationKeyboard(lang, latitude, longitude));
+        await ctx.answerCbQuery(i18n.t("deliveryLocation"), { show_alert: true });
+        ctx.session.locationSended = true;
+        return;
+    }
+
+    if (data === "change") {
+        if (changeAccess) {
+            await ctx.editMessageReplyMarkup(
+                changeOrderStatusKeyboard(lang, order.status, orderId)
+                .reply_markup
+            );
+            ctx.answerCbQuery();
+        } else {
+            await ctx.answerCbQuery(i18n.t("cannotChangeStatus"), {
+                show_alert: true
+            });
+        }
+    } else {
+        ctx.answerCbQuery();
+    }
+}
+
+async function handleChangeOrderStatus(ctx, orderId, status, lang) {
+    const order = await repository.order.findById(orderId, lang);
+    const changeAccess = ["pending", "process"].includes(order.status);
+    const statusText = getOrderStatus(status, lang);
+
+    if (status === "back") {
+        await ctx.editMessageReplyMarkup(
+            orderKeyboard(lang, orderId).reply_markup
+        );
+        ctx.answerCbQuery();
+        return;
+    }
+
+    if (!changeAccess) {
+        await ctx.answerCbQuery(i18n.t("cannotChangeStatus"), {
             show_alert: true
         });
+        return;
     }
-})
+
+    if (status === order.status) {
+        await ctx.answerCbQuery(statusText);
+        return;
+    }
+
+    const updatedOrder = await repository.order.changeStatus(orderId, status, lang);
+    const orderDetails = makeOrderText(updatedOrder, updatedOrder.user, lang);
+
+    if (["canceled", "completed"].includes(status)) {
+        await ctx.editMessageText(orderDetails, {
+            ...orderKeyboard(lang, orderId),
+            parse_mode: "HTML"
+        });
+    } else {
+        await ctx.editMessageText(orderDetails, {
+            ...changeOrderStatusKeyboard(lang, status, orderId),
+            parse_mode: "HTML"
+        });
+    }
+
+    await ctx.answerCbQuery(statusText, {
+        show_alert: true
+    });
+}
 
 export default adminViewOrdersScene;

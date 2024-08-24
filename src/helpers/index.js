@@ -34,6 +34,22 @@ export const phoneValidation = (phone) =>{
     return phoneRegex.test(phone);
 }
 
+export const splitArrayChunk = (chunkSize, array) => {
+    if (typeof chunkSize !== "number" || chunkSize <= 0) {
+        throw new TypeError("Property chunkSize must be a positive number");
+    }
+
+    if (!Array.isArray(array)) {
+        throw new TypeError("Property array must be an array");
+    }
+
+    const result = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        result.push(array.slice(i, i + chunkSize));
+    }
+
+    return result;
+};
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -135,6 +151,24 @@ export const makeOrderItemsText = (orderItems, lang) =>
         lng: lang
 }));
 
+export const makeMyOrdersText = (orders, lang) => {
+    const yourOrdersText = i18n.t("myOrders", { lng: lang });
+    const chunkedOrders = splitArrayChunk(10, orders);
+    
+    return chunkedOrders.map((chunk, index) => {
+        const detailsText = chunk.map(({ orderNumber, status, createdAt }) => 
+            i18n.t("myOrderDetails", {
+                orderNumber,
+                orderTime: formatDateTime(createdAt),
+                orderStatus: getOrderStatus(status, lang),
+                lng: lang
+            })
+        ).join("\n➖➖➖➖➖➖\n");
+
+        return index === 0 ? yourOrdersText + detailsText : detailsText;
+    });
+};
+
 export const makeOrderText = (order, customer, lang) => {
     const {
         orderNumber,
@@ -211,3 +245,16 @@ export const getOrderNumber = (orderCode) => {
     return parseInt(match[1], 10);
 };
 
+export const compareWorkTimeAndCurrent = () => {
+    const current = new Date();
+    const startWork = new Date();
+    const endWork = new Date();
+
+    startWork.setHours(9, 0, 0, 0);
+    endWork.setHours(21, 59, 59, 999);
+
+    if (current >= startWork && current < endWork) {
+        return true;
+    }
+    return false;
+}

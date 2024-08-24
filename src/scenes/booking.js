@@ -5,6 +5,7 @@ import { phoneValidation, sendMessageToAdmin } from "../helpers/index.js";
 import { formatBookingDetails } from "../helpers/date.js";
 import Booking from "../repository/booking.js";
 import repository from "../repository/repository.js";
+import isWorkTime from "../middlewares/worktime.middleware.js";
 
 const bookingScene = new WizardScene(
     "booking",
@@ -210,7 +211,7 @@ const bookingScene = new WizardScene(
                             contactNumber
                         } = ctx.session.bookingDetails;
 
-                        const newBooking = await repository.booking.create({
+                        await repository.booking.create({
                             customerName,
                             startTime,
                             endTime,
@@ -247,9 +248,11 @@ const bookingScene = new WizardScene(
     }
 );
 
+bookingScene.use(isWorkTime)
+
 bookingScene.enter(async (ctx) => {
     try {
-        const { lang } = ctx.session
+        const lang = ctx.session.lang;
 
         await ctx.reply(i18n.t("workTime"),
             cancelKeyboard(lang)
