@@ -1,6 +1,6 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
-import { adminButtons, adminFoodSettings, adminFoodsKeyboard } from "../../utils/admin.keyboards.js";
+import { adminButtons, adminFoodSettingsKeyboard, adminFoodsKeyboard } from "../../utils/admin.keyboards.js";
 import repository from "../../repository/repository.js";
 import { backInlineKeyboard, buttons } from "../../utils/keyboards.js";
 import { convertMediaGroup } from "../../helpers/index.js";
@@ -20,7 +20,7 @@ adminFoodsScene.enter(async (ctx) => {
  
         await ctx.replyWithHTML(
             i18n.t("selectOptions"),
-            adminFoodsKeyboard(foods, ctx.session.lang, true)
+            adminFoodsKeyboard(foods, ctx.session.lang)
         );
     } catch (error) {
         console.error(error)
@@ -31,7 +31,7 @@ adminFoodsScene.hears(async (button, ctx) => {
     const { lang, foodId } = ctx.session;
 
     if (button === buttons.back[lang]) {
-        return await ctx.scene.enter("admin:menuFood");
+        return await ctx.scene.enter("admin:menu");
     } else if (button === adminButtons.addFood[lang]) {
         const { categoryId } = ctx.scene.state
         return await ctx.scene.enter("admin:addFood", { categoryId });
@@ -66,7 +66,7 @@ adminFoodsScene.hears(async (button, ctx) => {
                 price: food.price,
                 imagesCount: food.images.length
             }),
-            adminFoodSettings(lang, food.id)
+            adminFoodSettingsKeyboard(lang, food.id)
         );
     }
 })
@@ -83,7 +83,7 @@ adminFoodsScene.action(async (callbackData, ctx) => {
         if (cursor === "deleteFood") {
             await repository.food.deleteById(data);
             await ctx.deleteMessage();
-            return await ctx.scene.enter("admin:menuFood");
+            return await ctx.scene.enter("admin:menu");
         }
 
         if (cursor === "changePrice") {
@@ -111,7 +111,7 @@ adminFoodsScene.action(async (callbackData, ctx) => {
                     imagesCount: food.images.length
                 }),
                 {
-                    ...adminFoodSettings(ctx.session.lang, food.id),
+                    ...adminFoodSettingsKeyboard(ctx.session.lang, food.id),
                     parse_mode: "HTML"
                 }
             )

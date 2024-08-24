@@ -37,10 +37,14 @@ class Food extends Model {
     }
 
     async findOne(where = {}, language) {
+        return this.getOne({ deleted: false, ...where }, language);
+    }
+
+    async getOne(where = {}, language) {
         const food = await this.model.findFirst({
             select: this.selectFoods(language),
-            where: { deleted: false, ...where }
-        });
+            where
+        })
 
         return this.formatFood(food);
     }

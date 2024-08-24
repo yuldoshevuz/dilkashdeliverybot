@@ -1,27 +1,23 @@
-import adminaddCategory from "./add.category.js";
-import adminAddFood from "./add.food.js";
+import adminAddCategoryScene from "./add.category.js";
+import adminAddFoodScene from "./add.food.js";
 import adminScene from "./admin.js";
-import adminCategories from "./categories.js";
-import adminDeleteCategoryScene from "./delete.category.js";
-import adminDeleteFoodScene from "./delete.food.js";
+import adminCategoriesScene from "./categories.js";
 import adminFoodsScene from "./foods.js";
-import adminCategoryScene from "./menu.categories.js";
-import adminMenuScene from "./menu.foods.js";
-import adminViewBooking from "./view.booking.js";
+import adminMenuScene from "./menu.js";
+import sendMessageScene from "./send.message.js";
+import adminViewBookingScene from "./view.booking.js";
 import adminViewOrdersScene from "./view.orders.js";
-import adminViewReport from "./view.report.js";
+import adminViewReportScene from "./view.report.js";
 
 export default [
     adminScene,
-    adminViewBooking,
+    adminViewBookingScene,
     adminMenuScene,
-    adminCategoryScene,
-    adminCategories,
-    adminaddCategory,
-    adminAddFood,
-    adminDeleteCategoryScene,
+    adminCategoriesScene,
+    adminAddCategoryScene,
+    adminAddFoodScene,
     adminFoodsScene,
-    adminDeleteFoodScene,
     adminViewOrdersScene,
-    adminViewReport
+    adminViewReportScene,
+    sendMessageScene
 ];

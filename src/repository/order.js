@@ -63,7 +63,7 @@ class Order extends Model {
 
         const itemsWithFoods = await Promise.all(
             order.orderItems.map(async ({ foodId, ...rest }) => {
-                const food = await repository.food.findById(foodId, lang);
+                const food = await repository.food.getOne({ id: foodId }, lang);
                 return { ...rest, food };
             })
         );

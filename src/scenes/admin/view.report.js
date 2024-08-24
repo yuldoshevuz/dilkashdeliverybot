@@ -3,9 +3,9 @@ import repository from "../../repository/repository.js";
 import i18n from "../../config/i18n.config.js";
 import { formatDateTime } from "../../helpers/index.js";
 
-const adminViewReport = new BaseScene("admin:viewReport");
+const adminViewReportScene = new BaseScene("admin:viewReport");
 
-adminViewReport.enter(async (ctx) => {
+adminViewReportScene.enter(async (ctx) => {
     try {
         const pendingMsg = await ctx.reply("⏳");
 
@@ -36,4 +36,4 @@ adminViewReport.enter(async (ctx) => {
     }
 })
 
-export default adminViewReport;
+export default adminViewReportScene;

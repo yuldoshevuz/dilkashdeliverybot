@@ -19,9 +19,9 @@ adminScene.hears(async (button, ctx) => {
             case buttons.backToMainMenu[lang]:
                 return await ctx.scene.enter("start", { home: true });
             case adminButtons.menu[lang]:
-                return await ctx.scene.enter("admin:menuFood");
-            case adminButtons.categoriesMenu[lang]:
-                return await ctx.scene.enter("admin:menuCategory");
+                return await ctx.scene.enter("admin:menu");
+            case adminButtons.newMessage[lang]:
+                return await ctx.scene.enter("admin:newMessage");
             case adminButtons.viewBookings[lang]:
                 return await ctx.scene.enter("admin:viewBooking");
             case adminButtons.orders[lang]:

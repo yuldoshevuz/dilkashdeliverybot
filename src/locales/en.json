@@ -92,6 +92,9 @@
     "myOrders": "Your orders:\n\n",
     "myOrderDetails": "🧾 <b>Order number:</b> #{{orderNumber}}\n🕒 <b>Time:</b> {{orderTime}}\n📦 <b>Status:</b> {{orderStatus}}",
     "enterYourOrderNumber": "Enter the order number for more details (e.g., #123):",
-    "noOrders": "You currently have no orders. 😕\n\nTo place a new order, click the button below and choose from our menu!"
+    "noOrders": "You currently have no orders. 😕\n\nTo place a new order, click the button below and choose from our menu!",
+    "enterMessageText": "Enter the message text:",
+    "confirmMessage": "Is everything correct?\n\n<b>Message text:</b>\n\n{{messageText}}",
+    "messageSent": "Message successfully sent to {{count}} users"
 
 }

@@ -114,6 +114,11 @@ class Category extends Model {
                 where: { id, deleted: false }
             });
 
+            await this.model.updateMany({
+                data: { deleted: true },
+                where: { categoryId: id, deleted: false }
+            });
+
             return true;
         } catch (error) {
             console.error(error);

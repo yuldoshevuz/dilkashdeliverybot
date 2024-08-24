@@ -1,6 +1,6 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
-import { adminButtons, backToAdminMenuKeyboard, changeOrderStatusKeyboard, deliveryLocationKeyboard, orderKeyboard } from "../../utils/admin.keyboards.js";
+import { adminButtons, backToAdminMenuKeyboard, changeOrderStatusKeyboard, deliveryLocationKeyboard, adminOrderKeyboard } from "../../utils/admin.keyboards.js";
 import { getOrderNumber, getOrderStatus, makeOrderText } from "../../helpers/index.js";
 import repository from "../../repository/repository.js";
 
@@ -34,7 +34,7 @@ adminViewOrdersScene.hears(async (text, ctx) => {
 
         const orderDetails = makeOrderText(order, order.user, lang);
 
-        await ctx.replyWithHTML(orderDetails, orderKeyboard(lang, order.id));
+        await ctx.replyWithHTML(orderDetails, adminOrderKeyboard(lang, order.id));
         ctx.session.locationSended = false;
     } catch (error) {
         console.error(error);        
@@ -95,7 +95,7 @@ async function handleChangeOrderStatus(ctx, orderId, status, lang) {
 
     if (status === "back") {
         await ctx.editMessageReplyMarkup(
-            orderKeyboard(lang, orderId).reply_markup
+            adminOrderKeyboard(lang, orderId).reply_markup
         );
         ctx.answerCbQuery();
         return;
@@ -118,7 +118,7 @@ async function handleChangeOrderStatus(ctx, orderId, status, lang) {
 
     if (["canceled", "completed"].includes(status)) {
         await ctx.editMessageText(orderDetails, {
-            ...orderKeyboard(lang, orderId),
+            ...adminOrderKeyboard(lang, orderId),
             parse_mode: "HTML"
         });
     } else {

@@ -92,6 +92,9 @@
     "myOrders": "Sizning buyurtmalaringiz:\n\n",
     "myOrderDetails": "🧾 <b>Buyurtma raqami:</b> #{{orderNumber}}\n🕒 <b>Vaqti:</b> {{orderTime}}\n📦 <b>Holati:</b> {{orderStatus}}",
     "enterYourOrderNumber": "Batafsil ma'lumot uchun buyurtma raqamini kiriting (masalan, #123):",
-    "noOrders": "Hozirda sizda hech qanday buyurtma mavjud emas. 😕\n\nYangi va mazali taomlarni sinab ko'rishni xohlaysizmi? 🥘 Taomlar menyusini oching va o'zingizga yoqqan taomlarni tanlang!"
+    "noOrders": "Hozirda sizda hech qanday buyurtma mavjud emas. 😕\n\nYangi va mazali taomlarni sinab ko'rishni xohlaysizmi? 🥘 Taomlar menyusini oching va o'zingizga yoqqan taomlarni tanlang!",
+    "enterMessageText": "Xabar matnini kiriting:",
+    "confirmMessage": "Barchasi to'g'rimi?\n\n<b>Xabar matni:</b>\n\n{{messageText}}",
+    "messageSent": "Xabar {{count}} ta foydalanuvchiga muvaffaqiyatli yuborildi"
 
 }

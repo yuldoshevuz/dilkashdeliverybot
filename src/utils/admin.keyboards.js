@@ -33,13 +33,6 @@ export const adminButtons = {
         en: "💰 Change Price",
         ru: "💰 Изменить цену"
     },
-    previous: "⬅️",
-    next: "➡️",
-    categoriesMenu: {
-        uz: "🍱 Kategoriyalar",
-        en: "🍱 Categories",
-        ru: "🍱 Категории"
-    },
     categories: {
         uz: "🍟 Kategoriyalar",
         en: "🍟 Categories",
@@ -65,6 +58,11 @@ export const adminButtons = {
         en: "📅 Bookings",
         ru: "📅 Забронировано"
     },
+    newMessage: {
+        uz: "📨 Yangi xabar",
+        en: "📨 New message",
+        ru: "📨 Новое сообщение"
+    },
     backToAdminMenu: {
         uz: "🏠 Admin menyuga qaytish",
         en: "🏠 Back to Admin Menu",
@@ -78,16 +76,15 @@ export const adminButtons = {
 };
 
 export const adminMainMenuKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.text(adminButtons.orders[lang]), Markup.button.text(adminButtons.viewReports[lang]) ],
-    [ Markup.button.text(adminButtons.menu[lang]), Markup.button.text(adminButtons.categoriesMenu[lang]) ],
+    [ Markup.button.text(adminButtons.menu[lang]), Markup.button.text(adminButtons.orders[lang]) ],
+    [ Markup.button.text(adminButtons.newMessage[lang]), Markup.button.text(adminButtons.viewReports[lang]) ],
     [ Markup.button.text(adminButtons.viewBookings[lang]) ],
     [ Markup.button.text(buttons.backToMainMenu[lang]) ]
 ]).resize();
 
 // Ovqatlar menyusi
 export const adminMenuKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.text(adminButtons.foods[lang]) ],
-    [ Markup.button.text(adminButtons.addFood[lang]), Markup.button.text(adminButtons.delete[lang]) ],
+    [ Markup.button.text(adminButtons.foods[lang]), Markup.button.text(adminButtons.categories[lang]) ],
     [ Markup.button.text(adminButtons.backToAdminMenu[lang]) ]
 ]).resize();
 
@@ -95,7 +92,7 @@ export const backToAdminMenuKeyboard = (lang) => Markup.keyboard([
     [ Markup.button.text(adminButtons.backToAdminMenu[lang]) ]
 ]).resize();
 
-export const orderKeyboard = (lang, orderId) => Markup.inlineKeyboard([
+export const adminOrderKeyboard = (lang, orderId) => Markup.inlineKeyboard([
     [ Markup.button.callback(adminButtons.changeOrderStatus[lang], `orderSettings:${orderId}:change`) ],
     [ Markup.button.callback(buttons.location[lang], `orderSettings:${orderId}:location`) ]
 ]);
@@ -119,7 +116,7 @@ export const changeOrderStatusKeyboard = (lang, currentStatus, orderId) => Marku
     [ Markup.button.callback(buttons.back[lang], `changeOrderStatus:${orderId}:back`) ]
 ]);
 
-export const adminFoodsKeyboard = (foods, lang, add) => {
+export const adminFoodsKeyboard = (foods, lang) => {
     const keyboards = [[]];
 
     for (const food of foods) {
@@ -133,19 +130,13 @@ export const adminFoodsKeyboard = (foods, lang, add) => {
         }
     }
 
-    add && keyboards.unshift([ Markup.button.text(adminButtons.addFood[lang]) ]);
+    keyboards.unshift([ Markup.button.text(adminButtons.addFood[lang]) ]);
     keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
     return Markup.keyboard(keyboards).resize();
 }
 
-export const adminCategoryKeyboard = (lang) => Markup.keyboard([
-    [ Markup.button.text(adminButtons.categories[lang]) ],
-    [ Markup.button.text(adminButtons.addCategory[lang]), Markup.button.text(adminButtons.delete[lang]) ],
-    [ Markup.button.text(adminButtons.backToAdminMenu[lang]) ]
-]).resize();
-
 export const adminCategoriesKeyboard = (categories, lang) => {
-    const keyboards = [[]]
+    const keyboards = [[]];
 
     for (const category of categories) {
         const lastItem = keyboards[ keyboards.length - 1 ];
@@ -158,17 +149,18 @@ export const adminCategoriesKeyboard = (categories, lang) => {
         }
     }
 
+    keyboards.unshift([ Markup.button.text(adminButtons.addCategory[lang]) ]);
     keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
     return Markup.keyboard(keyboards).resize();
 };
 
-export const adminCategorySettings = (lang, id) => Markup.inlineKeyboard([
+export const adminCategorySettingsKeyboard = (lang, id) => Markup.inlineKeyboard([
     [ Markup.button.callback(adminButtons.foods[lang], `viewFoods:${id}`) ],
     [ Markup.button.callback(adminButtons.addFood[lang], `addFood:${id}`), Markup.button.callback(adminButtons.delete[lang], `deleteCategory:${id}`) ],
     [ Markup.button.callback(adminButtons.backToAdminMenu[lang], `back:admin`) ]
 ]);
 
-export const adminFoodSettings = (lang, id) => Markup.inlineKeyboard([
+export const adminFoodSettingsKeyboard = (lang, id) => Markup.inlineKeyboard([
     [ Markup.button.callback(adminButtons.changePrice[lang], `changePrice:${id}`), Markup.button.callback(adminButtons.delete[lang], `deleteFood:${id}`) ],
     [ Markup.button.callback(adminButtons.backToAdminMenu[lang], `back:admin`) ]
 ]);

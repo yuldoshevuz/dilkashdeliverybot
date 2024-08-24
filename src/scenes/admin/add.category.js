@@ -6,7 +6,7 @@ import environments from "../../config/environments.js";
 import repository from "../../repository/repository.js";
 import { adminButtons, adminNextOrCancelKeyboard } from "../../utils/admin.keyboards.js";
 
-const adminaddCategory = new WizardScene("admin:addCategory",
+const adminAddCategoryScene = new WizardScene("admin:addCategory",
     async (ctx) => {
         try {
             if (ctx.message.text) {
@@ -15,7 +15,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.category;
-                    return await ctx.scene.enter("admin:menuCategory");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.category = { uz: text, images: [] };
@@ -43,7 +43,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.category;
-                    return await ctx.scene.enter("admin:menuCategory");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.category.en = text;
@@ -71,7 +71,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.category;
-                    return await ctx.scene.enter("admin:menuCategory");
+                    return await ctx.scene.enter("admin:menu");
                 }
                 
                 ctx.session.category.ru = text;
@@ -122,7 +122,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.category;
-                    return await ctx.scene.enter("admin:menuCategory");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 if (text === adminButtons.next[lang]) {
@@ -148,7 +148,7 @@ const adminaddCategory = new WizardScene("admin:addCategory",
     }
 );
 
-adminaddCategory.enter(async (ctx) => {
+adminAddCategoryScene.enter(async (ctx) => {
     try {
         const language = i18n.t("uz")
 
@@ -161,4 +161,4 @@ adminaddCategory.enter(async (ctx) => {
     }
 });
 
-export default adminaddCategory;
+export default adminAddCategoryScene;

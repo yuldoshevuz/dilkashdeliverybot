@@ -1,13 +1,13 @@
 import { BaseScene } from "telegraf/scenes";
 import i18n from "../../config/i18n.config.js";
-import { adminCategoriesKeyboard, adminCategorySettings } from "../../utils/admin.keyboards.js";
+import { adminButtons, adminCategoriesKeyboard, adminCategorySettingsKeyboard } from "../../utils/admin.keyboards.js";
 import repository from "../../repository/repository.js";
 import { buttons } from "../../utils/keyboards.js";
 import { convertMediaGroup } from "../../helpers/index.js";
 
-const adminCategories = new BaseScene("admin:categories");
+const adminCategoriesScene = new BaseScene("admin:categories");
 
-adminCategories.enter(async (ctx) => {
+adminCategoriesScene.enter(async (ctx) => {
     try {
         const categories = await repository.category.findAll(ctx.session.lang);
 
@@ -19,11 +19,13 @@ adminCategories.enter(async (ctx) => {
     }
 });
 
-adminCategories.hears(async (button, ctx) => {
+adminCategoriesScene.hears(async (button, ctx) => {
     const { lang } = ctx.session;
 
     if (button === buttons.back[lang]) {
-        return await ctx.scene.enter("admin:menuCategory");
+        return await ctx.scene.enter("admin:menu");
+    } else if (button === adminButtons.addCategory[lang]) {
+        return await ctx.scene.enter("admin:addCategory");
     }
     
     const category = await repository.category.findByName(button, lang);
@@ -37,12 +39,12 @@ adminCategories.hears(async (button, ctx) => {
                 foodCount: category.foods.length,
                 imagesCount: category.images.length
             }),
-            adminCategorySettings(lang, category.id)
+            adminCategorySettingsKeyboard(lang, category.id)
         );
     }
 });
 
-adminCategories.action(async (callbackData, ctx) => {
+adminCategoriesScene.action(async (callbackData, ctx) => {
     try {
         ctx.answerCbQuery();
         const [ cursor, data ] = callbackData.split(":")
@@ -73,4 +75,4 @@ adminCategories.action(async (callbackData, ctx) => {
     }
 });
 
-export default adminCategories;
+export default adminCategoriesScene;

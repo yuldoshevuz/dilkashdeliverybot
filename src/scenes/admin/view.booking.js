@@ -3,9 +3,9 @@ import repository from "../../repository/repository.js";
 import { formatBookingDetails } from "../../helpers/date.js";
 import i18n from "../../config/i18n.config.js";
 
-const adminViewBooking = new BaseScene("admin:viewBooking");
+const adminViewBookingScene = new BaseScene("admin:viewBooking");
 
-adminViewBooking.enter(async (ctx) => {
+adminViewBookingScene.enter(async (ctx) => {
     try {
         const bookings = await repository.booking.findAllActive();
         if (!bookings.length) {
@@ -33,4 +33,4 @@ adminViewBooking.enter(async (ctx) => {
     }
 })
 
-export default adminViewBooking;
+export default adminViewBookingScene;

@@ -6,7 +6,7 @@ import repository from "../../repository/repository.js";
 import { getImageUrl } from "../../helpers/index.js";
 import environments from "../../config/environments.js";
 
-const adminAddFood = new WizardScene("admin:addFood",
+const adminAddFoodScene = new WizardScene("admin:addFood",
     async (ctx) => {
         try {
             if (ctx.message.text) {
@@ -15,7 +15,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.food = {
@@ -46,7 +46,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.food.title.en = text;
@@ -74,7 +74,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.food.title.ru = text;
@@ -103,7 +103,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.food.composition = { uz: text };
@@ -132,7 +132,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.food.composition.en = text;
@@ -161,7 +161,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 ctx.session.food.composition.ru = text;
@@ -203,11 +203,11 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 if (text === buttons.back[lang]) {
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 const category = await repository.category
@@ -241,7 +241,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 if (isNaN(text)) {
@@ -296,7 +296,7 @@ const adminAddFood = new WizardScene("admin:addFood",
 
                 if (text === buttons.cancel[lang]) {
                     delete ctx.session.food;
-                    return await ctx.scene.enter("admin:menuFood");
+                    return await ctx.scene.enter("admin:menu");
                 }
 
                 if (text === adminButtons.next[lang]) {
@@ -322,7 +322,7 @@ const adminAddFood = new WizardScene("admin:addFood",
     }
 );
 
-adminAddFood.enter(async (ctx) => {
+adminAddFoodScene.enter(async (ctx) => {
     try {
         const language = i18n.t("uz");
 
@@ -335,4 +335,4 @@ adminAddFood.enter(async (ctx) => {
     }
 });
 
-export default adminAddFood;
+export default adminAddFoodScene;
