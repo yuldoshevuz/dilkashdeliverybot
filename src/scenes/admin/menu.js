@@ -15,19 +15,11 @@ adminMenuScene.hears(async (button, ctx) => {
     try {
         const { lang } = ctx.session;
 
-        if (button === adminButtons.foods[lang]) {
-            const foods = await repository.food.findAll(lang);
-
-            if (!foods?.length) {
-                return ctx.reply(i18n.t("noFoods"));
-            }
-
+        if (button === adminButtons.backToAdminMenu[lang]) {
+            return await ctx.scene.enter("admin");
+        } else if (button === adminButtons.foods[lang]) {
             return await ctx.scene.enter("admin:foods");
         } else if (button === adminButtons.categories[lang]) {
-            const categories = await repository.category.findAll(lang);
-            if (!categories?.length) {
-                return ctx.reply(i18n.t("noCategories"));
-            }
             return ctx.scene.enter("admin:categories");
         }
     } catch (error) {

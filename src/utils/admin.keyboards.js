@@ -1,6 +1,7 @@
 import { Markup } from "telegraf";
 import { buttons } from "./keyboards.js";
 import { getOrderStatusAndCompare } from "../helpers/index.js";
+import { keyboard } from "telegraf/markup";
 
 export const adminButtons = {
     orders: {
@@ -116,7 +117,7 @@ export const changeOrderStatusKeyboard = (lang, currentStatus, orderId) => Marku
     [ Markup.button.callback(buttons.back[lang], `changeOrderStatus:${orderId}:back`) ]
 ]);
 
-export const adminFoodsKeyboard = (foods, lang) => {
+export const adminFoodsKeyboard = (foods, lang, adding = true) => {
     const keyboards = [[]];
 
     for (const food of foods) {
@@ -130,7 +131,7 @@ export const adminFoodsKeyboard = (foods, lang) => {
         }
     }
 
-    keyboards.unshift([ Markup.button.text(adminButtons.addFood[lang]) ]);
+    adding && keyboards.unshift([ Markup.button.text(adminButtons.addFood[lang]) ]);
     keyboards.push([ Markup.button.text(buttons.back[lang]) ]);
     return Markup.keyboard(keyboards).resize();
 }
@@ -157,12 +158,12 @@ export const adminCategoriesKeyboard = (categories, lang, adding = true) => {
 export const adminCategorySettingsKeyboard = (lang, id) => Markup.inlineKeyboard([
     [ Markup.button.callback(adminButtons.foods[lang], `viewFoods:${id}`) ],
     [ Markup.button.callback(adminButtons.addFood[lang], `addFood:${id}`), Markup.button.callback(adminButtons.delete[lang], `deleteCategory:${id}`) ],
-    [ Markup.button.callback(adminButtons.backToAdminMenu[lang], `back:admin`) ]
+    [ Markup.button.callback(buttons.back[lang], `back:admin`) ]
 ]);
 
-export const adminFoodSettingsKeyboard = (lang, id) => Markup.inlineKeyboard([
-    [ Markup.button.callback(adminButtons.changePrice[lang], `changePrice:${id}`), Markup.button.callback(adminButtons.delete[lang], `deleteFood:${id}`) ],
-    [ Markup.button.callback(adminButtons.backToAdminMenu[lang], `back:admin`) ]
+export const adminFoodSettingsKeyboard = (lang, foodId) => Markup.inlineKeyboard([
+    [ Markup.button.callback(adminButtons.changePrice[lang], `changePrice:${foodId}`), Markup.button.callback(adminButtons.delete[lang], `deleteFood:${foodId}`) ],
+    [ Markup.button.callback(buttons.back[lang], `back:admin`) ]
 ]);
 
 export const adminNextOrCancelKeyboard = (lang) => Markup.keyboard([

@@ -11,6 +11,11 @@ adminCategoriesScene.enter(async (ctx) => {
     try {
         const categories = await repository.category.findAll(ctx.session.lang);
 
+        if (!categories?.length) {
+            await ctx.reply(i18n.t("noCategories"));
+            return await ctx.scene.enter("admin:menu");
+        }
+
         await ctx.replyWithHTML(i18n.t("selectOptions"),
             adminCategoriesKeyboard(categories, ctx.session.lang)
         );
@@ -20,27 +25,18 @@ adminCategoriesScene.enter(async (ctx) => {
 });
 
 adminCategoriesScene.hears(async (button, ctx) => {
-    const { lang } = ctx.session;
-
-    if (button === buttons.back[lang]) {
-        return await ctx.scene.enter("admin:menu");
-    } else if (button === adminButtons.addCategory[lang]) {
-        return await ctx.scene.enter("admin:addCategory");
-    }
+    try {
+        const lang = ctx.session.lang;
     
-    const category = await repository.category.findByName(button, lang);
-    if (category) {
-        const mediaGroup = convertMediaGroup(category.images);       
-
-        await ctx.replyWithMediaGroup(mediaGroup);
-        await ctx.replyWithHTML(
-            i18n.t("categoryDetails", {
-                title: category.title,
-                foodCount: category.foods.length,
-                imagesCount: category.images.length
-            }),
-            adminCategorySettingsKeyboard(lang, category.id)
-        );
+        if (button === buttons.back[lang]) {
+            return await ctx.scene.enter("admin:menu");
+        } else if (button === adminButtons.addCategory[lang]) {
+            return await ctx.scene.enter("admin:addCategory");
+        }
+        
+        await ctx.scene.enter("admin:category", { title: button });
+    } catch (error) {
+        console.error(error);        
     }
 });
 
@@ -68,7 +64,6 @@ adminCategoriesScene.action(async (callbackData, ctx) => {
                 categoryId: data
             });
         }
-
     } catch (error) {
         console.error(error);
         

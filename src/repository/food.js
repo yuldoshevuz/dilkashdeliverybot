@@ -105,6 +105,11 @@ class Food extends Model {
         return await this.findById(newFood.id);
     }
 
+    async updateById(foodId, newData, lang) {
+        const updated = await super.updateById(foodId, newData);
+        return await this.findById(updated.id, lang);
+    }
+
     async deleteById(id) {
         try {
             await this.model.update({
