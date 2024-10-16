@@ -1,4 +1,4 @@
-import "./core/bot.js";
+import "./index.js";
 import express from "express";
 import environments from "./config/environments.js";
 import bot from "./core/bot.js";
