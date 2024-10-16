@@ -10,7 +10,7 @@ app.use(express.json());
 app.use('/dilkashdeliverybot', bot.webhookCallback('/secret-path'))
 bot.telegram.setWebhook(environments.SERVER_URL)
 
-app.get("/", (req, res) => {
+app.get("/dilkashdeliverybot", (req, res) => {
     res.status(200).json({
         ok: true,
         message: "Bot running..."
