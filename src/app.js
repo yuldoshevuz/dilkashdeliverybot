@@ -6,9 +6,9 @@ import bot from "./core/bot.js";
 const app = express();
 
 app.use(express.json());
-app.use(bot.webhookCallback("/secret-path"));
 
-bot.telegram.setWebhook(environments.SERVER_URL);
+app.use('/dilkashdeliverybot', bot.webhookCallback('/secret-path'))
+bot.telegram.setWebhook(SERVER_URL)
 
 app.get("/", (req, res) => {
     res.status(200).json({
