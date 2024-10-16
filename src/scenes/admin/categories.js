@@ -13,7 +13,6 @@ adminCategoriesScene.enter(async (ctx) => {
 
         if (!categories?.length) {
             await ctx.reply(i18n.t("noCategories"));
-            return await ctx.scene.enter("admin:menu");
         }
 
         await ctx.replyWithHTML(i18n.t("selectOptions"),

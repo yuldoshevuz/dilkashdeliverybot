@@ -21,10 +21,8 @@ adminFoodsScene.enter(async (ctx) => {
                 await ctx.answerCbQuery(i18n.t("noFoods"), {
                     show_alert: true
                 });
-                return await ctx.scene.enter("admin:category", {}, true);
             }
             await ctx.reply(i18n.t("noFoods"));
-            return await ctx.scene.enter("admin:menu")
         }
 
         await ctx.replyWithHTML(
