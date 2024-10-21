@@ -6,7 +6,7 @@ import * as uuid from "uuid";
 
 const app = express();
 
-const secretPath = uuid.v4();
+const secretPath = '/' + uuid.v4();
 const webhookUrl = environments.SERVER_URL + secretPath;
 
 app.use(express.json());
