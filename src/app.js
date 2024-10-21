@@ -5,12 +5,14 @@ import bot from "./core/bot.js";
 import * as uuid from "uuid";
 
 const app = express();
+
 const secretPath = uuid.v4();
+const webhookUrl = environments.SERVER_URL + secretPath;
 
 app.use(express.json());
 
 app.use("/dilkashdeliverybot", bot.webhookCallback(secretPath));
-bot.telegram.setWebhook(environments.SERVER_URL + secretPath);
+bot.telegram.setWebhook(webhookUrl);
 
 app.get("/dilkashdeliverybot", (req, res) => {
   res.status(200).json({
